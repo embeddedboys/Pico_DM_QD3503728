@@ -1,0 +1,5 @@
+get_started = "Get Started"
+
+# used for urls param
+introduction = "introduction"
+requirements = "requirements"
