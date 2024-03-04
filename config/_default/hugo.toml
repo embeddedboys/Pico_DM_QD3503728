@@ -7,15 +7,15 @@ disableHugoGeneratorInject = true
 enableEmoji = true
 enableGitInfo = false
 enableRobotsTXT = true
-# languageCode = "zh-CN"
-languageCode = "en-US"
+languageCode = "zh-CN"
+#languageCode = "en-US"
 paginate = 10
 rssLimit = 10
 summarylength = 20 # 70 (default)
 
 # Multilingual
-defaultContentLanguage = "en"
-# defaultContentLanguage = "zh-cn"
+# defaultContentLanguage = "en"
+defaultContentLanguage = "zh-cn"
 disableLanguages = ["de", "nl"]
 defaultContentLanguageInSubdir = false
 

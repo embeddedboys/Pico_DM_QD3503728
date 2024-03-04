@@ -1,5 +1,5 @@
 ---
-title: "Docs"
+title: "文档"
 description: ""
 summary: ""
 date: 2023-09-07T16:12:03+02:00
@@ -8,7 +8,7 @@ draft: false
 menu:
   docs:
     parent: ""
-    identifier: "docs-9602b15bad02600f388355e2ade6b81"
+    identifier: "docs-9602b15bad02600f388355e2ade6b82"
 weight: 999
 toc: true
 seo:

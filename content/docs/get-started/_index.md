@@ -1,5 +1,5 @@
 ---
-title: "Get Started"
+title: "快速上手"
 description: ""
 summary: ""
 date: 2023-09-07T16:06:50+02:00
@@ -8,7 +8,7 @@ draft: false
 menu:
   docs:
     parent: ""
-    identifier: "guides-4e0d0e0f897decc11eaad4ae9193018"
+    identifier: "guides-4e0d0e0f897decc11eaad4ae9193017"
 weight: 800
 toc: true
 seo:
