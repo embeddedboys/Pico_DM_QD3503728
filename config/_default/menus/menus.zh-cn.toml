@@ -1,16 +1,16 @@
 [[main]]
   name = "文档"
-  url = "/zh-cn/docs/get-started/"
+  url = "docs/get-started/介绍"
   weight = 10
 
 [[main]]
   name = "关于"
-  url = "/zh-cn/about/"
+  url = "about/"
   weight = 20
 
 [[main]]
   name = "许可证"
-  url = "/zh-cn/license/"
+  url = "license/"
   weight = 30
 
 [[social]]

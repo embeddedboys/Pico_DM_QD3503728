@@ -30,16 +30,17 @@
 
 [[main]]
   name = "Docs"
-  url = "/docs/get-started/"
+  url = "en/docs/get-started/introduction"
   weight = 10
 
 [[main]]
   name = "About"
-  url = "/about/"
+  url = "en/about/"
   weight = 20
 
 [[main]]
   name = "License"
+  url = "en/license"
   weight = 30
 # [[social]]
 #   name = "Twitter"
