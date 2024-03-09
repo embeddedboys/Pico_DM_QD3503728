@@ -16,5 +16,7 @@ seo:
 
 数据来源自 [https://youtu.be/G2BuoFNLoDM?si=toe516Kl7rsoO3Ij](https://youtu.be/G2BuoFNLoDM?si=toe516Kl7rsoO3Ij)
 
+单核
+
 {{< figure src="images/coremark_ram.png" alt="" >}}
 {{< figure src="images/coremark_flash.png" alt="" >}}
