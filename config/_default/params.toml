@@ -1,15 +1,16 @@
 # Hugo
-title = "My Docs"
-description = "Congrats on setting up a new Doks project!"
+title = "embeddedboys"
+description = "Offical wiki site of Pico_DM_QD3503728"
 images = ["cover.png"]
 
 # mainSections
 mainSections = ["docs"]
 
+# never delete this
 dummy = "."
 
 [social]
-  twitter = "getdoks"
+  twitter = ""
 
 # Doks (@hyas/doks-core)
 [doks]
