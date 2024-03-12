@@ -1,5 +1,5 @@
 ---
-title: "Basic"
+title: "基本"
 description: ""
 summary: ""
 date: 2024-03-09T08:11:13Z

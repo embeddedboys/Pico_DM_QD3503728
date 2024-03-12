@@ -61,6 +61,7 @@
       "DocSearch-Label",
       "about",
       "active",
+      "alert-octagon",
       "alert-triangle",
       "align-items-center",
       "anchor",
@@ -78,6 +79,7 @@
       "callout-body",
       "callout-caution",
       "callout-content",
+      "callout-danger",
       "callout-icon",
       "callout-note",
       "callout-title",
@@ -285,6 +287,8 @@
       "wrap"
     ],
     "ids": [
+      "1-官方版本",
+      "2-合宙-pico-核心板",
       "TableOfContents",
       "buttonColorMode",
       "cmake配置说明通用",
@@ -296,7 +300,6 @@
       "further-reading",
       "fzf",
       "h-rh-i-0",
-      "heading",
       "lcd-相关",
       "nav-tab",
       "nav-tabContent",
@@ -332,6 +335,7 @@
       "toc",
       "uf2",
       "uf2-烧录",
+      "yd-rp2040-核心板",
       "产品参数",
       "器材准备",
       "指定电压下的最大时钟速度",
@@ -339,9 +343,10 @@
       "测试固件下载",
       "烧录",
       "电流与时钟速度关系",
-      "电流与速度关系",
+      "统计",
       "编译工程",
       "裸机版本",
+      "说明",
       "超频预设",
       "通用"
     ]
