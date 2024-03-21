@@ -5,7 +5,7 @@ summary: ""
 date: 2024-03-09T06:28:44Z
 lastmod: 2024-03-09T06:28:44Z
 draft: false
-weight: 820
+weight: 203
 toc: true
 seo:
   title: "" # custom title (optional)
@@ -16,7 +16,7 @@ seo:
 
 正所谓工欲善其事必先利其器，本文将介绍一些主流的开发工具。
 
-如果您已有习惯使用的工具，跳过本章节即可。
+如果您已有习惯使用的工具，可跳过本章节。
 
 ## 通用
 
@@ -58,6 +58,10 @@ echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 source ~/.zshrc
 ```
 
+简单配置完成后效果如下：
+
+{{< figure src="images/powerlevel10k.png" alt="" >}}
+
 4. 安装插件
 
 zsh-autosuggestions - zsh 的 Fish-like 的自动建议
@@ -67,6 +71,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions
 echo "source ${(q-)PWD}/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 ```
 
+{{< figure src="images/zsh-autosuggestions.png" alt="" >}}
+
 --------
 
 zsh-syntax-highlighting - zsh 的 Fish-like 的语法高亮
@@ -75,6 +81,8 @@ zsh-syntax-highlighting - zsh 的 Fish-like 的语法高亮
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 ```
+
+{{< figure src="images/zsh-syntax.png" alt="" >}}
 
 5. 使配置生效
 
@@ -97,6 +105,9 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 更多用法参考[usage](https://github.com/junegunn/fzf?tab=readme-ov-file#usage)
 
+{{< figure src="images/fzf.png" alt="" >}}
+{{< figure src="images/fzf2.png" alt="" >}}
+
 ## Pico相关
 
 ### picotool
@@ -113,3 +124,6 @@ git clone https://github.com/raspberrypi/picotool
 $ picotool load blink.uf2
 Loading into Flash: [==============================]  100%
 ```
+{{< callout context="note" title="说明" icon="info-circle" >}}
+此方法同样需要RP2040处于下载模式
+{{< /callout >}}

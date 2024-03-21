@@ -9,7 +9,7 @@ menu:
   docs:
     parent: ""
     identifier: "example-6a1a6be473e933280d78ea53de6158d"
-weight: 810
+weight: 101
 toc: true
 seo:
   title: "" # custom title (optional)
@@ -21,6 +21,8 @@ seo:
 {{< figure src="images/dm-qd3503728-1.jpg" alt="" >}}
 
 **Pico_DM_QD3503728** 是基于树莓派 Pico 设计的一款低成本显示拓展板，用来学习、评估、开发LVGL或其他GUI应用。 
+
+我们使用了PIO模拟8080时序，来达到LCD的极限时序参数。
 
 树莓派 RP2040 是树莓派的首款微控制器。它为微控制器领域带来了高性能，低成本和易于使用的标志性价值。
 

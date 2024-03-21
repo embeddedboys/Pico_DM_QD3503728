@@ -5,7 +5,7 @@ summary: ""
 date: 2024-03-09T07:30:43Z
 lastmod: 2024-03-09T07:30:43Z
 draft: false
-weight: 840
+weight: 205
 toc: true
 seo:
   title: "" # custom title (optional)
@@ -33,9 +33,17 @@ make -j12
 
 ### UF2
 
+按住核心板上的BOOTSEL键，然后插入USB线缆，或者在插入线缆的情况下按下RUN按键，
+此时RP2040将进入BOOTROM USB下载模式。
+
 ```shell
 cp src/rp2040-freertos-template.uf2 /media/$USER/RPI-RP2/
 ```
+
+{{< callout context="note" title="说明" icon="info-circle" >}}
+Windows 用户可右键 uf2 文件选择发送到 RPI-RP2
+{{< /callout >}}
+
 
 ### openocd
 

@@ -9,7 +9,7 @@ menu:
   docs:
     parent: ""
     identifier: "env-setup-4e0d0e0f897decc11eaad4a9193017"
-weight: 810
+weight: 200
 toc: true
 seo:
   title: "" # custom title (optional)

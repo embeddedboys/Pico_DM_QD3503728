@@ -24,10 +24,6 @@ seo:
 | Buffer 大小 | 1/4 屏幕 |
 | Buffer 数量 | 2 |
 
-{{< callout context="note" title="说明" icon="info-circle" >}}
-裸机版本的 Buffer大小为1/2屏幕  Buffer数量为1
-{{< /callout >}}
-
 - Before: 裸机版本
 - After : FreeRTOS 版本
 
@@ -36,3 +32,7 @@ seo:
 - X: 测试项目
 
 - Y: FPS (Frame per second) （越高越好）
+
+{{< callout context="note" title="说明" icon="info-circle" >}}
+裸机版本的 Buffer大小为1/2屏幕  Buffer数量为1
+{{< /callout >}}

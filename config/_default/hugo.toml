@@ -1,5 +1,5 @@
 title = "embeddedboys"
-baseurl = "/"
+baseurl = "/Pico_DM_QD3503728"
 canonifyURLs = false
 disableAliases = true
 disableHugoGeneratorInject = true
