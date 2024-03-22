@@ -19,3 +19,13 @@
   url = "https://github.com/embeddedboys/Pico_DM_QD3503728"
   post = "v0.1.0"
   weight = 30
+
+[[footer]]
+  name = "京ICP备2024055668号"
+  url = "http://beian.miit.gov.cn/"
+  weight = 10
+
+[[footer]]
+  name = "Powered by doks"
+  url = "https://getdoks.org/"
+  weight = 20
