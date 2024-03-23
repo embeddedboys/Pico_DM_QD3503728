@@ -57,4 +57,6 @@ Using SPI PSRAM with the RP2040](https://forums.raspberrypi.com/viewtopic.php?t=
 
 所以我根据上述资料写了一个简单的hardfault访问一个测试数组的demo，位于[psram-mpu](https://github.com/IotaHydrae/rpi-pico-lab/blob/main/psram-mpu/main.c)，这个示例完成了在handler函数中对fake_memory数组的写入，将其替换为对psram的访问，并加入cache机制应该就能达到刚刚说的效果。 
 
+读者对这方面感兴趣的话，可以看一下《ARM Cortex-M0 权威指南》这本书，其中的异常部分讲的很好，对于理解本文的工作会有很大的帮助。
+
 由于最近在忙于其他项目，这个实验性的工作我没有投入太多时间，所以，先这样吧。
