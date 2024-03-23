@@ -1,14 +1,12 @@
 ---
-title: "开源资料汇总"
+title: "对于本项目的一些看法"
 description: ""
 summary: ""
-date: 2024-03-21T21:20:53Z
-lastmod: 2024-03-21T21:20:53Z
+date: 2024-03-23T01:01:02Z
+lastmod: 2024-03-23T01:01:02Z
 draft: false
-weight: 400
+weight: 1001
 toc: true
-sidebar:
-  collapsed: true
 seo:
   title: "" # custom title (optional)
   description: "" # custom description (recommended)

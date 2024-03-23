@@ -287,20 +287,26 @@
       "wrap"
     ],
     "ids": [
+      "1-为什么我的-pico-无法启动",
       "1-官方版本",
       "2-合宙-pico-核心板",
       "TableOfContents",
       "buttonColorMode",
-      "cmake配置说明通用",
+      "cmakeliststxt-配置说明",
       "daplink-openocd-烧录",
       "doks-docs-nav",
       "doks-language-current",
       "doks-languages",
+      "fpc-zh096g1321",
       "freertos-版本",
+      "freertos模板工程",
       "further-reading",
       "fzf",
       "h-rh-i-0",
       "lcd-相关",
+      "lvgl-8080显示屏通用工程",
+      "lvgl-freertos-工程",
+      "lvgl-裸机工程",
       "nav-tab",
       "nav-tabContent",
       "offcanvasNavMain",
@@ -343,6 +349,7 @@
       "指定电压下的最大时钟速度",
       "无名科技-pico-核心板",
       "是否开启超频",
+      "本项目相关的",
       "测试固件下载",
       "烧录",
       "独立于本项目的通用工程",
@@ -352,6 +359,7 @@
       "裸机版本",
       "说明",
       "超频预设",
+      "适用于rp2040的",
       "通用"
     ]
   }

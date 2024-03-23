@@ -1,11 +1,11 @@
 ---
-title: "开源资料汇总"
+title: "闲聊"
 description: ""
 summary: ""
-date: 2024-03-21T21:20:53Z
-lastmod: 2024-03-21T21:20:53Z
+date: 2024-03-23T00:59:44Z
+lastmod: 2024-03-23T00:59:44Z
 draft: false
-weight: 400
+weight: 1000
 toc: true
 sidebar:
   collapsed: true

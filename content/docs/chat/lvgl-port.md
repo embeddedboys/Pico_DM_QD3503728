@@ -1,14 +1,12 @@
 ---
-title: "开源资料汇总"
+title: "LVGL移植"
 description: ""
 summary: ""
-date: 2024-03-21T21:20:53Z
-lastmod: 2024-03-21T21:20:53Z
+date: 2024-03-23T01:02:33Z
+lastmod: 2024-03-23T01:02:33Z
 draft: false
-weight: 400
+weight: 1002
 toc: true
-sidebar:
-  collapsed: true
 seo:
   title: "" # custom title (optional)
   description: "" # custom description (recommended)

@@ -1,11 +1,11 @@
 ---
-title: "开源资料汇总"
+title: "物料信息"
 description: ""
 summary: ""
-date: 2024-03-21T21:20:53Z
-lastmod: 2024-03-21T21:20:53Z
+date: 2024-03-22T22:38:13Z
+lastmod: 2024-03-22T22:38:13Z
 draft: false
-weight: 400
+weight: 500
 toc: true
 sidebar:
   collapsed: true
