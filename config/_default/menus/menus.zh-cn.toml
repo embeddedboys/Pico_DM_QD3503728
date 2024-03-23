@@ -5,12 +5,12 @@
 
 [[main]]
   name = "关于"
-  url = "about/"
+  url = "docs/thanks/制作团队/"
   weight = 20
 
 [[main]]
   name = "许可证"
-  url = "license/"
+  url = "docs/license/mit-license/"
   weight = 30
 
 [[social]]
