@@ -24,6 +24,9 @@ seo:
 
 我们使用了PIO模拟8080时序，来达到LCD的极限时序参数。
 
+演示视频链接:
+[https://www.bilibili.com/video/BV1aD42177CE/](https://www.bilibili.com/video/BV1aD42177CE/)
+
 树莓派 RP2040 是树莓派的首款微控制器。它为微控制器领域带来了高性能，低成本和易于使用的标志性价值。
 
 {{< details "以下内容引用自树莓派官方介绍">}}
