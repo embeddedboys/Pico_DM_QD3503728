@@ -52,8 +52,7 @@ With detailed documentation, a polished MicroPython port, and a UF2 bootloader i
 | 触摸屏 | 3.5寸 FT6236U |
 
 {{< card-grid >}}
-  {{< link-card title="资料下载" href="taobao.com" >}}
-  {{< link-card title="官方购买链接" href="taobao.com" >}}
+  {{< link-card title="官方购买链接" href="https://item.taobao.com/item.htm?ft=t&id=776451474190&spm=a21dvs.23580594.0.0.52de3d0dccvs2X&skuId=5311045681719" >}}
 {{< /card-grid >}}
 
 {{< callout context="note" title="说明" icon="info-circle" >}} 默认配置不包括核心板，需自行准备，或选配 {{< /callout >}}
