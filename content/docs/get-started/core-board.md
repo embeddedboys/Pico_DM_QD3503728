@@ -96,15 +96,62 @@ seo:
 
 这个核心板的成绩并不理想，如果不超频使用，还是可以考虑下的，毕竟板载了较多的东西。
 
+{{< figure
+  process="fill 480x270"
+  src="images/yd-rp2040.webp"
+  alt=""
+>}}
+
+| 测试项    |   数值  | 
+| --- | --- |
+| CPU | 单、双核 266MHz |
+| Flash | 133MHz |
+
+
+### 无名科技 Pico 核心板
+
+稳定性跟YD-RP2040差不多，价格稍贵，颜值在线。
+
+{{< figure
+  process="fill 480x270"
+  src="images/wuming-pico.webp"
+  alt=""
+>}}
+
+
+| 测试项    |   数值  | 
+| --- | --- |
+| CPU | 单、双核 266MHz |
+| Flash | 133MHz |
+
+### 官方版本国产版1
+
+9.9包邮的性价比还是不错的，虽然可能会存在跟后者相同的问题，但是稳定性优于后者。
+
+{{< figure
+  process="fill 480x270"
+  src="images/pico-1.webp"
+  alt=""
+>}}
+
+
 | 测试项    |   数值  | 
 | --- | --- |
 | CPU | 单、双核 400MHz |
 | Flash | 100MHz |
 
-### 无名科技 Pico 核心板
+### 官方版本国产版2
 
-待添加
+这个板子重复编程flash会发烫，然后过热期间rp2040无法正常启动，不排除是个体原因。
 
-### 官方版本国产版
+{{< figure
+  process="fill 480x270"
+  src="images/pico-2.webp"
+  alt=""
+>}}
 
-待添加
+
+| 测试项    |   数值  | 
+| --- | --- |
+| CPU | 单、双核 266MHz |
+| Flash | 133MHz |

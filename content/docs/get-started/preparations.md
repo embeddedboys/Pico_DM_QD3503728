@@ -30,6 +30,8 @@ seo:
 
 ## 测试固件下载
 
-<a href="">lv_demo_widgets</a>
+目前还没有提供直链，先用这个吧
 
-<a href="">工厂测试固件</a>
+[https://pan.baidu.com/s/1m4WmPoHAZYiK3XwwXGrNDw?pwd=34mn#list/path=%2FPico_DM_QD3503728%2Ffirmware](https://pan.baidu.com/s/1m4WmPoHAZYiK3XwwXGrNDw?pwd=34mn#list/path=%2FPico_DM_QD3503728%2Ffirmware)
+
+firmware文件夹下

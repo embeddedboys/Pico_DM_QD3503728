@@ -16,3 +16,20 @@ seo:
 
 ### FPC-ZH096G1321
 
+{{< figure
+  process="fill 480x270"
+  src="images/bonus-dm-0.jpg"
+  alt=""
+>}}
+
+参考代码：[st7735s-lvgl](https://github.com/IotaHydrae/rpi-pico-lab/tree/main/st7735s-lvgl)
+
+### SINQ13001BL-A1
+
+{{< figure
+  process="fill 480x270"
+  src="images/bonus-dm-1.jpg"
+  alt=""
+>}}
+
+参考代码：[st7789v-lvgl](https://github.com/IotaHydrae/rpi-pico-lab/tree/main/st7789v-lvgl)
