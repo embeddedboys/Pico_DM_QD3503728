@@ -108,6 +108,20 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 {{< figure src="images/fzf.png" alt="" >}}
 {{< figure src="images/fzf2.png" alt="" >}}
 
+## VScode相关
+
+### clangd（未完）
+
+本项目的所有cmake工程都开启了`compile_commands.json`支持，可以使用clangd来进行代码索引
+
+1. 打开VScode，安装clangd插件
+
+2. 安装clangd服务器
+
+3. 手动触发clangd生成代码索引
+
+4. 测试功能
+
 ## Pico相关
 
 ### picotool
