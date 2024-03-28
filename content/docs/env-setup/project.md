@@ -55,12 +55,36 @@ git clone https://gitee.com/embeddedboys/pico_dm_8080_template
 git clone https://github.com/embeddedboys/pico_dm_8080_template
 ```
 
+### 驱动支持情况
+
+#### 显示驱动
+- [x] ST7789V
+- [ ] ST7796U
+- [x] ILI9488
+- [ ] ILI9486
+- [ ] ILI9341
+- [x] R61581
+- [ ] LG4572B
+- [ ] D51E5TA7601
+
+#### 触摸驱动
+- [x] FT6236U
+- [x] NS2009
+- [x] TSC2007
+- [ ] GT911
+
 -----------------------------
 
 ## 如果上述版本都无法下载，尝试访问如下链接直接下载压缩包
 链接：[https://pan.baidu.com/s/1m4WmPoHAZYiK3XwwXGrNDw?pwd=34mn](https://pan.baidu.com/s/1m4WmPoHAZYiK3XwwXGrNDw?pwd=34mn)
 
 提取码：34mn
+
+
+{{< callout context="note" title="说明" icon="info-circle" >}} 
+该方式的源码版本可能比较落后，最新版本以github仓库为准。
+我们也会及时更新镜像链接版本。
+{{< /callout >}}
 
 ## 其他版本
 

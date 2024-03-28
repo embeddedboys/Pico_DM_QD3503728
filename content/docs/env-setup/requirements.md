@@ -64,3 +64,5 @@ git submodule update --init
 echo "export PICO_SDK_PATH=$HOME/pico-sdk" >> ~/.bashrc
 source ~/.bashrc
 ```
+
+{{< callout context="note" title="说明" icon="info-circle" >}} 假设当前使用的是 bash {{< /callout >}}

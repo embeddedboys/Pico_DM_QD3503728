@@ -22,7 +22,7 @@ seo:
 
 **Pico_DM_QD3503728** 是基于树莓派 Pico 设计的一款低成本显示拓展板，用来学习、评估、开发LVGL或其他GUI应用。 
 
-我们使用了PIO模拟8080时序，来达到LCD的极限时序参数。
+<mark>**我们使用了PIO模拟8080接口，来达到LCD的极限时序参数。**</mark>
 
 演示视频链接:
 [https://www.bilibili.com/video/BV1aD42177CE/](https://www.bilibili.com/video/BV1aD42177CE/)
