@@ -98,7 +98,12 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 - [ ] Nuttx
 
 ### Arduino
-（开发中）
+（开发中）开发进度：
+- [x] 研究arduino ide如何开发rp2040程序
+- [ ] 搭建工程
 
 ### Micropython
 （开发中）
+开发进度：
+- [x] 在pico上验证了SPI st7735的lvgl例子
+- [ ] 搭建工程
