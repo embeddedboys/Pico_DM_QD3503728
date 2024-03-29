@@ -16,7 +16,7 @@ seo:
 
 我们提供了多个版本的工程，所以本文会分章节对应版本介绍。
 
-## PICO-SDK
+## 基于PICO-SDK的
 
 ### 裸机版本
 
@@ -90,11 +90,12 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 ## 其他版本
 
-我们正在开发中，包括但不限于，如果有时间的话 😋
+我们正在开发中，包括但不限于。 目前正在开发中 😋
 
-- Micropython
-- Azure Threadx
-- Nuttx
+- [ ] Arduino
+- [ ] Micropython
+- [ ] Azure Threadx
+- [ ] Nuttx
 
 ### Arduino
 （开发中）
