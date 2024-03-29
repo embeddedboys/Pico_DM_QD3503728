@@ -114,13 +114,30 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 本项目的所有cmake工程都开启了`compile_commands.json`支持，可以使用clangd来进行代码索引
 
-1. 打开VScode，安装clangd插件
+**1. 打开VScode，安装clangd插件**
 
-2. 安装clangd服务器
+{{< figure src="images/clangd-search-result.png" alt="" >}}
 
-3. 手动触发clangd生成代码索引
+**2. 安装clangd服务器**
 
-4. 测试功能
+2.1 方式1：使用插件内置功能安装
+
+按住`ctrl+shift+p`，输入clangd，找到如下选项，回车执行
+
+{{< figure src="images/download-clangd-server.png" alt="" >}}
+
+此方式可能对网络环境有要求
+
+2.2 方式2：手动安装clangd服务器
+
+
+
+**3. 手动触发clangd生成代码索引**
+
+按住`ctrl+shift+p`，输入clangd，找到如下选项，回车执行
+{{< figure src="images/trigger-clangd-server.png" alt="" >}}
+
+**4. 测试功能**
 
 ## Pico相关
 

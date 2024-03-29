@@ -14,12 +14,14 @@ seo:
   noindex: false # false (default) or true
 ---
 
-1. 安装前置依赖
+## 部署 pico-sdk
+
+### 1. 安装前置依赖
 
 {{< tabs "install-sdk-requirements" >}}
 {{< tab "Ubuntu" >}}
 
-```shell
+```bash {title="安装依赖"}
 sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
 ```
 
@@ -33,7 +35,7 @@ sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-n
 {{< /tab >}}
 {{< /tabs >}}
 
-2. 下载 pico-sdk 源码
+### 2. 下载 pico-sdk 源码
 
 {{< details "国内用户" >}}
 ```shell
@@ -51,18 +53,27 @@ git clone https://github.com/raspberrypi/pico-sdk/ $HOME/pico-sdk
 -------------
 
 
-3. 拉取 pico-sdk 子仓库代码
+### 3. 拉取 pico-sdk 子仓库代码
 
 ```shell
 cd ~/pico-sdk
 git submodule update --init
 ```
 
-4. 配置环境变量
+### 4. 配置环境变量 {#pico-sdk-env}
+
+对于bash
 
 ```shell
 echo "export PICO_SDK_PATH=$HOME/pico-sdk" >> ~/.bashrc
 source ~/.bashrc
+```
+
+对于zsh
+
+```shell
+echo "export PICO_SDK_PATH=$HOME/pico-sdk" >> ~/.zshrc
+source ~/.zshrc
 ```
 
 {{< callout context="note" title="说明" icon="info-circle" >}} 假设当前使用的是 bash {{< /callout >}}

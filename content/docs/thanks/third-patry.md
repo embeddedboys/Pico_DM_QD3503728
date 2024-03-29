@@ -1,11 +1,11 @@
 ---
-title: "制作团队"
+title: "第三方"
 description: ""
 summary: ""
-date: 2024-03-23T00:12:42Z
-lastmod: 2024-03-23T00:12:42Z
+date: 2024-03-29T01:00:00Z
+lastmod: 2024-03-29T01:00:00Z
 draft: false
-weight: 1301
+weight: 1302
 toc: true
 seo:
   title: "" # custom title (optional)
@@ -13,5 +13,3 @@ seo:
   canonical: "" # custom canonical URL (optional)
   noindex: false # false (default) or true
 ---
-
-[embeddedboys developers](https://github.com/embeddedboys)

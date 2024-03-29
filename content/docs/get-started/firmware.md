@@ -21,6 +21,14 @@ seo:
 
 图片引用自[树莓派 Pico 中文站](https://pico.org.cn/)
 
+图解步骤：
+
+1. 准备好要烧录的UF2文件
+2. 按住核心板上的BOOTSEL按键，插入USB线缆
+3. 电脑识别到名为RPI-RP2的可移动存储设备
+4. 将要烧录的文件拖放至名为RPI-RP2的可移动存储设备中
+5. 等待传输完成，程序自动执行
+
 ## DAPLink OpenOCD 烧录
 
 1. 安装 openocd
@@ -49,7 +57,6 @@ sudo make install
 
 {{< /tabs >}}
 
-
 2. 上传程序到 Pico
 
 {{< tabs "upload-program" >}}
@@ -69,4 +76,17 @@ sudo openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5
 {{< /tab >}}
 {{< /tabs >}}
 
+note：
+大部分情况下，该方式速度并不会快于UF2方式，尤其是在您使用的DAPLINK传输速度较慢的情况下。
+
+## JLink OpenOCD烧录
+
+（待添加）
+
+PS：我的jlink正在用于其他项目，因为插了一大堆杜邦线，所以暂时不想拆掉（懒），但是我测试过，jlink的烧写速度应该是最快的了。 :joy:
+
 ## picotool 烧录
+
+（待添加）
+
+此方式需要RP2040处于BOOTSEL模式
