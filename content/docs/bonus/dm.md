@@ -22,6 +22,11 @@ seo:
   alt=""
 >}}
 
+| | |
+| --- | --- |
+| 驱动 | ST7735S |
+| 分辨率 | 160x80 |
+
 参考代码：[st7735s-lvgl](https://github.com/IotaHydrae/rpi-pico-lab/tree/main/st7735s-lvgl)
 
 ### SINQ13001BL-A1
@@ -31,5 +36,10 @@ seo:
   src="images/bonus-dm-1.jpg"
   alt=""
 >}}
+
+| | |
+| --- | --- |
+| 驱动 | ST7789V |
+| 分辨率 | 240x240 |
 
 参考代码：[st7789v-lvgl](https://github.com/IotaHydrae/rpi-pico-lab/tree/main/st7789v-lvgl)
