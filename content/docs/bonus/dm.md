@@ -23,9 +23,18 @@ seo:
 >}}
 
 | | |
-| --- | --- |
-| 驱动 | ST7735S |
-| 分辨率 | 160x80 |
+| --- | --- | --- |
+| 驱动 | ST7735S | |
+| 分辨率 | 160x80 | |
+| 引脚定义 |  | |
+| 0 | GND | 电源地 |
+| 1 | VCC | 电源输入 |
+| 2 | SCL(SPI_SCK) | SPI时钟 |
+| 3 | SDA(SPI_MOSI) | SPI MOSI |
+| 4 | RES | 复位 |
+| 5 | DC | 数据/命令选择 |
+| 6 | CS | SPI 片选 |
+| 7 | BLK | 背光控制 |
 
 参考代码：[st7735s-lvgl](https://github.com/IotaHydrae/rpi-pico-lab/tree/main/st7735s-lvgl)
 
@@ -41,5 +50,19 @@ seo:
 | --- | --- |
 | 驱动 | ST7789V |
 | 分辨率 | 240x240 |
+
+| | |
+| --- | --- | --- |
+| 驱动 | ST7735S | |
+| 分辨率 | 160x80 | |
+| 引脚定义 |  | |
+| 0 | GND | 电源地 |
+| 1 | VCC | 电源输入 |
+| 2 | SCL(SPI_SCK) | SPI时钟 |
+| 3 | SDA(SPI_MOSI) | SPI MOSI |
+| 4 | RES | 复位 |
+| 5 | DC | 数据/命令选择 |
+| 6 | CS | SPI 片选 |
+| 7 | BLK | 背光控制 |
 
 参考代码：[st7789v-lvgl](https://github.com/IotaHydrae/rpi-pico-lab/tree/main/st7789v-lvgl)
