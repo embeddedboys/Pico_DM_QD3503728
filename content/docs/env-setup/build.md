@@ -49,6 +49,8 @@ porting/          # lvgl 移植文件
 ```shell
 cd pico_dm_qd3503728_freertos
 
+git submodule update --init
+
 mkdir -p build
 cd build
 cmake ..
