@@ -60,6 +60,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 #### 驱动支持情况
 
 ##### 显示驱动
+- [x] ST6201
 - [x] ST7789V
 - [ ] ST7796U
 - [x] ILI9488
@@ -73,7 +74,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 - [x] FT6236U
 - [x] NS2009
 - [x] TSC2007
-- [ ] GT911
+- [x] GT911
 
 -----------------------------
 
