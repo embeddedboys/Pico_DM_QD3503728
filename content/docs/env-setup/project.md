@@ -100,7 +100,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 ### Arduino
 （开发中）开发进度：
-- [x] 研究arduino ide如何开发rp2040程序
+- [x] 研究使用platformio Arduino开发rp2040程序
 - [ ] 搭建工程
 
 ### Micropython
