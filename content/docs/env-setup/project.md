@@ -67,6 +67,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 - [ ] ILI9486
 - [ ] ILI9341
 - [x] R61581
+- [x] 1P5623
 - [ ] LG4572B
 - [ ] D51E5TA7601
 
