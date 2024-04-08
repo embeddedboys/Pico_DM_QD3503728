@@ -44,7 +44,7 @@ seo:
 
 如果您自行准备核心板，那么在焊接排针的时候，应该以排针向下的方式焊接。
 
-在焊接核心板排针的时候，可以使用如下3D打印模型辅助：[pico-soldering-jig.stl](http://embeddedboys.com/uploads/pico-soldering-jig.stl)
+在焊接核心板排针的时候，可能会因对齐问题导致排针焊歪，此时可以使用如下3D打印模型辅助：[pico-soldering-jig.stl](http://embeddedboys.com/uploads/pico-soldering-jig.stl)
 {{< figure
   src="images/pico-soldering-jig.webp"
   process="fill 480x270"
@@ -54,6 +54,16 @@ seo:
   caption=""
 >}}
 
+将排针放至孔中，再放上Pico，就像这样：
+{{< figure
+  src="images/pico-on-jig.jpg"
+  process="fill 480x270"
+  width="160"
+  sizes="75vw"
+  alt=""
+  caption=""
+>}}
+然后就可以开始焊接啦
 
 {{< callout context="danger" title="危险" icon="alert-octagon" >}}
 不要将排针向上焊接的核心板安装到显示屏模组中！

@@ -27,8 +27,8 @@ seo:
 
 ### Linux
 
-- [ ] 幸狐 Luckfox Pico
-- [ ] Milk-V Duo
+- [x] [幸狐 Luckfox Pico (开发中...)](http://localhost:1313/docs/other-platform/linux/#luckfox_pico)
+- [ ] [Milk-V Duo](http://localhost:1313/docs/other-platform/linux/#milk-v-duo)
 
 ### ESP32-S3
 - [ ] WalnutPi 核桃派PicoW ESP32-S3
