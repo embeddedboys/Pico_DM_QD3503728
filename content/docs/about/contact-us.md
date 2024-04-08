@@ -18,6 +18,7 @@ seo:
 
 - 添加QQ群：（暂无）
 - 添加微信群：（暂无）
+- BiliBili私信
 - 发送邮件至 [writeforever@foxmail.com]()，格式如下：
 
 - 在对应仓库下提交 issue 或 PR
