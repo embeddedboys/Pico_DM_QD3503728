@@ -87,6 +87,11 @@ Bus 001 Device 018: ID 2e8a:000c Raspberry Pi Debugprobe on Pico (CMSIS-DAP)
 | GP5/UART1_RX | GP0/UART0_TX |
 | VSYS | VSYS |
 
+{{< callout context="note" title="说明" icon="alert-octagon" >}}
+只将debugprobe连接至电脑即可，如果debugprobe无法给Pico提供电源，则
+Pico也需要连接电源。
+{{< /callout >}}
+
 连接完成之后 ，使用如下命令烧录固件至Pico，以blink.elf为例
 ```shell
 openocd -f interface/cmsis-dap.cfg -c "adapter speed 5000" -f target/rp2040.cfg -s tcl -c "program blink.elf verify reset exit"

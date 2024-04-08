@@ -32,14 +32,35 @@ seo:
 {{< figure
   src="images/pico-r3-pinout.png"
   alt="（若图片过小可鼠标右键新标签页打开图片）"
-  caption="（若图片过小可鼠标右键新标签页打开图片）"  
+  caption="（若图片过小可鼠标右键新标签页打开图片）"
 >}}
 
-## 核心板的安装与卸载
+{{<figure
+  src="images/pico.jpg"
+  caption="https://www.blendswap.com/blend/27180"
+>}}
+
+## 核心板的焊接
+
+如果您自行准备核心板，那么在焊接排针的时候，应该以排针向下的方式焊接。
+
+在焊接核心板排针的时候，可以使用如下3D打印模型辅助：[pico-soldering-jig.stl](http://embeddedboys.com/uploads/pico-soldering-jig.stl)
+{{< figure
+  src="images/pico-soldering-jig.webp"
+  process="fill 480x270"
+  width="160"
+  sizes="75vw"
+  alt=""
+  caption=""
+>}}
+
 
 {{< callout context="danger" title="危险" icon="alert-octagon" >}}
-错误的安装可能会损坏核心板和模组！
+不要将排针向上焊接的核心板安装到显示屏模组中！
 {{< /callout >}}
+
+
+## 核心板的安装与卸载
 
 <mark>核心板USB接口方向一定要对准电路板上丝印USB标识处</mark>，将两排排针对准排母，两边同时用力按下，注意不要按坏屏幕，另一只手可以手掌托着屏幕一侧（增大受力面积），按压至最低端无法继续前进即可。 如果核心板安装后，两侧不处于同一平面，通常有一下两个原因：
 
@@ -50,6 +71,9 @@ seo:
 
 在移除核心板时，建议使用IC起拔器，否则核心板两端受力不均会导致核心板的排针弯曲，在将其修正前无法插入模组中。
 
+{{< callout context="danger" title="危险" icon="alert-octagon" >}}
+错误的安装可能会损坏核心板和模组！
+{{< /callout >}}
 
 ## 核心板数据统计
 我们测试了市面上绝大多数品牌的 Pico 核心板并进行了统计，最终发现，有些板子甚至无法满足正常开发工作，且大概率是使用了劣质的Flash芯片所造成的，通常表现为复位后无法正常启动。
