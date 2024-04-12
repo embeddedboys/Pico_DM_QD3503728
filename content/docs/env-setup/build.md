@@ -117,28 +117,28 @@ src/            # 工程源码
 
 #### src目录结构
 ```shell
-backlight.c
-cmake
-CMakeLists.txt
-factory
-FreeRTOSConfig.h
-ft6236.c
-gt911.c
-i2c_tools.c
-indev.c
-lv_conf.h
-lvgl
-main.c
-ns2009.c
-pio
-porting
+backlight.c     # 背光驱动
+cmake           # 一些cmake配置文件，板级或驱动级配置
+CMakeLists.txt  # src cmake配置
+factory       # 工厂测试相关
+FreeRTOSConfig.h  # FreeRTOS配置文件
+ft6236.c    # ft6236 电容触摸屏驱动
+gt911.c     # gt911 电容触摸屏驱动
+i2c_tools.c # i2c工具
+indev.c     # 输入驱动框架
+lv_conf.h   # lvgl配置头文件
+lvgl        # lvgl源码
+main.c      # 程序入口
+ns2009.c    # ns2009 电阻触摸屏驱动
+pio         # pio相关驱动
+porting     # lvgl移植文件
 tft_1p5623.c  # 1p5623 面板驱动
-tft.c
+tft.c         # 显示驱动框架
 tft_ili9488.c # ili9488 显示驱动
 tft_r61581.c  # r61581 显示驱动
 tft_st6201.c  # st6201 显示驱动
 tft_st7789.c # st7789 显示驱动
-tsc2007.c   # tsc2007 电阻屏触摸驱动
+tsc2007.c   # tsc2007 电阻触摸屏驱动
 ```
 
 ## 烧录
