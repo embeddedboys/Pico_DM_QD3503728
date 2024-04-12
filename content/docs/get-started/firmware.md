@@ -29,11 +29,11 @@ seo:
 4. 将要烧录的文件拖放至名为RPI-RP2的可移动存储设备中
 5. 等待传输完成，程序自动执行
 
-## debugprobe 烧录
+## debugprobe 烧录{#debugprobe}
 
 在使用本方式烧录之前，需要准备两块Pico核心板。
 
-先安装openocd
+先安装openocd，windows用户不需要通过此方式手动安装
 
 {{< tabs "install-openocd" >}}
 

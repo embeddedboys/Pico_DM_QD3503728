@@ -14,7 +14,10 @@ seo:
   noindex: false # false (default) or true
 ---
 
-本项目默认使用的开发系统为 **Ubuntu**，Windows 用户可使用 **WSL** 进行开发。
+本项目默认使用的开发系统为 **Ubuntu**
+
+Windows用户参考如下视频搭建开发环境，可以直接跳至编译及配置章节，了解工程信息。
+
 
 本工程基于树莓派官方 [pico-sdk](https://github.com/raspberrypi/pico-sdk/) 开发
 

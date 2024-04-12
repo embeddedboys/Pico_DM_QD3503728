@@ -141,6 +141,17 @@ tft_st7789.c # st7789 显示驱动
 tsc2007.c   # tsc2007 电阻触摸屏驱动
 ```
 
+#### 编译生成固件
+
+```shell
+cd pico_dm_8080_template
+
+mkdir -p build
+cd build
+cmake ..
+make -j12
+```
+
 ## 烧录
 
 可参考[固件烧录](/docs/get-started/固件烧录/)章节，此处给出示例
@@ -162,8 +173,15 @@ Windows 用户可右键 uf2 文件选择发送到 RPI-RP2
 ### openocd
 
 ```shell
-sudo openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5000" -c "program rp2040-freertos-template.elf verify reset exit
+openocd -f interface/cmsis-dap.cfg -c "adapter speed 5000" -f target/rp2040.cfg -s tcl -c "program src/rp2040-freertos-template.elf verify reset exit"
 ```
+program后面跟的参数是需要烧录的elf文件，当然也可以烧录bin文件，方式如下
+```shell
+openocd -f interface/cmsis-dap.cfg -c "adapter speed 10000" -f target/rp2040.cfg -s tcl -c "program src/rp2040-freertos-template.bin verify reset exit 0x10000000"
+```
+写入到`0x10000000`处地址，也就是rp2040映射Flash的地方
+
+如何制作一个picoprobe（debugprobe）调试器，可以参考[这个章节](/docs/get-started/固件烧录/#debugprobe)
 
 {{< callout context="note" title="说明" icon="info-circle" >}}
 WSL用户需要先将daplink连接至WSL中，可使用[usbipd](https://github.com/dorssel/usbipd-win)
