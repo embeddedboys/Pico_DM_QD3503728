@@ -16,8 +16,11 @@ seo:
 
 本项目默认使用的开发系统为 **Ubuntu**
 
-Windows用户参考如下视频搭建开发环境，可以直接跳至编译及配置章节，了解工程信息。
+Windows用户参考如下视频搭建开发环境，可直接跳至编译配置章节，了解工程信息。
 
+[https://www.bilibili.com/video/BV1YH4y1T7zn/](https://www.bilibili.com/video/BV1YH4y1T7zn/)
+
+--------------------
 
 本工程基于树莓派官方 [pico-sdk](https://github.com/raspberrypi/pico-sdk/) 开发
 
