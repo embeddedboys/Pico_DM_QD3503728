@@ -156,3 +156,7 @@ insmod /root/ili9488_fb.ko
 ### Ubuntu
 
 ## Milk-V Duo{#milk-v-duo}
+
+### 硬件改动 飞线
+
+### Buildroot

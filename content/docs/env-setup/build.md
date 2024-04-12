@@ -14,11 +14,56 @@ seo:
   noindex: false # false (default) or true
 ---
 
+如果您是从github，或者gitee拉取的工程，在进行编译之前，应该先更新子模块，方式如下：
+```shell
+# 位于工程根目录下
+git submodule update --init
+```
+此方式对网络环境有要求，子模块源来自github，可以通过代理等方式。
+我们正在尝试将子模块迁移至gitee，保证国内用户可以正常下载工程。
+
+如果不满足上述条件，可以直接下载对应工程压缩包（[位于上一章节](/docs/env-setup/选择工程)），我们会不定期进行更新。
+
 ## 编译工程
 
-此处以FreeRTOS版本工程为例
+### pico_dm_qd3503728_noos
 
-目录结构
+裸机工程
+
+#### 目录结构
+
+```shell
+backlight.c   # 背光驱动
+CMakeLists.txt  # 工程cmake配置文件
+factory   # 工厂测试程序
+ft6236.c  # 触摸驱动
+i2c_tools.c # i2c工具
+ili9488.c   # 显示驱动
+include   # 头文件
+LICENSE   # 许可证
+lv_conf.h   # lvgl配置头文件
+lvgl      # lvgl源码
+main.c    # 程序入口
+pico_sdk_import.cmake   # pico-sdk前置文件
+pio       # pio相关驱动
+porting   # lvgl移植文件
+```
+
+#### 编译生成固件
+```
+cd pico_dm_qd3503728_noos
+
+mkdir -p build
+cd build
+cmake ..
+make -j12
+```
+
+### pico_dm_qd3503728_freertos
+
+只针对于本产品的freertos工程
+
+#### 根目录结构
 ```shell
 CMakeLists.txt  # 根目录cmake配置
 LICENSE         # 许可证
@@ -29,7 +74,7 @@ pico_sdk_import.cmake # pico sdk前置文件
 src/            # 工程源码
 ```
 
-src目录结构
+#### src目录结构
 ```shell
 CMakeLists.txt    # 工程主要cmake配置
 FreeRTOSConfig.h  # FreeRTOS 配置文件
@@ -45,16 +90,55 @@ pio/              # PIO 相关驱动
 porting/          # lvgl 移植文件
 ```
 
-编译生成固件
+#### 编译生成固件
 ```shell
 cd pico_dm_qd3503728_freertos
-
-git submodule update --init
 
 mkdir -p build
 cd build
 cmake ..
 make -j12
+```
+
+### pico_dm_8080_template
+
+针对多个产品的工程模板
+
+#### 根目录结构
+```shell
+CMakeLists.txt  # 根目录cmake配置
+LICENSE         # 许可证
+README.md       # 自述文件
+include/        # 头文件
+lib/            # 第三方库
+pico_sdk_import.cmake # pico sdk前置文件
+src/            # 工程源码
+```
+
+#### src目录结构
+```shell
+backlight.c
+cmake
+CMakeLists.txt
+factory
+FreeRTOSConfig.h
+ft6236.c
+gt911.c
+i2c_tools.c
+indev.c
+lv_conf.h
+lvgl
+main.c
+ns2009.c
+pio
+porting
+tft_1p5623.c  # 1p5623 面板驱动
+tft.c
+tft_ili9488.c # ili9488 显示驱动
+tft_r61581.c  # r61581 显示驱动
+tft_st6201.c  # st6201 显示驱动
+tft_st7789.c # st7789 显示驱动
+tsc2007.c   # tsc2007 电阻屏触摸驱动
 ```
 
 ## 烧录
