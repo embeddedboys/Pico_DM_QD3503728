@@ -20,6 +20,8 @@ seo:
 
 ## Luckfox Pico{#luckfox_pico}
 
+luckfox pico有多个硬件版本型号，目前我们只对最基础的版本做了适配，也就是`Luckfox Pico IPC`，我们也购买了Luckfox Pico Max，适配工作正在进行中。
+
 luckfox pico有两个版本的SDK，分别是Buildroot和Ubuntu，我们针对这两个版本都做了适配。
 
 ### 硬件改动 飞线
@@ -154,6 +156,10 @@ insmod /root/ili9488_fb.ko
 
 
 ### Ubuntu
+
+{{<figure
+  src="images/luckfox-pico-ubuntu.jpg"
+>}}
 
 ## Milk-V Duo{#milk-v-duo}
 
