@@ -22,6 +22,4 @@ Windows用户参考如下视频搭建开发环境，可直接跳至编译配置�
 
 --------------------
 
-本工程基于树莓派官方 [pico-sdk](https://github.com/raspberrypi/pico-sdk/) 开发
-
 本工程发布于 MIT 协议，更多细节请查看 [LICENSE]()。

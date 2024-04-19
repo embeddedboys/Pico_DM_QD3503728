@@ -14,7 +14,9 @@ seo:
   noindex: false # false (default) or true
 ---
 
-我们提供了多个版本的工程，所以本文会分章节对应版本介绍。
+我们提供了多个版本的工程，本文只列出可用的工程，以及如何下载。
+
+我们会在下个章节中讨论编译及配置问题。
 
 ## 基于PICO-SDK的
 
@@ -94,18 +96,29 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 我们正在开发中，包括但不限于。 目前正在开发中 😋
 
+- [x] Micropython
 - [ ] Arduino
-- [ ] Micropython
-- [ ] Azure Threadx
 - [ ] Nuttx
+
+### Micropython
+
+仓库链接：[https://github.com/embeddedboys/lv_micropython.git](https://github.com/embeddedboys/lv_micropython.git)
+
+我们针对LVGL的V8.3和V9两个版本都做了适配，用户可根据需求自行选择合适的版本。
+
+因为micropython工程涉及太多子模块，所以不方便迁移到gitee，除非在网络环境允许的情况下或您对micropython有源码修改需求，否则不建议用户自行编译。
+
+您可以到[Github Release](https://github.com/embeddedboys/lv_micropython/releases)界面直接下载我们编译好的固件直接烧录使用，位于对应Release的Assets菜单下。 烧录方法参考[固件烧录](/docs/get-started/固件烧录/)
+
+对于无法访问Github的用户，可以访问如下链接下载固件：
+
+（待添加）
+
+为了帮助用户更快上手micropython开发，我们还录制了一个如何搭建micropython开发环境的视频，可通过访问如下链接查看：
+
+（待添加）
 
 ### Arduino
 （开发中）开发进度：
 - [x] 研究使用platformio Arduino开发rp2040程序
-- [ ] 搭建工程
-
-### Micropython
-（开发中）
-开发进度：
-- [x] 在pico上验证了SPI st7735的lvgl例子
 - [ ] 搭建工程

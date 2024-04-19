@@ -30,7 +30,7 @@ git submodule update --init
 
 裸机工程
 
-#### 目录结构
+目录结构
 
 ```shell
 backlight.c   # 背光驱动
@@ -49,7 +49,7 @@ pio       # pio相关驱动
 porting   # lvgl移植文件
 ```
 
-#### 编译生成固件
+编译生成固件
 ```
 cd pico_dm_qd3503728_noos
 
@@ -63,7 +63,7 @@ make -j12
 
 只针对于本产品的freertos工程
 
-#### 根目录结构
+根目录结构
 ```shell
 CMakeLists.txt  # 根目录cmake配置
 LICENSE         # 许可证
@@ -74,7 +74,7 @@ pico_sdk_import.cmake # pico sdk前置文件
 src/            # 工程源码
 ```
 
-#### src目录结构
+src目录结构
 ```shell
 CMakeLists.txt    # 工程主要cmake配置
 FreeRTOSConfig.h  # FreeRTOS 配置文件
@@ -90,7 +90,7 @@ pio/              # PIO 相关驱动
 porting/          # lvgl 移植文件
 ```
 
-#### 编译生成固件
+编译生成固件
 ```shell
 cd pico_dm_qd3503728_freertos
 
@@ -104,7 +104,7 @@ make -j12
 
 针对多个产品的工程模板
 
-#### 根目录结构
+根目录结构
 ```shell
 CMakeLists.txt  # 根目录cmake配置
 LICENSE         # 许可证
@@ -115,7 +115,7 @@ pico_sdk_import.cmake # pico sdk前置文件
 src/            # 工程源码
 ```
 
-#### src目录结构
+src目录结构
 ```shell
 backlight.c     # 背光驱动
 cmake           # 一些cmake配置文件，板级或驱动级配置
@@ -141,7 +141,7 @@ tft_st7789.c # st7789 显示驱动
 tsc2007.c   # tsc2007 电阻触摸屏驱动
 ```
 
-#### 编译生成固件
+编译生成固件
 
 ```shell
 cd pico_dm_8080_template
@@ -151,6 +151,60 @@ cd build
 cmake ..
 make -j12
 ```
+
+### MicroPython
+
+拉取并进入工程目录
+```bash
+git clone https://github.com/embeddedboys/lv_micropython.git
+cd lv_micropython
+```
+
+切换你需要编译的分支版本，对于LVGL V8.3
+```bash
+git checkout release/v8
+```
+对于LVGL V9
+```bash
+git checkout release/v9
+```
+{{< callout context="note" title="说明" icon="info-circle" >}}
+如果已经进行过编译，若切换分支，则需要在切换分支之后运行如下命令同步切换子模块版本
+```bash
+git submodule update
+```
+{{< /callout >}}
+
+
+若拉取模块过程失败则需重新执行，如果还是报错，请在对应make命令最后加上clean进行清理，然后重新执行对应命令。
+
+{{< tabs "install-sdk-requirements" >}}
+{{< tab "Ubuntu" >}}
+
+```bash {title="通用步骤"}
+sudo apt install cmake build-essenital gcc-arm-none-eabi -y
+
+git submodule update --init --recursive lib/lv_bindings
+make -C ports/rp2 BOARD=PICO submodules
+make -j -C mpy-cross
+make -j -C ports/rp2 BOARD=PICO USER_C_MODULES=../../lib/lv_bindings/bindings.cmake
+```
+
+{{< /tab >}}
+
+{{< tab "Fedora" >}}
+
+```bash {title="通用步骤"}
+sudo dnf install make gcc gcc-g++ cmake arm-none-eabi-gcc-cs arm-none-eabi-gcc-cs-c++ arm-none-eabi-newlib -y
+
+git submodule update --init --recursive lib/lv_bindings
+make -C ports/rp2 BOARD=PICO submodules
+make -j -C mpy-cross
+make -j -C ports/rp2 BOARD=PICO USER_C_MODULES=../../lib/lv_bindings/bindings.cmake
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## 烧录
 
@@ -192,21 +246,24 @@ WSL用户需要先将daplink连接至WSL中，可使用[usbipd](https://github.c
 此处列出可供用户自定义修改的选项
 
 ### 是否开启超频
-```shell
+```cmake
 set(OVERCLOCK_ENABLED 0)    # 1: enable, 0: disable
 ```
 {{< callout context="caution" title="注意" icon="alert-triangle" >}}
-过度超频可能会导致设备稳定性下降，用户自行承担其风险。
+过度超频可能会导致核心板稳定性下降，但并不会对拓展版造成影响。
+
+适当的超频可以达到更流畅的运行效果，用户自行承担其风险。
 {{< /callout >}}
 
 ### 超频预设
-```shell
+```cmake
 # Overclocking profiles
 #      SYS_CLK  | FLASH_CLK | Voltage
 #  1  | 266MHz  |  133MHz   |  1.10(V) (default, stable, recommended for most devices)
 #  2  | 240MHz  |  120MHZ   |  1.10(V) (more stable)
 #  3  | 360MHz  |  90MHz    |  1.20(V)
-#  4  | 400MHz  |  100MHz   |  1.25(V)
+#  4  | 400MHz  |  100MHz   |  1.30(V)
+#  5  | 420MHz  |  105MHz   |  1.30(V)
 set(OVERCLOCK_PROFILE 4)
 ```
 
@@ -229,7 +286,7 @@ PICO_FLASH_SPI_CLKDIV的默认值为2
 
 可在此处配置引脚、时钟、是否启用PIO等。
 若存在缺失配置项，则表示该工程不支持调整。
-```shell
+```cmake
 # LCD Pins for 8080 interface
 set(LCD_PIN_DB_BASE  0)  # 8080 LCD 数据总线第0脚
 set(LCD_PIN_DB_COUNT 16) # 8080 LCD 数据总线宽度
@@ -241,4 +298,32 @@ set(LCD_PIN_BL  28)  # 8080 LCD 背光引脚
 set(DISP_OVER_PIO 1) # LCD驱动模式 1: PIO, 0: GPIO
 set(PIO_USE_DMA   1)   # 是否启用DMA 1: use DMA, 0: not use DMA
 set(I80_BUS_WR_CLK_KHZ 50000) # 8080 LCD 写信号频率
+```
+
+### 选择显示驱动
+```cmake
+# LCD driver type
+set(LCD_DRV_USE_ST7789  0)
+set(LCD_DRV_USE_ILI9488 0)
+set(LCD_DRV_USE_ILI9806 1)
+set(LCD_DRV_USE_R61581  0)
+set(LCD_DRV_USE_ST6201  0)
+set(LCD_DRV_USE_1P5623  0)
+```
+
+### 选择触摸驱动
+```cmake
+# Input device driver type
+set(INDEV_DRV_USE_FT6236  0)
+set(INDEV_DRV_USE_NS2009  0)
+set(INDEV_DRV_USE_TSC2007 1)
+set(INDEV_DRV_USE_GT911   0)
+```
+
+### 杂项
+```cmake
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # 设置自动生成compile_commands.json
+pico_enable_stdio_usb(${PROJECT_NAME} 0)  # 设置stdio通过usb cdc输出
+pico_enable_stdio_uart(${PROJECT_NAME} 1) # 设置stdio通过uart输出
+pico_add_extra_outputs(${PROJECT_NAME}) # 输出额外的编译文件，例如uf2等
 ```

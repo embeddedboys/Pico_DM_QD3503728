@@ -32,3 +32,26 @@ Call Stack (most recent call first):
 ```
 
 这通常是由于没有正确设置`PICO_SDK_PATH`环境变量导致的，可参考[这里](/docs/env-setup/安装依赖/#pico-sdk-env)解决。
+
+### 我在使用git拉取github工程时，出现如下错误
+
+```bash
+```
+
+这通常是由于您的代理无法通过22端口访问github导致的，修改`~/.ssh/config`文件，加入如下内容
+```bash
+Host github.com
+    Hostname ssh.github.com
+    Port 443
+    User git
+```
+
+你可以通过再次连接到 GitHub.com 来测试这是否有效：
+
+```
+$ ssh -T git@github.com
+> Hi USERNAME! You've successfully authenticated, but GitHub does not
+> provide shell access.
+```
+
+参考连接：[在 HTTPS 端口使用 SSH](https://docs.github.com/zh/authentication/troubleshooting-ssh/using-ssh-over-the-https-port)
