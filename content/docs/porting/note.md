@@ -14,6 +14,10 @@ seo:
   noindex: false # false (default) or true
 ---
 
+本章节将会讲解本产品开发过程中涉及的移植问题，一方面是为了向用户公开更多的资料，另一方面也是打算将本章节作为相关资料的wiki，方便我们以后查阅。
+
+如果用户对这方面比较感兴趣，可以仔细阅读本章节，并通过完成若干个实验来学习了解这个开发过程。
+
 为了更好的推广本产品，我们决定将本产品移植适配其他平台，例如Linux、ESP32等。
 很高兴的向大家宣布，本部分的源码也将全部开源，基于MIT协议。
 
@@ -27,15 +31,16 @@ seo:
 
 ### Linux
 
-- [x] [幸狐 Luckfox Pico (开发中...)](http://localhost:1313/docs/other-platform/linux/#luckfox_pico)
-- [ ] [Milk-V Duo](http://localhost:1313/docs/other-platform/linux/#milk-v-duo)
+- [x] [幸狐科技 Luckfox Pico](http://localhost:1313/docs/porting/linux/#luckfox_pico)
+- [ ] [幸狐科技 Luckfox Pico Max](http://localhost:1313/docs/porting/linux/#luckfox_pico)
+- [ ] [Milk-V Duo](http://localhost:1313/docs/porting/linux/#milk-v-duo)
 
 ### ESP32-S3
-- [ ] WalnutPi 核桃派PicoW ESP32-S3
-- [ ] ESP32 S3 Dev Board A
-- [ ] MakePico ESP32-D0WDQ6-V3
+- [ ] [WalnutPi 核桃派PicoW ESP32-S3]()
+- [ ] [ESP32 S3 Dev Board A]()
+- [ ] [MakePico ESP32-D0WDQ6-V3]()
 
-{{< callout context="note" title="说明" icon="info-circle" >}} 
+{{< callout context="note" title="说明" icon="info-circle" >}}
 部分开发板存在缺少引脚引出的情况，所以可能会需要飞线。 使用任意线缆即可，
 若需要，会在对应文章处指出。
 {{< /callout >}}

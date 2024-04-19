@@ -156,13 +156,24 @@ insmod /root/ili9488_fb.ko
 
 
 ### Ubuntu
+Ubuntu的开发基本完成，已经验证通过，资料正在整理中，近期就会发布。
 
 {{<figure
   src="images/luckfox-pico-ubuntu.jpg"
 >}}
 
+{{<figure
+  src="images/luckfox-pico-ubuntu-desktop.jpg"
+>}}
+
+## Luckfox Pico Max{#luckfox_pico_max}
+（待更新）
+
 ## Milk-V Duo{#milk-v-duo}
+（待更新）
 
 ### 硬件改动 飞线
+（待更新）
 
 ### Buildroot
+（待更新）

@@ -1,5 +1,5 @@
 ---
-title: "移植到其他平台"
+title: "移植教程"
 description: ""
 summary: ""
 date: 2024-03-27T22:45:34Z
