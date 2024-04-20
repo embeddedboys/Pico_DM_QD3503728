@@ -21,3 +21,30 @@ seo:
 我们的服务器会每30分钟检查一次文档更新，同步至如下链接，供国内用户访问:
 
 [http://embeddedboys.com/Pico_DM_QD3503728](http://embeddedboys.com/Pico_DM_QD3503728)
+
+## 构建本文档
+
+安装[nvm](https://github.com/nvm-sh/nvm)
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+```
+
+通过nvm安装node
+```bash
+nvm install node
+```
+
+克隆编译构建文档
+```bash
+git clone https://github.com/embeddedboys/Pico_DM_QD3503728
+cd Pico_DM_QD3503728
+
+npm install
+rm -rf public && npm run build
+```
+
+或者在本地启动服务器
+```bash
+rm -rf public && npm run dev
+```
+访问[localhost:1313](localhost:1313)
