@@ -94,7 +94,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 ## 其他版本
 
-我们正在开发中，包括但不限于。 目前正在开发中 😋
+ 😋 我们正在开发中，包括但不限于如下工程：
 
 - [x] Micropython
 - [ ] Arduino
@@ -112,7 +112,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 对于无法访问Github的用户，可以访问如下链接下载固件：
 
-（待添加）
+[http://embeddedboys.com/uploads/qd3503728/micropython/](http://embeddedboys.com/uploads/qd3503728/micropython/)
 
 为了帮助用户更快上手micropython开发，我们还录制了一个如何搭建micropython开发环境的视频，可通过访问如下链接查看：
 
