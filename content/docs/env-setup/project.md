@@ -136,8 +136,10 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 Debian\Ubuntu用户可以执行如下命令安装Thonny IDE
 ```bash
-
+bash <(wget -O - https://thonny.org/installer-for-linux)
 ```
+
+安装好Thonny后，选择`工具`-->`选项`，切换到`解释器`选项卡，在`Thonny应该使用哪种解释器来运行您的代码？`下拉菜单中找到`MicroPython (Raspberry Pi Pico)`，并在`端口或WebREPL`下拉菜单选择`<自动探测端口>`，然后取消勾选`运行代码前，先重启解释器`选项。
 
 可以使用Thonny或者MicroPico的内置功能，保存`lv_utils.py`到核心板文件系统中。 以Thonny为例，打开`lv_utils.py`文件后，选择`文件`-->`另存为`
 
@@ -309,7 +311,7 @@ class event_loop():
 
 ##### 3. 运行测试
 
-执行`ili9488_test.py`，然后此时屏幕应有“Hello World”按钮出现。
+执行`ili9488_test.py`，此时屏幕应有“Hello World”按钮出现，且点击按钮应有反馈。
 
 {{< details "ili9488_test.py">}}
 ```bash {title="v8.3"}
@@ -377,6 +379,14 @@ label.set_text('Hello World!')
 lv.scr_load(scr)
 ```
 {{< /details >}}
+
+您也可以使用在线模拟器来调试micropython程序
+
+V8.3: [https://sim.lvgl.io/v8.3/micropython/ports/javascript/index.html](https://sim.lvgl.io/v8.3/micropython/ports/javascript/index.html)
+
+V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html)
+
+可在[lv_mpy_examples_v8](https://github.com/uraich/lv_mpy_examples_v8)这个仓库查看v8.3版本的lvgl micropython例子，因为v9版本较新，暂时没有例程参考。
 
 ### Arduino
 （开发中）开发进度：
