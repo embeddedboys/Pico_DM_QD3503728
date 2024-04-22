@@ -120,22 +120,25 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 #### 测试方法
 
+先下载你需要的文件，如果您需要LVGL V8.3版本，则下载对应版本。
+
 1. 烧录固件到pico核心板
 
-使用`firmware.uf2`或其他格式固件，按照适合您的方式烧录
-
-2. 下载测试文件
-```bash
-lv_utils.py
-ili9488_test.py
 ```
-3. 使用Thonny或MicroPico上传库文件
+使用`firmware.uf2`或其他格式固件，按照适合您的方式烧录
+```
 
+2. 使用Thonny或MicroPico上传库文件
+
+```
 可以使用Thonny或者MicroPico的内置功能，保存`lv_utils.py`到核心板文件系统中。
+```
 
-4. 运行测试
+3. 运行测试
 
-执行`ili9488_test.py`，然后屏幕应有Hello World按钮出现。
+```
+执行`ili9488_test.py`，然后此时屏幕应有“Hello World”按钮出现。
+```
 
 ### Arduino
 （开发中）开发进度：
