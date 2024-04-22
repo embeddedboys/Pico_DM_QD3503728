@@ -123,23 +123,260 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 先下载你需要的文件，如果您需要LVGL V8.3版本，则下载对应版本。
 
-1. 烧录固件到pico核心板
+[http://embeddedboys.com/uploads/qd3503728/micropython/v8.3/](http://embeddedboys.com/uploads/qd3503728/micropython/v8.3/)
 
-```
+##### 1. 烧录固件到pico核心板
+
 使用`firmware.uf2`或其他格式固件，按照适合您的方式烧录
+
+##### 2. 使用Thonny或MicroPico上传库文件
+
+可以点击如下链接下载Thonny IDE
+[http://embeddedboys.com/uploads/qd3503728/micropython/thonny-4.1.4.exe](http://embeddedboys.com/uploads/qd3503728/micropython/thonny-4.1.4.exe)
+
+Debian\Ubuntu用户可以执行如下命令安装Thonny IDE
+```bash
+
 ```
 
-2. 使用Thonny或MicroPico上传库文件
+可以使用Thonny或者MicroPico的内置功能，保存`lv_utils.py`到核心板文件系统中。 以Thonny为例，打开`lv_utils.py`文件后，选择`文件`-->`另存为`
 
-```
-可以使用Thonny或者MicroPico的内置功能，保存`lv_utils.py`到核心板文件系统中。
-```
+{{< details "lv_utils.py">}}
+```bash {title="v8.3"}
+##############################################################################
+# Event Loop module: advancing tick count and scheduling lvgl task handler.
+# Import after lvgl module.
+# This should be imported and used by display driver.
+# Display driver should first check if an event loop is already running.
+#
+# Usage example with SDL:
+#
+#        SDL.init(auto_refresh=False)
+#        # Register SDL display driver.
+#        # Regsiter SDL mouse driver
+#        event_loop = lv_utils.event_loop()
+#
+#
+# uasyncio example with SDL:
+#
+#        SDL.init(auto_refresh=False)
+#        # Register SDL display driver.
+#        # Regsiter SDL mouse driver
+#        event_loop = lv_utils.event_loop(asynchronous=True)
+#        uasyncio.Loop.run_forever()
+#
+# uasyncio example with ili9341:
+#
+#        event_loop = lv_utils.event_loop(asynchronous=True) # Optional!
+#        self.disp = ili9341(asynchronous=True)
+#        uasyncio.Loop.run_forever()
+#
+# MIT license; Copyright (c) 2021 Amir Gonnen
+#
+##############################################################################
 
-3. 运行测试
+import lvgl as lv
+import micropython
+import usys
 
+# Try standard machine.Timer, or custom timer from lv_timer, if available
+
+try:
+    from machine import Timer
+except:
+    try:
+        from lv_timer import Timer
+    except:
+        raise RuntimeError("Missing machine.Timer implementation!")
+
+# Try to determine default timer id
+
+default_timer_id = 0
+if usys.platform == 'pyboard':
+    # stm32 only supports SW timer -1
+    default_timer_id = -1
+    
+if usys.platform == 'rp2':
+    # rp2 only supports SW timer -1
+    default_timer_id = -1
+
+# Try importing uasyncio, if available
+
+try:
+    import uasyncio
+    uasyncio_available = True
+except:
+    uasyncio_available = False
+
+##############################################################################
+
+class event_loop():
+
+    _current_instance = None
+
+    def __init__(self, freq=25, timer_id=default_timer_id, max_scheduled=2, refresh_cb=None, asynchronous=False, exception_sink=None):
+        if self.is_running():
+            raise RuntimeError("Event loop is already running!")
+
+        if not lv.is_initialized():
+            lv.init()
+
+        event_loop._current_instance = self
+
+        self.delay = 1000 // freq
+        self.refresh_cb = refresh_cb
+        self.exception_sink = exception_sink if exception_sink else self.default_exception_sink
+
+        self.asynchronous = asynchronous
+        if self.asynchronous:
+            if not uasyncio_available:
+                raise RuntimeError("Cannot run asynchronous event loop. uasyncio is not available!")
+            self.refresh_event = uasyncio.Event()
+            self.refresh_task = uasyncio.create_task(self.async_refresh())
+            self.timer_task = uasyncio.create_task(self.async_timer())
+        else:
+            self.timer = Timer(timer_id)
+            self.task_handler_ref = self.task_handler  # Allocation occurs here
+            self.timer.init(mode=Timer.PERIODIC, period=self.delay, callback=self.timer_cb)
+            self.max_scheduled = max_scheduled
+            self.scheduled = 0
+
+    def deinit(self):
+        if self.asynchronous:
+            self.refresh_task.cancel()
+            self.timer_task.cancel()
+        else:
+            self.timer.deinit()
+        event_loop._current_instance = None
+
+    def disable(self):
+        self.scheduled += self.max_scheduled
+
+    def enable(self):
+        self.scheduled -= self.max_scheduled
+
+    @staticmethod
+    def is_running():
+        return event_loop._current_instance is not None
+
+    @staticmethod
+    def current_instance():
+        return event_loop._current_instance
+
+    def task_handler(self, _):
+        try:
+            lv.task_handler()
+            if self.refresh_cb: self.refresh_cb()
+            self.scheduled -= 1
+        except Exception as e:
+            if self.exception_sink:
+                self.exception_sink(e)
+
+    def timer_cb(self, t):
+        # Can be called in Interrupt context
+        # Use task_handler_ref since passing self.task_handler would cause allocation.
+        lv.tick_inc(self.delay)
+        if self.scheduled < self.max_scheduled:
+            try:
+                micropython.schedule(self.task_handler_ref, 0)
+                self.scheduled += 1
+            except:
+                pass
+
+    async def async_refresh(self):
+        while True:
+            await self.refresh_event.wait()
+            self.refresh_event.clear()
+            try:
+                lv.task_handler()
+            except Exception as e:
+                if self.exception_sink:
+                    self.exception_sink(e)
+            if self.refresh_cb: self.refresh_cb()
+
+    async def async_timer(self):
+        while True:
+            await uasyncio.sleep_ms(self.delay)
+            lv.tick_inc(self.delay)
+            self.refresh_event.set()
+            
+
+    def default_exception_sink(self, e):
+        usys.print_exception(e)
+        event_loop.current_instance().deinit()
 ```
+{{< /details >}}
+
+##### 3. 运行测试
+
 执行`ili9488_test.py`，然后此时屏幕应有“Hello World”按钮出现。
+
+{{< details "ili9488_test.py">}}
+```bash {title="v8.3"}
+# init
+import machine
+
+import usys as sys
+sys.path.append('') # See: https://github.com/micropython/micropython/issues/6419
+
+import lvgl as lv
+import lv_utils
+
+lv.init()
+
+class driver:
+    def __init__(self):
+        machine.freq(240000000)  # set the CPU frequency to 240 MHz
+        print("CPU freq : ", machine.freq() / 1000000, "MHz")
+
+    def init_gui(self):
+        import ili9488 as tft
+        import ft6236 as tp
+
+        hres = 480
+        vres = 320
+
+        # Register display driver
+        event_loop = lv_utils.event_loop()
+        tft.deinit()
+        tft.init()
+        tp.init()
+
+        disp_buf1 = lv.disp_draw_buf_t()
+        buf1_1 = tft.framebuffer(1)
+        buf1_2 = tft.framebuffer(2)
+        disp_buf1.init(buf1_1, buf1_2, len(buf1_1) // lv.color_t.__SIZE__)
+        disp_drv = lv.disp_drv_t()
+        disp_drv.init()
+        disp_drv.draw_buf = disp_buf1
+        disp_drv.flush_cb = tft.flush
+        # disp_drv.gpu_blend_cb = tft.gpu_blend
+        # disp_drv.gpu_fill_cb = tft.gpu_fill
+        disp_drv.hor_res = hres
+        disp_drv.ver_res = vres
+        disp_drv.register()
+
+        # Register touch sensor
+        indev_drv = lv.indev_drv_t()
+        indev_drv.init()
+        indev_drv.type = lv.INDEV_TYPE.POINTER
+        indev_drv.read_cb = tp.ts_read
+        indev_drv.register()
+
+if not lv_utils.event_loop.is_running():
+    drv = driver()
+    drv.init_gui()
+
+############################################################################################
+
+scr = lv.obj()
+btn = lv.btn(scr)
+btn.align(lv.ALIGN.CENTER, 0, 0)
+label = lv.label(btn)
+label.set_text('Hello World!')
+lv.scr_load(scr)
 ```
+{{< /details >}}
 
 ### Arduino
 （开发中）开发进度：
