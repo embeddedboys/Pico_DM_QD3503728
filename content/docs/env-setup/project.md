@@ -108,7 +108,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 因为micropython工程涉及太多子模块，所以不方便迁移到gitee，除非在网络环境允许的情况下或您对micropython有源码修改需求，否则不建议用户自行编译。
 
-您可以到[Github Release](https://github.com/embeddedboys/lv_micropython/releases)界面直接下载我们编译好的固件直接烧录使用，位于对应Release的Assets菜单下。 烧录方法参考[固件烧录](/docs/get-started/固件烧录/)
+您可以到[Github Release](https://github.com/embeddedboys/lv_micropython/releases)界面直接下载我们编译好的固件直接烧录使用，位于对应Release的Assets菜单下，在对应的Release中也有介绍使用发法。 烧录方法可以参考[固件烧录](/docs/get-started/固件烧录/)
 
 对于无法访问Github的用户，可以访问如下链接下载固件：
 
