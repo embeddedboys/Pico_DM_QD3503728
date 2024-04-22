@@ -65,6 +65,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 - [x] ST6201
 - [x] ST7789V
 - [ ] ST7796U
+- [x] ILI9806
 - [x] ILI9488
 - [ ] ILI9486
 - [ ] ILI9341
