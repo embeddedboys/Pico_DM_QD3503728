@@ -141,7 +141,7 @@ bash <(wget -O - https://thonny.org/installer-for-linux)
 
 安装好Thonny后，选择`工具`-->`选项`，切换到`解释器`选项卡，在`Thonny应该使用哪种解释器来运行您的代码？`下拉菜单中找到`MicroPython (Raspberry Pi Pico)`，并在`端口或WebREPL`下拉菜单选择`<自动探测端口>`，然后取消勾选`运行代码前，先重启解释器`选项。
 
-可以使用Thonny或者MicroPico的内置功能，保存`lv_utils.py`到核心板文件系统中。 以Thonny为例，打开`lv_utils.py`文件后，选择`文件`-->`另存为`
+可以使用Thonny或者MicroPico的内置功能，保存`lv_utils.py`到核心板文件系统中。 以Thonny为例，打开`lv_utils.py`文件后，选择`文件`-->`另存为`，在弹出的对话框中选择`Raspberry Pi Pico`，随后在弹出的**文件浏览器**的**文件名输入框**中输入`lv_utils.py`，然后点击确定保存。
 
 {{< details "lv_utils.py">}}
 ```bash {title="v8.3"}
