@@ -61,3 +61,7 @@ $ ssh -T git@github.com
 ```
 
 参考连接：[在 HTTPS 端口使用 SSH](https://docs.github.com/zh/authentication/troubleshooting-ssh/using-ssh-over-the-https-port)
+
+## 网站一直没有更新
+
+这可能是浏览器缓存导致的，可以尝试使用快捷键`CTRL+F5`刷新页面缓存。
