@@ -18,7 +18,7 @@ seo:
 
 相关资料仓库：[https://github.com/embeddedboys/pico_dm_qd3503728_linux](https://github.com/embeddedboys/pico_dm_qd3503728_linux)
 
-## Luckfox Pico{#luckfox_pico}
+## Luckfox Pico & Max{#luckfox_pico}
 
 luckfox pico有多个硬件版本型号，目前我们只对最基础的版本做了适配，也就是`Luckfox Pico IPC`，我们也购买了Luckfox Pico Max，适配工作正在进行中。
 
@@ -26,7 +26,7 @@ luckfox pico有两个版本的SDK，分别是Buildroot和Ubuntu，我们针对�
 
 ### 硬件改动 飞线
 
-在使用Luckfox Pico的时候，需要先飞两根线
+在使用Luckfox Pico的时候，需要先飞两根线，**Max 版本无需飞线**。
 
 1. 短接`GP21`和`GP22`，因为luckfox pico的GP22是NC（无连接）的
 {{<figure
@@ -47,7 +47,13 @@ luckfox pico有两个版本的SDK，分别是Buildroot和Ubuntu，我们针对�
 
 ### Buildroot
 
-1. 修改设备树
+**1. 修改设备树**
+
+[rv1103g-luckfox-pico.dts](https://github.com/embeddedboys/pico_dm_qd3503728_linux/blob/main/luckfox-pico/rv1103g-luckfox-pico.dts)
+
+{{< callout context="note" title="说明" icon="info-circle" >}}
+Luckfox Pico、Pro、Max的引脚分布是不同的，所以不能套用同一份设备树。
+{{< /callout >}}
 
 在根节点中添加如下节点
 ```shell
@@ -113,20 +119,42 @@ ili9488 {
 
 ```
 
-2. 修改内核配置，开启fb console支持
-3. 重新编译，烧录boot.img，重启
+**2. 修改内核配置，开启fb console支持**
+**3. 重新编译，烧录boot.img，重启**
 ```shell
 ./build.sh kernel
 ```
-4. 编译，加载fb驱动
+**4. 编译、加载fb驱动**
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_linux
+cd pico_dm_qd3503728_linux
+
+# 修改 Makefile 中这个三个变量到您设备的路径
+# ARCH := arm
+# CROSS_COMPILE := /home/developer/sources/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-
+# KERN_DIR := /home/developer/sources/luckfox-pico/sysdrv/source/kernel
+
+make
+
+adb push ili9488_fb.ko /root/
+adb shell
+
+# at device side start
+insmod ili9488_fb.ko
+# at device side end
+
+```
 
 #### 如果您觉得太麻烦了，可以使用我们编译好的文件，但这会覆盖您设备当前的内核及设备树，操作步骤如下
 
 1. 下载固件
 
 [boot.img](http://embeddedboys.com/uploads/luckfox-pico/boot.img)
-
 [ili9488_fb.ko](http://embeddedboys.com/uploads/luckfox-pico/ili9488_fb.ko)
+
+或者到如下仓库路径下载
+
+[https://github.com/embeddedboys/pico_dm_qd3503728_linux/tree/main/luckfox-pico](https://github.com/embeddedboys/pico_dm_qd3503728_linux/tree/main/luckfox-pico)
 
 2. 将固件推送至设备中
 ```shell
@@ -154,26 +182,163 @@ insmod /root/ili9488_fb.ko
   src="images/luckfox-pico-buildroot-fb.jpg"
 >}}
 
-
 ### Ubuntu
-Ubuntu的开发基本完成，已经验证通过，资料正在整理中，近期就会发布。
+
+[Luckfox Pico Ubuntu server 安装桌面环境](https://www.cnblogs.com/hfwz/p/18136386)
 
 {{<figure
-  src="images/luckfox-pico-ubuntu.jpg"
+  src="images/luckfox-pico-max-ubuntu.jpg"
 >}}
 
-{{<figure
-  src="images/luckfox-pico-ubuntu-desktop.jpg"
->}}
+触摸暂时还没有调通，因为我无法在该平台上使用i2c-gpio，具体原因忘记了，挺棘手的，不过还可以使用usb host连接鼠标键盘操作。
 
-## Luckfox Pico Max{#luckfox_pico_max}
-（待更新）
+[Luckfox Pico配置为USB HOST模式](https://spotpear.cn/index/forum/detail/id/45.html#:~:text=%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%B0%86%E8%AE%BE%E5%A4%87%E6%A0%91%E9%85%8D%E7%BD%AE%E4%B8%BA%20USB%20HOST%20%E6%A8%A1%E5%BC%8F%EF%BC%8C%E4%BB%A5%E4%BE%BF%E9%80%9A%E8%BF%87%20USB%20HUB%20%E6%89%A9%E5%B1%95%E5%A4%9A%E4%B8%AA%E6%8E%A5%E5%8F%A3%E3%80%82%20%E6%B8%A9%E9%A6%A8%E6%8F%90%E7%A4%BA%EF%BC%9A,%E5%8F%A3%EF%BC%8C%E4%BE%9B%E7%94%B5%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%BE%AE%E9%9B%AAPico%20To%20HAT%20%E4%B8%8A%E7%9A%84Micro%20usb%20%E4%BE%9B%E7%94%B5%E6%88%96%E8%80%85%E6%98%AF%E9%80%9A%E8%BF%87%20GPIO%20%E4%BE%9B%E7%94%B5%EF%BC%8C%E4%BE%9B%E7%94%B5%E9%9C%80%E8%B0%A8%E6%85%8E%E4%BB%A5%E5%85%8D%E6%8D%9F%E5%9D%8F%E5%BC%80%E5%8F%91%E6%9D%BF)
+
+但是这样就没法通过adb调试了，所以你需要事先写一个systemd服务，在开机初始化好一切需要的事务。
 
 ## Milk-V Duo{#milk-v-duo}
-（待更新）
+
+[https://github.com/embeddedboys/pico_dm_qd3503728_linux](https://github.com/embeddedboys/pico_dm_qd3503728_linux)
 
 ### 硬件改动 飞线
-（待更新）
+飞线跟luckfox pico章节中保持一致即可
 
 ### Buildroot
-（待更新）
+
+**1. 设置好buildroot工程**
+```bash
+sudo apt install -y pkg-config build-essential ninja-build automake autoconf libtool wget curl git gcc libssl-dev bc slib squashfs-tools android-sdk-libsparse-utils jq python3-distutils scons parallel tree python3-dev python3-pip device-tree-compiler ssh cpio fakeroot libncurses5 flex bison libncurses5-dev genext2fs rsync unzip dosfstools mtools tcl openssh-client cmake expect
+```
+
+```bash
+git clone https://github.com/milkv-duo/duo-buildroot-sdk.git --depth=1
+```
+
+至少运行`build.sh`一次.
+```bash
+./build.sh lunch
+
+# choose milkv-duo
+
+./build.sh
+```
+
+**2. 加载环境变量**
+```bash
+source device/milkv-duo/boardconfig.sh
+
+source build/milkvsetup.sh
+defconfig cv1800b_milkv_duo_sd
+```
+
+**3. 编译内核、设备树**
+```bash
+cd linux_5.10
+
+cp /home/developer/embeddedboys/pico_dm_qd3503728_linux/milk-v-duo/cv1800b_milkv_duo_sd.dts \
+    linux_5.10/arch/riscv/boot/dts/cvitek/
+
+make dtbs
+```
+
+**4. 重新烧录内核、设备树**
+```bash
+cd ramdisk/build/cv1800b_milkv_duo_sd/workspace
+cp ~/sources/duo-buildroot-sdk/linux_5.10/arch/riscv/boot/dts/cvitek/cv1800b_milkv_duo_sd.dtb .
+cp ~/sources/duo-buildroot-sdk/linux_5.10/arch/riscv/boot/Image .
+
+lzma -k Image
+mkimage -f multi.its boot.sd
+
+# at device side start
+mkdir -p /boot
+mount /dev/mmcblk0p1 /boot/
+# at device side end
+
+scp boot.sd root@192.168.42.1:/boot/
+```
+
+然后重启duo板子，应用新的内核。
+
+**5. 编译加载拓展板驱动**
+```bash
+cd pico_dm_qd3503728_linux
+make -f Makefile.milk-v-duo
+
+scp milk-v-duo/test.sh root@192.168.42.1:~/
+scp ili9488_fb.ko root@192.168.42.1:~/
+
+# at device side start
+./test.sh
+# at device side end
+```
+
+脚本`test.sh`的内容
+```bash
+#!/bin/sh
+
+duo-pinmux -w GP0/GP0 > /dev/null 2>&1
+duo-pinmux -w GP1/GP1 > /dev/null 2>&1
+duo-pinmux -w GP2/GP2 > /dev/null 2>&1
+duo-pinmux -w GP3/GP3 > /dev/null 2>&1
+duo-pinmux -w GP4/GP4 > /dev/null 2>&1
+duo-pinmux -w GP5/GP5 > /dev/null 2>&1
+duo-pinmux -w GP6/GP6 > /dev/null 2>&1
+duo-pinmux -w GP7/GP7 > /dev/null 2>&1
+duo-pinmux -w GP8/GP8 > /dev/null 2>&1
+duo-pinmux -w GP9/GP9 > /dev/null 2>&1
+duo-pinmux -w GP10/GP10 > /dev/null 2>&1
+duo-pinmux -w GP11/GP11 > /dev/null 2>&1
+duo-pinmux -w GP12/GP12 > /dev/null 2>&1
+duo-pinmux -w GP13/GP13 > /dev/null 2>&1
+duo-pinmux -w GP14/GP14 > /dev/null 2>&1
+duo-pinmux -w GP15/GP15 > /dev/null 2>&1
+
+rmmod ili9488_fb.ko
+insmod ili9488_fb.ko
+```
+
+milk-v duo 使用一个名为`duo-pinmux`的用户空间工具来进行引脚复用，非常的奇怪。
+
+**6. 编译并运行lvgl demo**
+
+由于buildroot的工具链指向特定的动态库，需要在板子中进行软链接
+```bash
+# at device side start
+cd /lib
+ln -sf ../usr/lib64v0p7_xthead/lp64d/libc.so ./ld-musl-r
+iscv64xthead.so.1
+# at device side end
+```
+
+```bash
+git clone https://github.com/lvgl/lv_port_linux_frame_buffer.git
+
+cd lv_port_linux_frame_buffer
+checkout release/v8.2
+
+# 修改 main.c
+# disp_drv.hor_res    = 480;
+# disp_drv.ver_res    = 320;
+
+# 修改 lv_conf.h
+# #define LV_COLOR_DEPTH 16
+
+make CC=/home/developer/sources/duo-buildroot-sdk/host-tools/gcc/riscv64-linux-musl-x86_64/bin/riscv64-unknown-linux-musl-gcc -j20
+
+scp demo root@192.168.42.1:~/
+
+# at device side start
+./demo
+# at device side end
+```
+
+此时lvgl demo应该已经在拓展板上显示出来了。
+
+**7. 跑分、 性能优化**
+
+TODO
+
+## Milk-V Duo 256M{#milk-v-duo-256M}
+
+待添加，我们这里没有此开发板，但他们都使用同一份sdk，所以应该是大同小异的，用户可以先自行尝试移植。

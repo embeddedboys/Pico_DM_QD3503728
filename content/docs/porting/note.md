@@ -32,8 +32,9 @@ seo:
 ### Linux
 
 - [x] [幸狐科技 Luckfox Pico](http://localhost:1313/docs/porting/linux/#luckfox_pico)
-- [ ] [幸狐科技 Luckfox Pico Max](http://localhost:1313/docs/porting/linux/#luckfox_pico)
-- [ ] [Milk-V Duo](http://localhost:1313/docs/porting/linux/#milk-v-duo)
+- [x] [幸狐科技 Luckfox Pico Max](http://localhost:1313/docs/porting/linux/#luckfox_pico)
+- [x] [Milk-V Duo](http://localhost:1313/docs/porting/linux/#milk-v-duo)
+- [ ] [Milk-V Duo 256M](http://localhost:1313/docs/porting/linux/#milk-v-duo-256M)
 
 ### ESP32-S3
 - [ ] [WalnutPi 核桃派PicoW ESP32-S3]()
