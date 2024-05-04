@@ -194,7 +194,7 @@ insmod /root/ili9488_fb.ko
 
 [Luckfox Pico配置为USB HOST模式](https://spotpear.cn/index/forum/detail/id/45.html#:~:text=%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%B0%86%E8%AE%BE%E5%A4%87%E6%A0%91%E9%85%8D%E7%BD%AE%E4%B8%BA%20USB%20HOST%20%E6%A8%A1%E5%BC%8F%EF%BC%8C%E4%BB%A5%E4%BE%BF%E9%80%9A%E8%BF%87%20USB%20HUB%20%E6%89%A9%E5%B1%95%E5%A4%9A%E4%B8%AA%E6%8E%A5%E5%8F%A3%E3%80%82%20%E6%B8%A9%E9%A6%A8%E6%8F%90%E7%A4%BA%EF%BC%9A,%E5%8F%A3%EF%BC%8C%E4%BE%9B%E7%94%B5%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%BE%AE%E9%9B%AAPico%20To%20HAT%20%E4%B8%8A%E7%9A%84Micro%20usb%20%E4%BE%9B%E7%94%B5%E6%88%96%E8%80%85%E6%98%AF%E9%80%9A%E8%BF%87%20GPIO%20%E4%BE%9B%E7%94%B5%EF%BC%8C%E4%BE%9B%E7%94%B5%E9%9C%80%E8%B0%A8%E6%85%8E%E4%BB%A5%E5%85%8D%E6%8D%9F%E5%9D%8F%E5%BC%80%E5%8F%91%E6%9D%BF)
 
-但是这样就没法通过adb调试了，所以你需要事先写一个systemd服务，在开机初始化好一切需要的事务。
+但是这样就没法通过adb调试了，所以你需要事先写一个systemd服务，在开机初始化好一切需要的事务。 Max 或者 Pro版本因为有网口，所以还可以通过网络登陆设备。
 
 ## Milk-V Duo{#milk-v-duo}
 
