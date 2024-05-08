@@ -29,18 +29,15 @@ seo:
 4. 将要烧录的文件拖放至名为RPI-RP2的可移动存储设备中
 5. 等待传输完成，程序自动执行
 
-## debugprobe 烧录{#debugprobe}
+## debugprobe & DAPLink 烧录{#debugprobe}
 
 在使用本方式烧录之前，需要准备两块Pico核心板。
 
 先安装openocd，windows用户不需要通过此方式手动安装
 
-{{< tabs "install-openocd" >}}
 
-{{< tab "Ubuntu" >}}
-```shell
-sudo apt install automake autoconf build-essential texinfo libtool libftdi-dev libusb-1.0-0-
-dev -y
+```bash
+sudo apt install automake autoconf build-essential texinfo libtool libftdi-dev libusb-1.0-0-dev libhidapi-dev -y
 
 git clone https://github.com/raspberrypi/openocd.git --recursive --branch rp2040 --depth=1
 
@@ -50,14 +47,16 @@ cd openocd
 make -j12
 sudo make install
 ```
-{{< /tab >}}
 
-{{< tab "Fedora" >}}
-```shell
+Ubuntu用户还需设置udev规则才能正常使用调试器
+
+```bash {title="~/openocd/"}
+cd contrib
+sudo cp 60-openocd.rules /etc/udev/rules.d/
+sudo udevadm control --reload
+sudo udevadm trigger
 ```
-{{< /tab >}}
 
-{{< /tabs >}}
 
 树梅派官方推出过基于RP2040的调试器，在github上开源：[https://github.com/raspberrypi/debugprobe](https://github.com/raspberrypi/debugprobe), 大概长这个样子：
 {{< figure src="images/debugprobe.webp" alt="" >}}
@@ -97,61 +96,12 @@ Pico也需要连接电源。
 openocd -f interface/cmsis-dap.cfg -c "adapter speed 5000" -f target/rp2040.cfg -s tcl -c "program blink.elf verify reset exit"
 ```
 
-## DAPLink OpenOCD 烧录
+上传程序到 Pico
 
-1. 安装 openocd
 
-{{< tabs "install-openocd" >}}
-
-{{< tab "Ubuntu" >}}
-```shell
-sudo apt install automake autoconf build-essential texinfo libtool libftdi-dev libusb-1.0-0-
-dev -y
-
-git clone https://github.com/raspberrypi/openocd.git --recursive --branch rp2040 --depth=1
-
-cd openocd
-./bootstrap
-./configure --enable-cmsis-dap
-make -j12
-sudo make install
-```
-{{< /tab >}}
-
-{{< tab "Fedora" >}}
-```shell
-```
-{{< /tab >}}
-
-{{< /tabs >}}
-
-2. 上传程序到 Pico
-
-{{< tabs "upload-program" >}}
-{{< tab "Ubuntu" >}}
-
-```shell
+```bash
 sudo openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5000" -c "program blink.elf verify reset exit"
 ```
-
-{{< /tab >}}
-
-{{< tab "Fedora" >}}
-
-```shell
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-note：
-大部分情况下，该方式速度并不会快于UF2方式，尤其是在您使用的DAPLINK传输速度较慢的情况下。
-
-## JLink OpenOCD烧录
-
-（待添加）
-
-PS：我的jlink正在用于其他项目，因为插了一大堆杜邦线，所以暂时不想拆掉（懒），但是我测试过，jlink的烧写速度应该是最快的了。 :joy:
 
 ## picotool 烧录
 
