@@ -18,4 +18,6 @@ seo:
 
 {{< figure src="images/pcb-project-screenshot.png" alt="" >}}
 
+{{< figure src="images/SCH_Pico_DM_QD3503728_1-P1_2024-05-26.png" alt="" >}}
+
 [https://oshwhub.com/embeddedboys/qd3503728](https://oshwhub.com/embeddedboys/qd3503728)
