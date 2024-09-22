@@ -24,6 +24,15 @@ seo:
 
 该版本完全基于官方 Pico C-SDK 开发，仅添加了LVGL的支持，所以如果您想要在本项目基础上进行原生二次开发，可以选择该裸机工程。
 
+{{< callout context="note" title="说明" icon="info-circle" >}}
+目前仅此工程兼容树莓派Pico 2 (RP2350)，其余工程正在开发中
+若要为Pico 2 编译固件，在cmake配置时使用如下命令
+```
+# 位于build目录下
+cmake -DPICO_BOARD=pico2 .. -G Ninja
+```
+{{< /callout >}}
+
 国内用户
 ```shell
 git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_noos
