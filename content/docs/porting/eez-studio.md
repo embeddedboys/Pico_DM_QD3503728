@@ -101,4 +101,8 @@ eez-studio 设计的UI已成功运行在设备上
 
 ### No-os
 
+[https://github.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo](https://github.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo)
+
 ### FreeRTOS
+
+开发中。。。
