@@ -60,7 +60,26 @@ int tft_driver_init(void)
 #endif
 ```
 
-**3. 在src/CMakeLists.txth中添加新的显示屏驱动**
+**3. 在src/cmake 目录下新建一个ili9488.cmake 文件**
+
+在此处定义需要的变量，这些变量会覆盖`src/CMakeLists.txt`中的默认属性
+```cmake
+set(LCD_PIN_DB_BASE  0)  # 8080 LCD data bus base pin
+set(LCD_PIN_DB_COUNT 16) # 8080 LCD data bus pin count
+set(LCD_PIN_CS  29)  # 8080 LCD chip select pin
+set(LCD_PIN_WR  19)  # 8080 LCD write pin
+set(LCD_PIN_RS  20)  # 8080 LCD register select pin
+set(LCD_PIN_RD  18)  # 8080 LCD read pin
+set(LCD_PIN_RST 22)  # 8080 LCD reset pin
+set(LCD_PIN_BL  28)  # 8080 LCD backlight pin
+set(LCD_HOR_RES 480)
+set(LCD_VER_RES 320)
+set(DISP_OVER_PIO 1) # 1: PIO, 0: GPIO
+set(PIO_USE_DMA   1)   # 1: use DMA, 0: not use DMA
+set(I80_BUS_WR_CLK_KHZ 50000)
+```
+
+**4. 在src/CMakeLists.txth中添加新的显示屏驱动**
 ```cmake
 set(LCD_DRV_USE_ILI9488 0)
 
@@ -86,3 +105,36 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC LCD_DRV_USE_ILI9488=${LCD_DRV_
 ```
 
 ## 触摸屏
+
+**1. 新建一个名为ft6236.c 的文件**
+实现一个indev_spec结构体对象
+```c
+static struct indev_spec ft6236 = {
+    .name = "ft6236",
+    .type = INDEV_TYPE_POINTER,
+
+    .i2c = {
+        .addr = FT6236_ADDR,
+        .master = i2c1,
+        .speed = FT6236_DEF_SPEED,
+        .pin_scl = FT6236_PIN_SCL,
+        .pin_sda = FT6236_PIN_SDA,
+    },
+
+    .x_res = TOUCH_X_RES,
+    .y_res = TOUCH_Y_RES,
+
+    // .pin_irq = FT6236_PIN_IRQ,
+    .pin_rst = FT6236_PIN_RST,
+
+    .ops = {
+        .write_reg  = ft6236_write_reg,
+        .read_reg   = ft6236_read_reg,
+        .init       = ft6236_hw_init,
+        .is_pressed = ft6236_is_pressed,
+        .read_x     = ft6236_read_x,
+        .read_y     = ft6236_read_y,
+    }
+};
+
+```

@@ -18,9 +18,9 @@ seo:
 
 我们会在下个章节中讨论编译及配置问题。
 
-## 基于PICO-SDK的
+## 基于我们开发的版本
 
-### 裸机版本
+### 裸机
 
 该版本完全基于官方 Pico C-SDK 开发，仅添加了LVGL的支持，所以如果您想要在本项目基础上进行原生二次开发，可以选择该裸机工程。
 
@@ -42,7 +42,7 @@ git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_noos
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos
 ```
 
-### FreeRTOS 版本
+### FreeRTOS
 
 与裸机版本不同的是，我们又在其上面添加了FreeRTOS的支持，同时该工程支持SMP，可同时使用RP2040的两个核心处理任务，如果您惯用FreeRTOS开发，可以选择本工程。
 
@@ -102,13 +102,16 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 我们也会及时更新镜像链接版本。
 {{< /callout >}}
 
-## 其他版本
+## 基于社区开源项目
 
  😋 我们正在开发中，包括但不限于如下工程：
 
 - [x] Micropython
-- [ ] Arduino
+- [x] Arduino
+- [ ] embedded_graphics (Rust)
+- [ ] Slint (Rust)
 - [ ] Nuttx
+- [ ] zephyr
 
 ### Micropython
 
@@ -398,6 +401,34 @@ V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https:
 可在[lv_mpy_examples_v8](https://github.com/uraich/lv_mpy_examples_v8)这个仓库查看v8.3版本的lvgl micropython例子，因为v9版本较新，暂时没有例程参考。
 
 ### Arduino
-（开发中）开发进度：
-- [x] 研究使用platformio Arduino开发rp2040程序
-- [ ] 搭建工程
+
+我们已经添加了一个初步支持的Arduino移植，可查看如下仓库
+[https://github.com/embeddedboys/pico_dm_qd3503728_arduino](https://github.com/embeddedboys/pico_dm_qd3503728_arduino)
+
+这部分的文档还在整理中，可先查看如上仓库的 readme 简易说明
+
+### embedded_graphics (Rust)
+
+[https://github.com/embedded-graphics/embedded-graphics](https://github.com/embedded-graphics/embedded-graphics)
+
+`embedded_graphics` 是一款专注于内存受限的嵌入式设备的二维图形库。
+
+已提上日程，开发中。。。
+
+### Slint (Rust)
+
+[https://slint.dev/](https://slint.dev/)
+
+已提上日程，开发中。。。
+
+### Nuttx
+
+[https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html](https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html)
+
+已提上日程，调研中。。。
+
+### Zephyr
+
+[https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico/doc/index.html](https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico/doc/index.html)
+
+已提上日程，调研中。。。
