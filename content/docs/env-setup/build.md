@@ -206,6 +206,87 @@ make -j -C ports/rp2 BOARD=PICO USER_C_MODULES=../../lib/lv_bindings/bindings.cm
 {{< /tab >}}
 {{< /tabs >}}
 
+### embedded_graphics
+
+#### 环境配置
+1. 先安装Rust环境，在linux或者wsl中执行如下命令
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+2. 安装需要的工具链
+```bash
+rustup self update
+rustup update stable
+rustup target add thumbv6m-none-eabi
+```
+
+3. 安装调试烧录工具
+```bash
+# Useful to creating UF2 images for the RP2040 USB Bootloader
+cargo install elf2uf2-rs --locked
+# Useful for flashing over the SWD pins using a supported JTAG probe
+cargo install --locked probe-rs-tools
+```
+
+#### 编译及烧录
+
+在安装完上一节中的软件包之后，执行如下命令编译工程
+```bash
+cargo build -r
+```
+
+> -r 代表 release 编译
+
+编译指定example
+```bash
+cargo build -r --example demo-text-tga
+```
+
+有两种方式将编译好的文件烧录到Pico
+
+1. 通过CMSIS-DAP调试器
+
+你可能需要先配置udev rules才能让cmsis-dap得以识别到，复制工程目录下的`50-cmsis-dap.rules`，
+到`/etc/udev/rules.d/`路径下，然后执行
+```bash
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+使用如下命令通过调试器烧录，并监视RTT调试信息
+```bash
+probe-rs run --chip RP2040 --protocol swd target/thumbv6m-none-eabi/release/rp2040-project-template
+```
+
+2. 通过RP2040的bootloader UF2烧录
+
+按住核心板的`BOOTSEL`按键，插入USB线，或者在连接有线的情况下，按下拓展板上的复位键，让RP2040进入UF2下载模式，再通过如下命令将UF2文件下载至RP2040。
+```bash
+elf2uf2-rs -d target/thumbv6m-none-eabi/release/rp2040-project-template
+```
+
+或者你可以简单的运行如下命令，直接将编译好的文件烧录到RP2040。
+
+1. 修改`.cargo/config.toml`中的`runner`配置为符合您当前情况的配置。
+```toml
+runner = "probe-rs run --chip RP2040 --protocol swd"
+# runner = "elf2uf2-rs -d"
+```
+
+2. 运行target
+```bash
+cargo run -r
+```
+
+运行指定example
+```bash
+cargo run -r --example demo-text-tga
+```
+
+
+### Slint
+
 ## 烧录
 
 可参考[固件烧录](/docs/get-started/固件烧录/)章节，此处给出示例

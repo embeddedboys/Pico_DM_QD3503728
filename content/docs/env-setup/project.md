@@ -411,9 +411,20 @@ V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https:
 
 [https://github.com/embedded-graphics/embedded-graphics](https://github.com/embedded-graphics/embedded-graphics)
 
-`embedded_graphics` 是一款专注于内存受限的嵌入式设备的二维图形库。
+`embedded_graphics` 是一款专注于内存受限的嵌入式设备的二维图形库，基于Rust开发。
 
-已提上日程，开发中。。。
+底层刷图驱动支持情况：
+- [x] GPIO
+- [ ] PIO
+- [ ] PIO + DMA
+
+仓库链接：[https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics](https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics)
+
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
+```
+
+编译烧录参考[编译及配置](../编译及配置/#embedded_graphics)
 
 ### Slint (Rust)
 
