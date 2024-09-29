@@ -27,7 +27,7 @@ seo:
 {{< callout context="note" title="说明" icon="info-circle" >}}
 目前仅此工程兼容树莓派Pico 2 (RP2350)，其余工程正在开发中
 若要为Pico 2 编译固件，在cmake配置时使用如下命令
-```
+```bash
 # 位于build目录下
 cmake -DPICO_BOARD=pico2 .. -G Ninja
 ```
@@ -108,8 +108,8 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 - [x] Micropython
 - [x] Arduino
-- [ ] embedded_graphics (Rust)
-- [ ] Slint (Rust)
+- [x] embedded_graphics (Rust)
+- [x] Slint (Rust)
 - [ ] Nuttx
 - [ ] zephyr
 
@@ -405,18 +405,27 @@ V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https:
 我们已经添加了一个初步支持的Arduino移植，可查看如下仓库
 [https://github.com/embeddedboys/pico_dm_qd3503728_arduino](https://github.com/embeddedboys/pico_dm_qd3503728_arduino)
 
-这部分的文档还在整理中，可先查看如上仓库的 readme 简易说明
+这部分的文档还在整理中，可先查看如上仓库的 [README](https://github.com/embeddedboys/pico_dm_qd3503728_arduino/blob/main/README.md)
+
+底层驱动支持情况：
+- [x] Display via PIO + DMA
+- [x] Touch
+
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_arduino
+```
 
 ### embedded_graphics (Rust)
 
 [https://github.com/embedded-graphics/embedded-graphics](https://github.com/embedded-graphics/embedded-graphics)
 
-`embedded_graphics` 是一款专注于内存受限的嵌入式设备的二维图形库，基于Rust开发。
+`embedded_graphics` 是一款专注于内存受限的嵌入式设备的二维图形库，基于Rust开发。 我们将从该工程基础上移植[Slint](#slint-rust)。
 
-底层刷图驱动支持情况：
-- [x] GPIO
-- [ ] PIO
-- [ ] PIO + DMA
+底层驱动支持情况：
+- [x] Display via GPIO
+- [ ] Display via PIO
+- [ ] Display via PIO + DMA
+- [ ] Touch
 
 仓库链接：[https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics](https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics)
 
@@ -426,11 +435,30 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
 
 编译烧录参考[编译及配置](../编译及配置/#embedded_graphics)
 
+#### lv_binding_rust
+
+我们又在此基础上移植了[lv_binding_rust](https://github.com/lvgl/lv_binding_rust/)的示例，但是该工程目前相当混乱，而且速度也不是很可观，在处理好相关问题之后我们会提供示例。 我们不建议将该工程用于实际项目中，因为相关负责人已经表示不再积极维护该项目。
+
+
 ### Slint (Rust)
 
 [https://slint.dev/](https://slint.dev/)
 
-已提上日程，开发中。。。
+我们添加了一个初步支持的slint移植，可查看如下仓库
+
+[https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu](https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu)
+
+这部分的文档还在整理中，可先查看如上仓库的 [README](https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu/blob/main/README.md)
+
+底层驱动支持情况：
+- [x] Display via GPIO
+- [ ] Display via PIO
+- [ ] Display via PIO + DMA
+- [ ] Touch
+
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu
+```
 
 ### Nuttx
 
