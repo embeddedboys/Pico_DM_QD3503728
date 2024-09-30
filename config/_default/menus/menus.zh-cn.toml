@@ -1,6 +1,6 @@
 [[main]]
-  name = "论坛(建设中)"
-  url = "docs/get-started/介绍"
+  name = "论坛"
+  url = "http://forum.embeddedboys.com/"
   weight = 5
 
 [[main]]
