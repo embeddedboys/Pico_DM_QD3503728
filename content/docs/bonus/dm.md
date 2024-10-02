@@ -16,9 +16,9 @@ seo:
 
 ### FPC-ZH096G1321
 
-{{< figure
-  process="fill 480x270"
+{{< picture
   src="images/bonus-dm-0.jpg"
+  class="rounded-3"
   alt=""
 >}}
 
@@ -41,8 +41,8 @@ seo:
 ### SINQ13001BL-A1
 
 {{< figure
-  process="fill 480x270"
   src="images/bonus-dm-1.jpg"
+  class="rounded-3"
   alt=""
 >}}
 
