@@ -402,18 +402,94 @@ V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https:
 
 ### Arduino
 
-我们已经添加了一个初步支持的Arduino移植，可查看如下仓库
-[https://github.com/embeddedboys/pico_dm_qd3503728_arduino](https://github.com/embeddedboys/pico_dm_qd3503728_arduino)
+#### 所需硬件
 
-这部分的文档还在整理中，可先查看如上仓库的 [README](https://github.com/embeddedboys/pico_dm_qd3503728_arduino/blob/main/README.md)
+- Raspberry Pi Pico (with BOOTSEL button)
+- 一根 Type-C USB 或 Micro-USB 线缆
 
 底层驱动支持情况：
 - [x] Display via PIO + DMA
 - [x] Touch
 
+#### 在你开始之前
+
+0. 通过git或者下载zip来获取本工程
+
+    ```bash
+    git clone https://github.com/embeddedboys/pico_dm_qd3503728_arduino
+    ```
+
+1. 在 Arduino IDE 中安装 pico 开发板
+
+    > 参考自 [https://github.com/earlephilhower/arduino-pico](https://github.com/earlephilhower/arduino-pico)
+
+    打开 Arduino IDE 并转到 `文件->首选项`。
+
+    在弹出的对话框中，在 `其他开发板管理器地址` 字段中输入以下 URL：
+
+    ```bash
+    https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
+    ```
+
+    {{< figure src="images/board_url.png" alt="" >}}
+
+    单击 `确定` 关闭对话框。
+
+    在 IDE 中转到 `工具->开发板->开发板管理器`
+
+    在搜索框中输入`pico`，并选择`安装`：
+
+    {{< figure src="images/install.png" alt="" >}}
+
+    等待安装完成
+
+2. 通过 Arduino IDE 安装 lvgl 和 TFT_eSPI 库
+
+    - TFT_eSPI
+    - lvgl (version == 8.4.0)
+
+3. 将 `TFT_eSPI/User_Setup.h` 替换成本工程中提供的
+
+    ```bash
+    cd pico_dm_qd3503728_arduino
+    cp User_Setup.h ~/Arduino/libraries/TFT_eSPI/
+    ```
+
+4. 将 `lv_conf.h` 拷贝至 `Arduino/libraries` 目录下
+
+    ```bash
+    cd pico_dm_qd3503728_arduino
+    cp lv_conf.h ~/Arduino/libraries/
+    ```
+
+5. 如果你想要构建 lvgl 的 demos, 将 `lvgl/demos`
+目录拷贝至 `lvgl/src` 目录下， examples 也一样
+
+    ```bash
+    cd ~/Arduino/libraries/lvgl
+    cp demos/ -r src/
+    cp examples -r src/
+    ```
+
+这时 `Arduino` 目录看起来是这样的：
+
 ```bash
-git clone https://github.com/embeddedboys/pico_dm_qd3503728_arduino
+libraries\
+    lvgl\
+    TFT_eSPI\
+        User_Setup.h
+    lv_conf.h
 ```
+
+> (`Arduino`目录在 Windows 上通常默认位于 `C\Users\your_username\Documents\Arduino` , 在 linux 上通常位于`~/Arduino`)
+
+6. 在`Arduino IDE`中, 找到 `File->Open` 并且打开本工程中的 `main/main.ino` 文件
+
+7. 上传工程到 Pico
+
+    当你第一次上传工程时，你需要按下 Pico 的 BOOTSEL 按钮，然后插入你的电脑。此外，在你修改了工程后，你可以直接上传到你的 Pico 上。
+
+    每次上传工程时，建议选择正确的 COM 端口。
 
 ### embedded_graphics (Rust)
 

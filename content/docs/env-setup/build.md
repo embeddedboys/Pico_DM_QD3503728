@@ -266,7 +266,7 @@ probe-rs run --chip RP2040 --protocol swd target/thumbv6m-none-eabi/release/rp20
 elf2uf2-rs -d target/thumbv6m-none-eabi/release/rp2040-project-template
 ```
 
-或者你可以简单的运行如下命令，直接将编译好的文件烧录到RP2040。
+或者你可以简单的运行如下命令，编译并将文件烧录到RP2040。
 
 1. 修改`.cargo/config.toml`中的`runner`配置为符合您当前情况的配置。
 ```toml
