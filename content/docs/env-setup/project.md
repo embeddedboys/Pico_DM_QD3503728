@@ -402,6 +402,8 @@ V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https:
 
 ### Arduino
 
+`Arduino` 工程基于 TFT_eSPI 开发
+
 #### 所需硬件
 
 - Raspberry Pi Pico (with BOOTSEL button)
@@ -416,7 +418,7 @@ V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https:
 0. 通过git或者下载zip来获取本工程
 
     ```bash
-    git clone https://github.com/embeddedboys/pico_dm_qd3503728_arduino
+    git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_arduino
     ```
 
 1. 在 Arduino IDE 中安装 pico 开发板
@@ -442,6 +444,8 @@ V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https:
     {{< figure src="images/install.png" alt="" >}}
 
     等待安装完成
+
+    > 可能对网络环境有要求
 
 2. 通过 Arduino IDE 安装 lvgl 和 TFT_eSPI 库
 
@@ -499,14 +503,14 @@ libraries\
 
 底层驱动支持情况：
 - [x] Display via GPIO
-- [ ] Display via PIO
+- [x] Display via PIO
 - [ ] Display via PIO + DMA
-- [ ] Touch
+- [x] Touch
 
-仓库链接：[https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics](https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics)
+仓库链接：[https://gitee.com/embeddedboys/pico_dm_qd3503728_embedded_graphics](https://gitee.com/embeddedboys/pico_dm_qd3503728_embedded_graphics)
 
 ```bash
-git clone https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
 ```
 
 编译烧录参考[编译及配置](../编译及配置/#embedded_graphics)
@@ -528,12 +532,12 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
 
 底层驱动支持情况：
 - [x] Display via GPIO
-- [ ] Display via PIO
+- [x] Display via PIO
 - [ ] Display via PIO + DMA
-- [ ] Touch
+- [x] Touch
 
 ```bash
-git clone https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_slint_mcu
 ```
 
 ### Nuttx
