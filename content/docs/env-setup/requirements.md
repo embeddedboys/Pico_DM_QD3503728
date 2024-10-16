@@ -37,18 +37,18 @@ sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-n
 
 ### 2. 下载 pico-sdk 源码
 
-{{< details "国内用户" >}}
+根据网络选择下载源，gitee是github源的镜像，通常情况下，您应该从gitee拉取。
+
+从gitee拉取
 ```shell
 git clone https://gitee.com/embeddedboys/pico-sdk $HOME/pico-sdk
 ```
-{{< /details >}}
 
+从github拉取
 
-{{< details "国外用户" >}}
 ```shell
 git clone https://github.com/raspberrypi/pico-sdk/ $HOME/pico-sdk
 ```
-{{< /details >}}
 
 -------------
 
@@ -75,5 +75,3 @@ source ~/.bashrc
 echo "export PICO_SDK_PATH=$HOME/pico-sdk" >> ~/.zshrc
 source ~/.zshrc
 ```
-
-{{< callout context="note" title="说明" icon="info-circle" >}} 假设当前使用的是 bash {{< /callout >}}

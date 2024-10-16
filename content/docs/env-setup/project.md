@@ -20,18 +20,15 @@ seo:
 
 ## 基于我们开发的版本
 
+ 😋 我们正在开发中，包括但不限于如下工程：
+
+- [x] [裸机](/docs/env-setup/选择工程/#裸机)
+- [ ] [USB 显示屏](/docs/env-setup/选择工程/#usb-display)
+- [x] [8080屏模板工程](/docs/env-setup/选择工程/#8080屏模板工程)
+
 ### 裸机
 
 该版本完全基于官方 Pico C-SDK 开发，仅添加了LVGL的支持，所以如果您想要在本项目基础上进行原生二次开发，可以选择该裸机工程。
-
-{{< callout context="note" title="说明" icon="info-circle" >}}
-目前仅此工程兼容树莓派Pico 2 (RP2350)，其余工程正在开发中
-若要为Pico 2 编译固件，在cmake配置时使用如下命令
-```bash
-# 位于build目录下
-cmake -DPICO_BOARD=pico2 .. -G Ninja
-```
-{{< /callout >}}
 
 国内用户
 ```shell
@@ -42,20 +39,19 @@ git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_noos
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos
 ```
 
-### FreeRTOS
+### USB Display
 
-与裸机版本不同的是，我们又在其上面添加了FreeRTOS的支持，同时该工程支持SMP，可同时使用RP2040的两个核心处理任务，如果您惯用FreeRTOS开发，可以选择本工程。
+#### 工程开发中。。。
 
-国内用户
-```shell
-git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_freertos.git
-```
+我们将在现有工程基础上（裸机或者FreeRTOS工程），添加 USB 显示屏 的支持，这将达到如下目标：
 
-```shell
-git clone https://github.com/embeddedboys/pico_dm_qd3503728_freertos.git
-```
+1. 在 Linux 机器上，通过USB线连接到本设备，将创建一个新的fb设备
 
-### 独立于本项目的通用工程
+2. 在 Windows 机器上，通过USB线连接到本设备，将识别到一个新的显示器
+
+上述两种方式都为当前的Host机器提供了主/拓展显示器支持。
+
+### 8080屏模板工程
 
 在开发本项目的过程中，其实我们还同时开发着其他类似项目，为了加快后续适配工作进度，我们开发了本工程，通过简单的配置就可以在多个lcd或触摸之间切换，这意味着您完全可以使用本工程在您自己的平台上开发。 😎 有关本工程的详细内容参见其readme文件。
 
@@ -106,12 +102,26 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
  😋 我们正在开发中，包括但不限于如下工程：
 
-- [x] Micropython
-- [x] Arduino
-- [x] embedded_graphics (Rust)
-- [x] Slint (Rust)
-- [ ] Nuttx
-- [ ] zephyr
+- [x] [FreeRTOS](/docs/env-setup/选择工程/#freertos)
+- [x] [Micropython](/docs/env-setup/选择工程/#micropython)
+- [x] [Arduino](/docs/env-setup/选择工程/#arduino)
+- [x] [embedded_graphics (Rust)](/docs/env-setup/选择工程/#embedded_graphics-rust)
+- [x] [Slint (Rust)](/docs/env-setup/选择工程/#slint-rust)
+- [ ] [Nuttx](/docs/env-setup/选择工程/#nuttx)
+- [ ] [zephyr](/docs/env-setup/选择工程/#zephyr)
+
+### FreeRTOS
+
+与裸机版本不同的是，我们又在其上面添加了FreeRTOS的支持，同时该工程支持SMP，可同时使用RP2040的两个核心处理任务，如果您惯用FreeRTOS开发，可以选择本工程。
+
+国内用户
+```shell
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_freertos.git
+```
+
+```shell
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_freertos.git
+```
 
 ### Micropython
 
@@ -402,8 +412,6 @@ V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https:
 
 ### Arduino
 
-`Arduino` 工程基于 TFT_eSPI 开发
-
 #### 所需硬件
 
 - Raspberry Pi Pico (with BOOTSEL button)
@@ -418,7 +426,7 @@ V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https:
 0. 通过git或者下载zip来获取本工程
 
     ```bash
-    git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_arduino
+    git clone https://github.com/embeddedboys/pico_dm_qd3503728_arduino
     ```
 
 1. 在 Arduino IDE 中安装 pico 开发板
@@ -444,8 +452,6 @@ V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https:
     {{< figure src="images/install.png" alt="" >}}
 
     等待安装完成
-
-    > 可能对网络环境有要求
 
 2. 通过 Arduino IDE 安装 lvgl 和 TFT_eSPI 库
 
@@ -503,14 +509,14 @@ libraries\
 
 底层驱动支持情况：
 - [x] Display via GPIO
-- [x] Display via PIO
+- [ ] Display via PIO
 - [ ] Display via PIO + DMA
-- [x] Touch
+- [ ] Touch
 
-仓库链接：[https://gitee.com/embeddedboys/pico_dm_qd3503728_embedded_graphics](https://gitee.com/embeddedboys/pico_dm_qd3503728_embedded_graphics)
+仓库链接：[https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics](https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics)
 
 ```bash
-git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
 ```
 
 编译烧录参考[编译及配置](../编译及配置/#embedded_graphics)
@@ -532,13 +538,15 @@ git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
 
 底层驱动支持情况：
 - [x] Display via GPIO
-- [x] Display via PIO
+- [ ] Display via PIO
 - [ ] Display via PIO + DMA
-- [x] Touch
+- [ ] Touch
 
 ```bash
-git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_slint_mcu
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu
 ```
+
+点击查看[编译及配置](/docs/env-setup/编译及配置/#slint)
 
 ### Nuttx
 

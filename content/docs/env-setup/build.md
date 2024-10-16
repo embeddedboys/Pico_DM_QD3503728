@@ -14,15 +14,21 @@ seo:
   noindex: false # false (default) or true
 ---
 
-如果您是从github，或者gitee拉取的工程，在进行编译之前，应该先更新子模块，方式如下：
-```shell
+如果您是从github，或者gitee拉取的工程，在进行编译之前，应该先更新子模块。 切换分支时，同样需要，方式如下：
+```bash
 # 位于工程根目录下
 git submodule update --init
 ```
-此方式对网络环境有要求，子模块源来自github，可以通过代理等方式。
-我们正在尝试将子模块迁移至gitee，保证国内用户可以正常下载工程。
 
-如果不满足上述条件，可以直接下载对应工程压缩包（[位于上一章节](/docs/env-setup/选择工程)），我们会不定期进行更新。
+{{< callout context="note" title="说明" icon="info-circle" >}}
+我们为裸机和FreeRTOS工程添加了对 pico2 的支持，使用如下命令为其编译
+```bash
+# 位于工程根目录下
+mkdir build-pico2 && cd build-pico2
+cmake -DPICO_BOARD=pico2 ..
+make -j$(nproc)
+```
+{{< /callout >}}
 
 ## 编译工程
 
@@ -50,7 +56,7 @@ porting   # lvgl移植文件
 ```
 
 编译生成固件
-```
+```bash
 cd pico_dm_qd3503728_noos
 
 mkdir -p build
@@ -223,6 +229,7 @@ rustup target add thumbv6m-none-eabi
 
 3. 安装调试烧录工具
 ```bash
+cargo install flip-link
 # Useful to creating UF2 images for the RP2040 USB Bootloader
 cargo install elf2uf2-rs --locked
 # Useful for flashing over the SWD pins using a supported JTAG probe
@@ -284,8 +291,23 @@ cargo run -r
 cargo run -r --example demo-text-tga
 ```
 
-
 ### Slint
+
+先按照[环境配置](/docs/env-setup/编译及配置/#环境配置)中的步骤，安装依赖，然后在根目录下执行:
+```bash
+cargo run --target=thumbv6m-none-eabi --features=pico --release
+```
+
+注意，根据您当前期望的下载方式修改`.cargo/config.toml`中的`runner`属性
+
+
+```bash
+# 通过uf2下载
+# runner = "elf2uf2-rs -d"
+
+# 通过debugger下载
+runner = "probe-rs run --chip RP2040 --speed 10000"
+```
 
 ## 烧录
 
