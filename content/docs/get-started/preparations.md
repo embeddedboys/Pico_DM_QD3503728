@@ -30,7 +30,11 @@ seo:
 
 ## 测试固件下载
 
-目前还没有提供直链，先用这个吧
+#### 从我们的服务器下载
+
+[http://embeddedboys.com/uploads/qd3503728/tests/](http://embeddedboys.com/uploads/qd3503728/tests/)
+
+#### 备用链接
 
 [https://pan.baidu.com/s/1m4WmPoHAZYiK3XwwXGrNDw?pwd=34mn#list/path=%2FPico_DM_QD3503728%2Ffirmware](https://pan.baidu.com/s/1m4WmPoHAZYiK3XwwXGrNDw?pwd=34mn#list/path=%2FPico_DM_QD3503728%2Ffirmware)
 

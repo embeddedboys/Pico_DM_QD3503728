@@ -93,7 +93,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 提取码：34mn
 
 
-{{< callout context="note" title="说明" icon="info-circle" >}} 
+{{< callout context="note" title="说明" icon="info-circle" >}}
 该方式的源码版本可能比较落后，最新版本以github仓库为准。
 我们也会及时更新镜像链接版本。
 {{< /callout >}}
@@ -103,12 +103,13 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
  😋 我们正在开发中，包括但不限于如下工程：
 
 - [x] [FreeRTOS](/docs/env-setup/选择工程/#freertos)
+- [x] [Linux](/docs/env-setup/选择工程/#linux)
 - [x] [Micropython](/docs/env-setup/选择工程/#micropython)
 - [x] [Arduino](/docs/env-setup/选择工程/#arduino)
 - [x] [embedded_graphics (Rust)](/docs/env-setup/选择工程/#embedded_graphics-rust)
 - [x] [Slint (Rust)](/docs/env-setup/选择工程/#slint-rust)
-- [ ] [Nuttx](/docs/env-setup/选择工程/#nuttx)
 - [ ] [zephyr](/docs/env-setup/选择工程/#zephyr)
+- [ ] [Nuttx](/docs/env-setup/选择工程/#nuttx)
 
 ### FreeRTOS
 
@@ -122,6 +123,12 @@ git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_freertos.git
 ```shell
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_freertos.git
 ```
+
+### Linux
+
+基于 Linux 的 FrameBuffer 驱动，目前仅支持 `Luckfox Pico` 和 `Milk-V Duo`。
+
+[文档跳转链接](/docs/porting/linux)
 
 ### Micropython
 
@@ -143,7 +150,7 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_freertos.git
 
 #### 测试方法
 
-先下载你需要的文件，如果您需要LVGL V8.3版本，则下载对应版本。
+先下载你需要的固件，如果您需要LVGL V8.3版本，则下载如下版本：
 
 [http://embeddedboys.com/uploads/qd3503728/micropython/v8.3/](http://embeddedboys.com/uploads/qd3503728/micropython/v8.3/)
 
@@ -402,6 +409,10 @@ lv.scr_load(scr)
 ```
 {{< /details >}}
 
+{{< callout context="note" title="说明" icon="info-circle" >}}
+上面的py测试文件是基于`LVGL V8.3`版本的，V9版本的测试文件请到[https://github.com/IotaHydrae/pico-py-lab/tree/main/v9](https://github.com/IotaHydrae/pico-py-lab/tree/main/v9)下查看
+{{< /callout >}}
+
 您也可以使用在线模拟器来调试micropython程序
 
 V8.3: [https://sim.lvgl.io/v8.3/micropython/ports/javascript/index.html](https://sim.lvgl.io/v8.3/micropython/ports/javascript/index.html)
@@ -548,14 +559,14 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu
 
 点击查看[编译及配置](/docs/env-setup/编译及配置/#slint)
 
-### Nuttx
-
-[https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html](https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html)
-
-已提上日程，调研中。。。
-
 ### Zephyr
 
 [https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico/doc/index.html](https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico/doc/index.html)
+
+已提上日程，调研中。。。
+
+### Nuttx
+
+[https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html](https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html)
 
 已提上日程，调研中。。。
