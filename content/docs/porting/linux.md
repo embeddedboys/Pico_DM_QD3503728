@@ -14,6 +14,8 @@ seo:
   noindex: false # false (default) or true
 ---
 
+## 说明
+
 本文用于介绍如何将此拓展板部署到Linux平台，因为此拓展板基于GPIO设计，在Linux中只目前只能使用gpiolib接口驱动，因为各平台实现方式不同，所以速度会有较大差异，效率普遍低下，但是能用😊。
 
 相关资料仓库：[https://github.com/embeddedboys/pico_dm_qd3503728_linux](https://github.com/embeddedboys/pico_dm_qd3503728_linux)

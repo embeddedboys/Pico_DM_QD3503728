@@ -22,9 +22,9 @@ seo:
 
  😋 我们正在开发中，包括但不限于如下工程：
 
-- [x] [裸机](/docs/env-setup/选择工程/#裸机)
-- [ ] [USB 显示屏](/docs/env-setup/选择工程/#usb-display)
-- [x] [8080屏模板工程](/docs/env-setup/选择工程/#8080屏模板工程)
+- [x] [裸机](#裸机)
+- [ ] [USB 显示屏](#usb-display)
+- [x] [8080屏模板工程](#8080屏模板工程)
 
 ### 裸机
 
@@ -102,14 +102,14 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
  😋 我们正在开发中，包括但不限于如下工程：
 
-- [x] [FreeRTOS](/docs/env-setup/选择工程/#freertos)
-- [x] [Linux](/docs/env-setup/选择工程/#linux)
-- [x] [Micropython](/docs/env-setup/选择工程/#micropython)
-- [x] [Arduino](/docs/env-setup/选择工程/#arduino)
-- [x] [embedded_graphics (Rust)](/docs/env-setup/选择工程/#embedded_graphics-rust)
-- [x] [Slint (Rust)](/docs/env-setup/选择工程/#slint-rust)
-- [ ] [zephyr](/docs/env-setup/选择工程/#zephyr)
-- [ ] [Nuttx](/docs/env-setup/选择工程/#nuttx)
+- [x] [FreeRTOS](#freertos)
+- [x] [Linux](#linux)
+- [x] [Micropython](#micropython)
+- [x] [Arduino](#arduino)
+- [x] [embedded_graphics (Rust)](#embedded_graphics-rust)
+- [x] [Slint (Rust)](#slint-rust)
+- [ ] [zephyr](#zephyr)
+- [ ] [Nuttx](#nuttx)
 
 ### FreeRTOS
 
@@ -126,9 +126,14 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_freertos.git
 
 ### Linux
 
-基于 Linux 的 FrameBuffer 驱动，目前仅支持 `Luckfox Pico` 和 `Milk-V Duo`。
+基于 Linux 的 FrameBuffer 驱动，目前支持如下开发板：
 
-[文档跳转链接](/docs/porting/linux)
+- [x] `Luckfox Pico`
+- [x] `Luckfox Pico Max`
+- [x] `Milk-V Duo`
+- [ ] `Milk-V Duo 256M`
+
+[文档跳转链接](../../porting/linux/#说明)
 
 ### Micropython
 
@@ -138,7 +143,7 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_freertos.git
 
 因为micropython工程涉及太多子模块，所以不方便迁移到gitee，除非在网络环境允许的情况下或您对micropython有源码修改需求，否则不建议用户自行编译。
 
-您可以到[Github Release](https://github.com/embeddedboys/lv_micropython/releases)界面直接下载我们编译好的固件直接烧录使用，位于对应Release的Assets菜单下，在对应的Release中也有介绍使用发法。 烧录方法可以参考[固件烧录](/docs/get-started/固件烧录/)
+您可以到[Github Release](https://github.com/embeddedboys/lv_micropython/releases)界面直接下载我们编译好的固件直接烧录使用，位于对应Release的Assets菜单下，在对应的Release中也有介绍使用发法。 烧录方法可以参考[固件烧录](../../get-started/固件烧录/)
 
 对于无法访问Github的用户，可以访问如下链接下载固件：
 
@@ -557,7 +562,7 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu
 ```
 
-点击查看[编译及配置](/docs/env-setup/编译及配置/#slint)
+点击查看[编译及配置](../编译及配置/#slint)
 
 ### Zephyr
 
