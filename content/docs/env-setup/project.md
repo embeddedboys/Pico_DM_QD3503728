@@ -520,9 +520,9 @@ libraries\
 
 底层驱动支持情况：
 - [x] Display via GPIO
-- [ ] Display via PIO
+- [x] Display via PIO
 - [ ] Display via PIO + DMA
-- [ ] Touch
+- [x] Touch
 
 仓库链接：[https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics](https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics)
 
@@ -549,9 +549,9 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
 
 底层驱动支持情况：
 - [x] Display via GPIO
-- [ ] Display via PIO
+- [x] Display via PIO
 - [ ] Display via PIO + DMA
-- [ ] Touch
+- [x] Touch
 
 ```bash
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu
