@@ -385,6 +385,16 @@ PICO_FLASH_SPI_CLKDIV的默认值为2
 
 {{< /callout >}}
 
+相关的cmake 代码如下：
+```cmake
+if(${SYS_CLK_KHZ} GREATER 266000)
+    set(PICO_FLASH_SPI_CLKDIV 4)
+else()
+    set(PICO_FLASH_SPI_CLKDIV 2)
+endif()
+target_compile_definitions(bs2_default PRIVATE PICO_FLASH_SPI_CLKDIV=${PICO_FLASH_SPI_CLKDIV})
+```
+
 ### LCD 相关
 
 可在此处配置引脚、时钟、是否启用PIO等。
@@ -402,6 +412,8 @@ set(DISP_OVER_PIO 1) # LCD驱动模式 1: PIO, 0: GPIO
 set(PIO_USE_DMA   1)   # 是否启用DMA 1: use DMA, 0: not use DMA
 set(I80_BUS_WR_CLK_KHZ 50000) # 8080 LCD 写信号频率
 ```
+
+您可以通过修改 `DISP_OVER_PIO`  和 `PIO_USE_DMA` 这两个宏来体验 PIO 带来的流畅度提升
 
 ### 选择显示驱动
 ```cmake
