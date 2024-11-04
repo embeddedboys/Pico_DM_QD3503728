@@ -25,6 +25,7 @@ seo:
  😋 我们正在开发中，包括但不限于如下工程：
 
 - [x] [裸机](#裸机)
+- [x] [EEZ Studio示例工程](#eez-studio-lvgl-示例工程)
 - [ ] [USB 显示屏](#usb-display)
 - [x] [8080屏模板工程](#8080屏模板工程)
 
@@ -40,6 +41,22 @@ git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_noos
 ```shell
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos
 ```
+### EEZ Studio LVGL 示例工程
+
+Desktop / Embedded GUI development & Automation
+桌面/嵌入式 GUI 开发和自动化
+
+官方介绍：[https://www.envox.eu/studio/studio-introduction/](https://www.envox.eu/studio/studio-introduction/)
+
+{{< figure src="images/qd3503728_eez_studio.jpg" alt="" >}}
+
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
+```
+
+```bash
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
+```
 
 ### USB Display
 
@@ -52,6 +69,7 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos
 2. 在 Windows 机器上，通过USB线连接到本设备，将识别到一个新的显示器
 
 上述两种方式都为当前的Host机器提供了主/拓展显示器支持。
+
 
 ### 8080屏模板工程
 
@@ -79,7 +97,6 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 - [x] R61581
 - [x] 1P5623
 - [x] LG4572B
-- [ ] D51E5TA7601
 
 ##### 触摸驱动
 - [x] FT6236U
