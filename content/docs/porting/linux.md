@@ -30,7 +30,7 @@ luckfox pico有两个版本的SDK，分别是Buildroot和Ubuntu，我们针对�
 
 在使用Luckfox Pico的时候，需要先飞两根线，**Max 版本无需飞线**。
 
-1. 短接`GP21`和`GP22`，因为luckfox pico的GP22是NC（无连接）的
+1. 短接`GP18`和`GP22`，因为luckfox pico的GP22是NC（无连接）的，之前我短接到`GP21`，这会导致屏幕触摸时的中断信号触发屏幕复位（GP21是 FT6236的 IRQ引脚），下面的图片已经过时，不要参考。
 {{<figure
   src="images/reset-wiring.png"
   process="fill 480x270"
@@ -59,35 +59,35 @@ Luckfox Pico、Pro、Max的引脚分布是不同的，所以不能套用同一�
 
 在根节点中添加如下节点
 ```shell
-ili9488 {
-  status = "okay";
-  compatible = "ultrachip,uc8253";
-  pinctrl-names = "default";
-  pinctrl-0 = <&i80_pins>;
-  fps = <30>;
-  buswidth = <8>;
-  debug = <0x7>;
-  db =  <&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PB3 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PC7 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PC6 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PC5 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PA2 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PC0 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PC3 GPIO_ACTIVE_HIGH>,
-        <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PD0 GPIO_ACTIVE_HIGH>,
-        <&gpio1 RK_PD1 GPIO_ACTIVE_HIGH>;
+	ili9488 {
+		status = "okay";
+		compatible = "ilitek,ili9488";
+		pinctrl-names = "default";
+		pinctrl-0 = <&i80_pins>;
+		fps = <30>;
+		buswidth = <8>;
+		debug = <0x7>;
+		db =	<&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PB3 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PC7 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PC6 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PC5 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PA2 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PC0 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PC3 GPIO_ACTIVE_HIGH>,
+				<&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PD0 GPIO_ACTIVE_HIGH>,
+				<&gpio1 RK_PD1 GPIO_ACTIVE_HIGH>;
 
-        dc = <&gpio4 RK_PA3 GPIO_ACTIVE_HIGH>;      //RS
-        wr = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
-        reset = <&gpio4 RK_PA4 GPIO_ACTIVE_HIGH>;    //RES
-};
+				dc = <&gpio4 RK_PA3 GPIO_ACTIVE_HIGH>;      //RS
+				wr = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
+				reset = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;    //RESET
+	};
 ```
 
 修改pinctrl,设定gpio方向、驱动强度等
@@ -114,17 +114,20 @@ ili9488 {
 				<1 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none_drv_level_0>,
 				<4 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none_drv_level_0>,
 				<4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none_drv_level_0>,
-				<4 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none_drv_level_0>;
+				<4 RK_PA6 RK_FUNC_GPIO &pcfg_pull_none_drv_level_0>;
 		};
 	};
 };
-
 ```
-
-**2. 修改内核配置，开启fb console支持**
-**3. 重新编译，烧录boot.img，重启**
+**2. 重新编译，烧录boot.img，重启**
 ```shell
 ./build.sh kernel
+
+adb push output/image/boot.img /root
+adb shell
+
+# 此时已位于设备端，mmcblk1p4是boot分区
+dd if=/root/boot.img of=/dev/mmcblk1p4 bs=1M && reboot
 ```
 **4. 编译、加载fb驱动**
 ```bash
@@ -141,10 +144,8 @@ make
 adb push ili9488_fb.ko /root/
 adb shell
 
-# at device side start
+# 此时已位于设备端
 insmod ili9488_fb.ko
-# at device side end
-
 ```
 
 #### 如果您觉得太麻烦了，可以使用我们编译好的文件，但这会覆盖您设备当前的内核及设备树，操作步骤如下
@@ -220,42 +221,39 @@ git clone https://github.com/milkv-duo/duo-buildroot-sdk.git --depth=1
 ```bash
 ./build.sh lunch
 
-# choose milkv-duo
-
-./build.sh
+# 选1. milkv-duo-sd
+# 之后会开始整个编译流程
 ```
 
 **2. 加载环境变量**
 ```bash
-source device/milkv-duo/boardconfig.sh
+source device/milkv-duo-sd/boardconfig.sh
 
 source build/milkvsetup.sh
 defconfig cv1800b_milkv_duo_sd
 ```
 
 **3. 编译内核、设备树**
-```bash
-cd linux_5.10
 
+```bash
+# 拷贝我们提供的设备树文件到内核工程中
 cp /home/developer/embeddedboys/pico_dm_qd3503728_linux/milk-v-duo/cv1800b_milkv_duo_sd.dts \
     linux_5.10/arch/riscv/boot/dts/cvitek/
 
+cd ~/sources/duo-buildroot-sdk/linux_5.10/build/kernel_output
 make dtbs
 ```
 
 **4. 重新烧录内核、设备树**
 ```bash
-cd ramdisk/build/cv1800b_milkv_duo_sd/workspace
-cp ~/sources/duo-buildroot-sdk/linux_5.10/arch/riscv/boot/dts/cvitek/cv1800b_milkv_duo_sd.dtb .
-cp ~/sources/duo-buildroot-sdk/linux_5.10/arch/riscv/boot/Image .
+# 注意替换成你们当前环境的目录
+cd ~/sources/duo-buildroot-sdk/ramdisk/build/cv1800b_milkv_duo_sd/workspace
+cp ~/sources/duo-buildroot-sdk/linux_5.10/build/kernel_output/arch/riscv/boot/dts/cvitek/cv1800b_milkv_duo_sd.dtb .
+cp ~/sources/duo-buildroot-sdk/linux_5.10/build/kernel_output/arch/riscv/boot/Image .
 
+rm -rf Image.lzma
 lzma -k Image
 mkimage -f multi.its boot.sd
-
-# at device side start
-mkdir -p /boot
-mount /dev/mmcblk0p1 /boot/
-# at device side end
 
 scp boot.sd root@192.168.42.1:/boot/
 ```
@@ -301,10 +299,13 @@ insmod ili9488_fb.ko
 ```
 
 milk-v duo 使用一个名为`duo-pinmux`的用户空间工具来进行引脚复用，非常的奇怪。
+我记得是当时没法从dts中设置pinctrl引脚复用来着，然后翻看他们文档说用上面这个工具。
 
 **6. 编译并运行lvgl demo**
 
 由于buildroot的工具链指向特定的动态库，需要在板子中进行软链接
+
+（最新的sdk已经修复这个问题）
 ```bash
 # at device side start
 cd /lib
@@ -340,6 +341,39 @@ scp demo root@192.168.42.1:~/
 **7. 跑分、 性能优化**
 
 TODO
+
+ili9488设备树节点
+```c
+	ili9488 {
+        status = "okay";
+        compatible = "ilitek,ili9488";
+		// pinctrl-names = "default";
+		// pinctrl-0 = <&i80_pins>;
+        fps = <30>;
+        buswidth = <16>;
+        // debug = <0x7>;
+        db =  <&porta 28 GPIO_ACTIVE_HIGH>,
+        	  <&porta 29 GPIO_ACTIVE_HIGH>,
+        	  <&porte 26 GPIO_ACTIVE_HIGH>,
+        	  <&porte 25 GPIO_ACTIVE_HIGH>,
+        	  <&porte 19 GPIO_ACTIVE_HIGH>,
+        	  <&porte 20 GPIO_ACTIVE_HIGH>,
+        	  <&porte 23 GPIO_ACTIVE_HIGH>,
+        	  <&porte 22 GPIO_ACTIVE_HIGH>,
+        	  <&porte 21 GPIO_ACTIVE_HIGH>,
+        	  <&porte 18 GPIO_ACTIVE_HIGH>,
+        	  <&portc 9 GPIO_ACTIVE_HIGH>,
+        	  <&portc 10 GPIO_ACTIVE_HIGH>,
+        	  <&porta 16 GPIO_ACTIVE_HIGH>,
+        	  <&porta 17 GPIO_ACTIVE_HIGH>,
+        	  <&porta 14 GPIO_ACTIVE_HIGH>,
+        	  <&porta 15 GPIO_ACTIVE_HIGH>;
+
+        dc = <&porta 27 GPIO_ACTIVE_HIGH>;      //RS
+        wr = <&porta 25 GPIO_ACTIVE_HIGH>;
+        reset = <&porte 4 GPIO_ACTIVE_HIGH>;    //RES
+	};
+```
 
 ## Milk-V Duo 256M{#milk-v-duo-256M}
 
