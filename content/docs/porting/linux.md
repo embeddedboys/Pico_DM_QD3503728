@@ -318,7 +318,10 @@ iscv64xthead.so.1
 git clone https://github.com/lvgl/lv_port_linux_frame_buffer.git
 
 cd lv_port_linux_frame_buffer
-checkout release/v8.2
+git checkout release/v8.2
+
+# 这一步可能耗时很长，因为需要从github拉取lvgl、lv_drivers子模块
+git submodule update --init
 
 # 修改 main.c
 # disp_drv.hor_res    = 480;
