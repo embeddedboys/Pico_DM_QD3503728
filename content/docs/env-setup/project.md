@@ -587,7 +587,7 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu
 
 [https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico/doc/index.html](https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico/doc/index.html)
 
-已提上日程，调研中。。。
+工程开发中。。。
 
 ### Nuttx
 
