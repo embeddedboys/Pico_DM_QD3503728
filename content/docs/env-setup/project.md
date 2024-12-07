@@ -585,11 +585,19 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu
 
 ### Zephyr
 
+[关于Zephyr](https://docs.zephyrproject.org/latest/introduction/index.html)
+
+Zephyr RTOS 是基于一个小型内核设计的，用于资源有限的嵌入式系统: 从简单的嵌入式环境传感器和 LED 可穿戴设备到复杂的嵌入式控制器、智能手表和物联网无线应用。
+
+最大的特点就是用linux开发的方式来开发MCU。
+
 [https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico/doc/index.html](https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico/doc/index.html)
 
 工程开发中。。。
 
 ### Nuttx
+
+[关于Nuttx](https://nuttx.apache.org/docs/latest/introduction/about.html)
 
 [https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html](https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html)
 
