@@ -26,18 +26,21 @@ seo:
 
 - [x] [裸机](#裸机)
 - [x] [EEZ Studio示例工程](#eez-studio-lvgl-示例工程)
-- [ ] [USB 显示屏](#usb-display)
+- [ ] [USB 显示屏（开发中）](#usb-display)
 - [x] [8080屏模板工程](#8080屏模板工程)
 
 ### 裸机
 
 该版本完全基于官方 Pico C-SDK 开发，仅添加了LVGL的支持，所以如果您想要在本项目基础上进行原生二次开发，可以选择该裸机工程。
 
-国内用户
+仓库链接：
+
+国内用户：
 ```shell
 git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_noos
 ```
 
+国外用户：
 ```shell
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos
 ```
@@ -50,17 +53,33 @@ Desktop / Embedded GUI development & Automation
 
 {{< figure src="images/qd3503728_eez_studio.jpg" alt="" >}}
 
-```bash
-git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
-```
+仓库链接：
 
+国内用户：
 ```bash
 git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
 ```
 
+国外用户：
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
+```
+
 ### USB Display
 
-#### 工程开发中。。。
+工程还在开发中，您可以到如下仓库链接中查看最新开发进度。
+
+仓库链接：
+
+国内用户
+```bash
+镜像链接待添加
+```
+
+国外用户：
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_udd
+```
 
 我们将在现有工程基础上（裸机或者FreeRTOS工程），添加 USB 显示屏 的支持，这将达到如下目标：
 
@@ -70,16 +89,19 @@ git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
 
 上述两种方式都为当前的Host机器提供了主/拓展显示器支持。
 
+3. 在不安装驱动的情况下，通过Python脚本来提供Host发送端支持。
+
 
 ### 8080屏模板工程
 
 在开发本项目的过程中，其实我们还同时开发着其他类似项目，为了加快后续适配工作进度，我们开发了本工程，通过简单的配置就可以在多个lcd或触摸之间切换，这意味着您完全可以使用本工程在您自己的平台上开发。 😎 有关本工程的详细内容参见其readme文件。
 
-国内用户
+国内用户：
 ```shell
 git clone https://gitee.com/embeddedboys/pico_dm_8080_template
 ```
 
+国外用户：
 ```shell
 git clone https://github.com/embeddedboys/pico_dm_8080_template
 ```
@@ -123,7 +145,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 - [x] [FreeRTOS](#freertos)
 - [x] [Linux](#linux)
-- [x] [Micropython](#micropython)
+- [x] [Micropython (Python)](#micropython-python)
 - [x] [Arduino](#arduino)
 - [x] [embedded_graphics (Rust)](#embedded_graphics-rust)
 - [x] [Slint (Rust)](#slint-rust)
@@ -149,12 +171,13 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_freertos.git
 
 - [x] `Luckfox Pico`
 - [x] `Luckfox Pico Max`
+- [ ] `Luckfox Lyra Plus`
 - [x] `Milk-V Duo`
 - [ ] `Milk-V Duo 256M`
 
 [文档跳转链接](../../porting/linux/#说明)
 
-### Micropython
+### Micropython (Python)
 
 仓库链接：[https://github.com/embeddedboys/lv_micropython.git](https://github.com/embeddedboys/lv_micropython.git)
 
@@ -593,12 +616,12 @@ Zephyr RTOS 是基于一个小型内核设计的，用于资源有限的嵌入�
 
 [https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico/doc/index.html](https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico/doc/index.html)
 
-工程开发中。。。
+工程开发完成，整理中。。。
 
 ### Nuttx
 
 [关于Nuttx](https://nuttx.apache.org/docs/latest/introduction/about.html)
 
 [https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html](https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html)
-
+d
 已提上日程，调研中。。。

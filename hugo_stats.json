@@ -344,6 +344,7 @@
       "lvgl-freertos-工程",
       "lvgl-裸机工程",
       "micropython",
+      "micropython-python",
       "milk-v-duo",
       "milk-v-duo-256M",
       "nav-tab",
