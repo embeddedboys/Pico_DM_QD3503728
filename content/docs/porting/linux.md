@@ -199,6 +199,12 @@ insmod /root/ili9488_fb.ko
 
 但是这样就没法通过adb调试了，所以你需要事先写一个systemd服务，在开机初始化好一切需要的事务。 Max 或者 Pro版本因为有网口，所以还可以通过网络登陆设备。
 
+## Luckfox Lyra Plus
+
+Luckfox Lyra 主控采用Rockchip RK3506 处理器，该处理器采用 22nm 制程工艺，搭载了4 核 32 位 CPU（包括 3×Cortex-A7 和 1×Cortex-M0），丰富的接口扩展，适用于多种应用领域，包括物联网设备、智能音频、智能显示、工业控制和教育设备等。Luckfox Lyra 支持 Buildroot 和 Ubuntu22.04 系统。
+
+See [https://wiki.luckfox.com/zh/Luckfox-Lyra/Quick-Start](https://wiki.luckfox.com/zh/Luckfox-Lyra/Quick-Start)
+
 ## Milk-V Duo{#milk-v-duo}
 
 [https://github.com/embeddedboys/pico_dm_qd3503728_linux](https://github.com/embeddedboys/pico_dm_qd3503728_linux)

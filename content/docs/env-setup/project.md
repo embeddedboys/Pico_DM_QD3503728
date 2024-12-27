@@ -33,7 +33,7 @@ seo:
 
 该版本完全基于官方 Pico C-SDK 开发，仅添加了LVGL的支持，所以如果您想要在本项目基础上进行原生二次开发，可以选择该裸机工程。
 
-仓库链接：
+仓库链接：[https://gitee.com/embeddedboys/pico_dm_qd3503728_noos](https://gitee.com/embeddedboys/pico_dm_qd3503728_noos)
 
 国内用户：
 ```shell
@@ -53,7 +53,7 @@ Desktop / Embedded GUI development & Automation
 
 {{< figure src="images/qd3503728_eez_studio.jpg" alt="" >}}
 
-仓库链接：
+仓库链接：[https://gitee.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo](https://gitee.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo)
 
 国内用户：
 ```bash
@@ -69,7 +69,7 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
 
 工程还在开发中，您可以到如下仓库链接中查看最新开发进度。
 
-仓库链接：
+仓库链接：[https://github.com/embeddedboys/pico_dm_qd3503728_udd](https://github.com/embeddedboys/pico_dm_qd3503728_udd)
 
 国内用户
 ```bash
@@ -95,6 +95,8 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_udd
 ### 8080屏模板工程
 
 在开发本项目的过程中，其实我们还同时开发着其他类似项目，为了加快后续适配工作进度，我们开发了本工程，通过简单的配置就可以在多个lcd或触摸之间切换，这意味着您完全可以使用本工程在您自己的平台上开发。 😎 有关本工程的详细内容参见其readme文件。
+
+仓库链接：[https://gitee.com/embeddedboys/pico_dm_8080_template](https://gitee.com/embeddedboys/pico_dm_8080_template)
 
 国内用户：
 ```shell
@@ -155,6 +157,8 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 ### FreeRTOS
 
 与裸机版本不同的是，我们又在其上面添加了FreeRTOS的支持，同时该工程支持SMP，可同时使用RP2040的两个核心处理任务，如果您惯用FreeRTOS开发，可以选择本工程。
+
+仓库链接：[https://gitee.com/embeddedboys/pico_dm_qd3503728_freertos.git](https://gitee.com/embeddedboys/pico_dm_qd3503728_freertos.git)
 
 国内用户
 ```shell
@@ -484,7 +488,7 @@ V9.0: [https://sim.lvgl.io/v9.0/micropython/ports/webassembly/index.html](https:
 0. 通过git或者下载zip来获取本工程
 
     ```bash
-    git clone https://github.com/embeddedboys/pico_dm_qd3503728_arduino
+    git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_arduino
     ```
 
 1. 在 Arduino IDE 中安装 pico 开发板
