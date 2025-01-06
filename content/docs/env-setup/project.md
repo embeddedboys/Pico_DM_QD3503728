@@ -73,7 +73,7 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
 
 国内用户
 ```bash
-镜像链接待添加
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_udd
 ```
 
 国外用户：
@@ -151,7 +151,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 - [x] [Arduino](#arduino)
 - [x] [embedded_graphics (Rust)](#embedded_graphics-rust)
 - [x] [Slint (Rust)](#slint-rust)
-- [ ] [zephyr](#zephyr)
+- [x] [zephyr](#zephyr)
 - [ ] [Nuttx](#nuttx)
 
 ### FreeRTOS
@@ -577,6 +577,12 @@ libraries\
 
 仓库链接：[https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics](https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics)
 
+国内用户
+```bash
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
+```
+
+国外用户
 ```bash
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
 ```
@@ -604,6 +610,12 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_embedded_graphics
 - [ ] Display via PIO + DMA
 - [x] Touch
 
+国内用户
+```bash
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_slint_mcu
+```
+
+国外用户
 ```bash
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_slint_mcu
 ```
@@ -622,10 +634,14 @@ Zephyr RTOS 是基于一个小型内核设计的，用于资源有限的嵌入�
 
 工程开发完成，整理中。。。
 
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_zephyr
+```
+
 ### Nuttx
 
 [关于Nuttx](https://nuttx.apache.org/docs/latest/introduction/about.html)
 
 [https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html](https://nuttx.apache.org/docs/latest/platforms/arm/rp2040/index.html)
-d
+
 已提上日程，调研中。。。
