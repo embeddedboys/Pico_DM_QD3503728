@@ -26,7 +26,7 @@ seo:
 
 - [x] [裸机](#裸机)
 - [x] [EEZ Studio示例工程](#eez-studio-lvgl-示例工程)
-- [ ] [USB 显示屏（开发中）](#usb-display)
+- [x] [USB 显示屏（开发中）](#usb-display)
 - [x] [8080屏模板工程](#8080屏模板工程)
 
 ### 裸机
@@ -69,7 +69,9 @@ git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
 
 工程还在开发中，您可以到如下仓库链接中查看最新开发进度。
 
-仓库链接：[https://github.com/embeddedboys/pico_dm_qd3503728_udd](https://github.com/embeddedboys/pico_dm_qd3503728_udd)
+仓库链接：[https://gitee.com/embeddedboys/pico_dm_qd3503728_udd](https://gitee.com/embeddedboys/pico_dm_qd3503728_udd)
+
+有关编译、烧录及使用的说明，请先查看上述仓库的 README 文件。
 
 国内用户
 ```bash
