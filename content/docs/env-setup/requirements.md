@@ -22,7 +22,7 @@ seo:
 {{< tab "Ubuntu" >}}
 
 ```bash {title="安装依赖"}
-sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
+sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib ninja-build
 ```
 
 {{< /tab >}}

@@ -25,8 +25,8 @@ seo:
  😋 我们正在开发中，包括但不限于如下工程：
 
 - [x] [裸机](#裸机)
-- [x] [EEZ Studio示例工程](#eez-studio-lvgl-示例工程)
 - [x] [USB 显示屏（开发中）](#usb-display)
+- [x] [EEZ Studio示例工程](#eez-studio-lvgl-示例工程)
 - [x] [8080屏模板工程](#8080屏模板工程)
 
 ### 裸机
@@ -44,30 +44,24 @@ git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_noos
 ```shell
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos
 ```
-### EEZ Studio LVGL 示例工程
-
-Desktop / Embedded GUI development & Automation
-桌面/嵌入式 GUI 开发和自动化
-
-官方介绍：[https://www.envox.eu/studio/studio-introduction/](https://www.envox.eu/studio/studio-introduction/)
-
-{{< figure src="images/qd3503728_eez_studio.jpg" alt="" >}}
-
-仓库链接：[https://gitee.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo](https://gitee.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo)
-
-国内用户：
-```bash
-git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
-```
-
-国外用户：
-```bash
-git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
-```
 
 ### USB Display
 
-工程还在开发中，您可以到如下仓库链接中查看最新开发进度。
+我们将在现有工程基础上（裸机或者FreeRTOS工程），添加 USB 显示屏 的支持，这将达到如下目标：
+
+1. 在 Linux 机器上，通过USB线连接到本设备，将创建一个新的fb设备
+
+2. 在 Windows 机器上，通过USB线连接到本设备，将识别到一个新的显示器
+
+上述两种方式都为当前的Host机器提供了主/拓展显示器支持。
+
+3. 在不安装驱动的情况下，通过Python脚本来提供Host发送端支持。
+
+下面这张图片是在 Raspberry Pi 上运行的效果：
+
+{{< figure src="images/udd_rpi.jpg" alt="" >}}
+
+工程还在开发中，目前还不支持触摸上报，您可以到如下仓库链接查看最新开发进度：
 
 仓库链接：[https://gitee.com/embeddedboys/pico_dm_qd3503728_udd](https://gitee.com/embeddedboys/pico_dm_qd3503728_udd)
 
@@ -83,16 +77,42 @@ git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_udd
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_udd
 ```
 
-我们将在现有工程基础上（裸机或者FreeRTOS工程），添加 USB 显示屏 的支持，这将达到如下目标：
+### EEZ Studio LVGL 示例工程
 
-1. 在 Linux 机器上，通过USB线连接到本设备，将创建一个新的fb设备
+Desktop / Embedded GUI development & Automation
+桌面/嵌入式 GUI 开发和自动化
 
-2. 在 Windows 机器上，通过USB线连接到本设备，将识别到一个新的显示器
+官方介绍：[https://www.envox.eu/studio/studio-introduction/](https://www.envox.eu/studio/studio-introduction/)
 
-上述两种方式都为当前的Host机器提供了主/拓展显示器支持。
+#### 家庭智能中控
 
-3. 在不安装驱动的情况下，通过Python脚本来提供Host发送端支持。
+{{< figure src="images/qd3503728_eez_studio.jpg" alt="" >}}
 
+仓库链接：[https://gitee.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo](https://gitee.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo)
+
+国内用户：
+```bash
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
+```
+
+国外用户：
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_noos_eez_studio_demo
+```
+
+#### 电源分析仪
+
+{{< figure src="images/poweranalyzer_compressed.jpg" alt="" >}}
+
+国内用户：
+```bash
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_poweranylzer
+```
+
+国外用户：
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_poweranylzer
+```
 
 ### 8080屏模板工程
 
@@ -636,6 +656,12 @@ Zephyr RTOS 是基于一个小型内核设计的，用于资源有限的嵌入�
 
 工程开发完成，整理中。。。
 
+国内用户：
+```bash
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_zephyr
+```
+
+国外用户：
 ```bash
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_zephyr
 ```

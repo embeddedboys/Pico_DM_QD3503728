@@ -17,7 +17,7 @@ seo:
 如果您是从github，或者gitee拉取的工程，在进行编译之前，应该先更新子模块。 切换分支时，同样需要，方式如下：
 ```bash
 # 位于工程根目录下
-git submodule update --init
+git submodule update --init --recursive
 ```
 
 {{< callout context="note" title="说明" icon="info-circle" >}}
@@ -25,8 +25,8 @@ git submodule update --init
 ```bash
 # 位于工程根目录下
 mkdir build-pico2 && cd build-pico2
-cmake -DPICO_BOARD=pico2 ..
-make -j$(nproc)
+cmake -DPICO_BOARD=pico2 .. -G Ninja
+ninja
 ```
 {{< /callout >}}
 
@@ -45,14 +45,14 @@ factory   # 工厂测试程序
 ft6236.c  # 触摸驱动
 i2c_tools.c # i2c工具
 ili9488.c   # 显示驱动
-include   # 头文件
+include/   # 头文件
 LICENSE   # 许可证
 lv_conf.h   # lvgl配置头文件
-lvgl      # lvgl源码
+lvgl/      # lvgl源码
 main.c    # 程序入口
 pico_sdk_import.cmake   # pico-sdk前置文件
-pio       # pio相关驱动
-porting   # lvgl移植文件
+pio/       # pio相关驱动
+porting/   # lvgl移植文件
 ```
 
 编译生成固件
@@ -61,8 +61,8 @@ cd pico_dm_qd3503728_noos
 
 mkdir -p build
 cd build
-cmake ..
-make -j12
+cmake .. -G Ninja
+ninja
 ```
 
 ### pico_dm_qd3503728_freertos
@@ -154,8 +154,8 @@ cd pico_dm_8080_template
 
 mkdir -p build
 cd build
-cmake ..
-make -j12
+cmake .. -G Ninja
+ninja
 ```
 
 ### MicroPython
