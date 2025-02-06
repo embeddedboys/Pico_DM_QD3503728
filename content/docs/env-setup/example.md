@@ -18,6 +18,8 @@ seo:
 
 Windows用户参考如下视频搭建开发环境，可直接跳至编译配置章节，了解工程信息。
 
+如果您有任何问题和建议，欢迎到论坛或对应仓库issues中讨论。
+
 [https://www.bilibili.com/video/BV1YH4y1T7zn/](https://www.bilibili.com/video/BV1YH4y1T7zn/)
 
 --------------------

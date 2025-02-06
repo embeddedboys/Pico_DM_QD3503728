@@ -19,7 +19,6 @@ seo:
 如果用户对这方面比较感兴趣，可以仔细阅读本章节，并通过完成若干个实验来学习了解这个开发过程。
 
 为了更好的推广本产品，我们决定将本产品移植适配其他平台，例如Linux、ESP32等。
-很高兴的向大家宣布，本部分的源码也将全部开源，基于MIT协议。
 
 因为受限于本产品接口，所以仅支持兼容树莓派Pico引脚定义的开发板，
 目前市面上能找到的类似开发板不多，如果列表中的没有你所使用的型号，
@@ -33,15 +32,16 @@ seo:
 
 - [x] [幸狐科技 Luckfox Pico](http://localhost:1313/docs/porting/linux/#luckfox_pico)
 - [x] [幸狐科技 Luckfox Pico Max](http://localhost:1313/docs/porting/linux/#luckfox_pico)
+- [ ] [幸狐科技 Luckfox Lyra Plus]()
 - [x] [Milk-V Duo](http://localhost:1313/docs/porting/linux/#milk-v-duo)
 - [ ] [Milk-V Duo 256M](http://localhost:1313/docs/porting/linux/#milk-v-duo-256M)
 
 ### ESP32-S3
 - [ ] [WalnutPi 核桃派PicoW ESP32-S3]()
-- [ ] [ESP32 S3 Dev Board A]()
-- [ ] [MakePico ESP32-D0WDQ6-V3]()
+- [x] [无名科技 ESP32-S3 Pico]()
+- [x] [Unknown ESP32-S3 Dev Board A]()
 
 {{< callout context="note" title="说明" icon="info-circle" >}}
-部分开发板存在缺少引脚引出的情况，所以可能会需要飞线。 使用任意线缆即可，
-若需要，会在对应文章处指出。
+部分开发板存在缺少引脚引出的情况，所以可能会需要飞线。
+若有需要，则会在对应文章中指出。
 {{< /callout >}}

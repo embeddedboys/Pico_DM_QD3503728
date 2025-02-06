@@ -16,7 +16,9 @@ seo:
 
 我们提供了多个版本的工程，本文只列出可用的工程，以及如何下载。
 
-如果您对这些工程的移植过程感兴趣，可以参考[移植教程](../../porting/)中的对应内容
+如果您对这些工程的移植过程感兴趣，可以参考[移植教程](../../porting/)中的对应内容。
+
+ESP32，Linux平台因为篇幅过长，所以放到了单独的章节中。
 
 我们会在下个章节中讨论工程的编译及配置问题。
 
@@ -28,6 +30,15 @@ seo:
 - [x] [USB 显示屏（开发中）](#usb-display)
 - [x] [EEZ Studio示例工程](#eez-studio-lvgl-示例工程)
 - [x] [8080屏模板工程](#8080屏模板工程)
+- [x] [FreeRTOS](#freertos)
+- [x] [ESP32](#esp32-s3)
+- [x] [Linux](#linux)
+- [x] [Micropython (Python)](#micropython-python)
+- [x] [Arduino](#arduino)
+- [x] [embedded_graphics (Rust)](#embedded_graphics-rust)
+- [x] [Slint (Rust)](#slint-rust)
+- [x] [zephyr](#zephyr)
+- [ ] [Nuttx](#nuttx)
 
 ### 裸机
 
@@ -152,7 +163,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 -----------------------------
 
-### 如果上述版本都无法下载，尝试访问如下链接直接下载压缩包
+<!-- ### 如果上述版本都无法下载，尝试访问如下链接直接下载压缩包
 链接：[https://pan.baidu.com/s/1m4WmPoHAZYiK3XwwXGrNDw?pwd=34mn](https://pan.baidu.com/s/1m4WmPoHAZYiK3XwwXGrNDw?pwd=34mn)
 
 提取码：34mn
@@ -161,20 +172,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 {{< callout context="note" title="说明" icon="info-circle" >}}
 该方式的源码版本可能比较落后，最新版本以github仓库为准。
 我们也会及时更新镜像链接版本。
-{{< /callout >}}
-
-## 基于社区开源项目
-
- 😋 我们正在开发中，包括但不限于如下工程：
-
-- [x] [FreeRTOS](#freertos)
-- [x] [Linux](#linux)
-- [x] [Micropython (Python)](#micropython-python)
-- [x] [Arduino](#arduino)
-- [x] [embedded_graphics (Rust)](#embedded_graphics-rust)
-- [x] [Slint (Rust)](#slint-rust)
-- [x] [zephyr](#zephyr)
-- [ ] [Nuttx](#nuttx)
+{{< /callout >}} -->
 
 ### FreeRTOS
 
@@ -191,9 +189,19 @@ git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_freertos.git
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_freertos.git
 ```
 
+### ESP32-S3
+
+目前计划支持引脚与树莓派Pico兼容的如下开发板：
+
+- [x] [无名科技 ESP32-S3 Pico](https://www.nologo.tech/product/esp32/esp32s3/esp32s3Pico/esp32S3Pico.html)
+- [ ] [WalnutPi 核桃派PicoW ESP32-S3](https://walnutpi.com/docs/walnutpi_picow/)
+- [x] [Unknown ESP32-S3 Dev Board A](https://item.taobao.com/item.htm?_u=21m6r7hse5f8&id=749667421699)
+
+[文档跳转链接](../../porting/esp32-s3/#说明)
+
 ### Linux
 
-基于 Linux 的 FrameBuffer 驱动，目前支持如下开发板：
+Linux 显示与触摸驱动，目前计划支持引脚与树莓派Pico兼容的如下开发板：
 
 - [x] `Luckfox Pico`
 - [x] `Luckfox Pico Max`
