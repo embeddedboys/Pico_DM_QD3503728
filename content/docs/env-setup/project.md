@@ -704,8 +704,11 @@ AWTK 是 Toolkit AnyWhere 的缩写，是 ZLG 开发的一个开源 GUI 引擎�
 
 [awtk: https://github.com/zlgopen/awtk](https://github.com/zlgopen/awtk)
 
+[关于 AWTK](https://awtk.zlg.cn/docs/awtk_docs/FAQ/1.AWTK.html)
+
 相关链接：
 [https://github.com/zlgopen/awtk-pico](https://github.com/zlgopen/awtk-pico)
 [https://github.com/zlgopen/awtk-previewer](https://github.com/zlgopen/awtk-previewer)
+[AWTK移植及裁剪指南.pdf](https://awtk.zlg.cn/docs/awtk_docs/_public_/AWTK%E7%A7%BB%E6%A4%8D%E5%8F%8A%E8%A3%81%E5%89%AA%E6%8C%87%E5%8D%97.pdf)
 
 已提上日程，调研中。。。
