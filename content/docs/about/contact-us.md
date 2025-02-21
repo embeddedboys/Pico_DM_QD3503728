@@ -16,9 +16,10 @@ seo:
 
 可以通过如下多种方式与我们取得联系
 
-- 添加QQ群：（暂无）
+- 添加QQ群：**1002447393**
 - 添加微信群：（暂无）
-- BiliBili私信
-- 发送邮件至 [writeforever@foxmail.com]()，格式如下：
-
-- 在对应仓库下提交 issue 或 PR
+- 添加技术支持微信：**h1657802074**
+- BiliBili私信: [https://space.bilibili.com/53331149](https://space.bilibili.com/53331149)
+- 发送邮件至 [feedback@embeddedboys.com](feedback@embeddedboys.com)
+- 在对应仓库下提交 issue
+- 在论坛中发帖：[http://forum.embeddedboys.com/](http://forum.embeddedboys.com/)
