@@ -16,7 +16,6 @@ seo:
 
 ## UF2 烧录
 
-
 ![image](images/blink-an-led-final.gif)
 
 图片引用自[树莓派 Pico 中文站](https://pico.org.cn/)
@@ -39,7 +38,7 @@ seo:
 ```bash
 sudo apt install automake autoconf build-essential texinfo libtool libftdi-dev libusb-1.0-0-dev libhidapi-dev -y
 
-git clone https://github.com/raspberrypi/openocd.git --recursive --branch rp2040 --depth=1
+git clone https://github.com/raspberrypi/openocd.git --recursive --branch sdk-2.0.0 --depth=1
 
 cd openocd
 ./bootstrap
@@ -61,7 +60,7 @@ sudo udevadm trigger
 树梅派官方推出过基于RP2040的调试器，在github上开源：[https://github.com/raspberrypi/debugprobe](https://github.com/raspberrypi/debugprobe), 大概长这个样子：
 {{< figure src="images/debugprobe.webp" alt="" >}}
 
-如果有条件的话，可以购买支持官方。
+如果有条件的话，可以购买以支持官方。
 
 实际上，他们也制作了适用于Pico的固件，我们只需要一个空闲的Pico核心板，然后烧录如下固件：
 
@@ -96,15 +95,10 @@ Pico也需要连接电源。
 openocd -f interface/cmsis-dap.cfg -c "adapter speed 5000" -f target/rp2040.cfg -s tcl -c "program blink.elf verify reset exit"
 ```
 
-上传程序到 Pico
-
-
-```bash
-sudo openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5000" -c "program blink.elf verify reset exit"
-```
-
 ## picotool 烧录
 
-（待添加）
+此方式需要 pico 先处于BOOTSEL模式
 
-此方式需要RP2040处于BOOTSEL模式
+```bash
+sudo picotool load -fuvx blink.uf2
+```
