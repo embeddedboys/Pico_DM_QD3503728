@@ -26,7 +26,7 @@ Slint 官网：[https://slint.dev/](https://slint.dev/)
 
 微雪的这个拓展板总体上来说跟我们的拓展板差别还是非常大的，他们这个开发板是SPI驱动的ST7789，分辨率为320x240，使用XPT2046驱动电阻触摸屏。
 
-第一版的时候我们的开发人员不清楚这部分接口的实现，所以使用下面这两个现成的 crate 实现了一个简单的移植
+第一版的时候我们使用两个现有的 crate 实现了一个简单的移植
 ```toml
 display-interface-parallel-gpio = "0.7.0"
 mipidsi = "0.8.0"
