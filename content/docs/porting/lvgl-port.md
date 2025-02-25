@@ -355,7 +355,112 @@ v8.4 版本的 LVGL 允许在 lv_conf.h 中设置 tick 回调函数
 
 ## LVGL 9
 
-待添加
+
+### 显示驱动
+
+```c
+void lv_port_disp_init(void)
+{
+    disp_init();
+
+    /*------------------------------------
+     * 创建一个 display 对象，并注册刷新回调函数
+     * -----------------------------------*/
+    disp = lv_display_create(MY_DISP_HOR_RES, MY_DISP_VER_RES);
+    lv_display_set_flush_cb(disp, ili9488_flush);
+
+/* 如果没有定义 MY_DISP_BUF_SIZE，则默认设置为屏幕分辨率的 1/8 */
+#ifndef MY_DISP_BUF_SIZE
+#define MY_DISP_BUF_SIZE    (MY_DISP_HOR_RES * MY_DISP_VER_RES / 8)
+#endif
+
+    /* 设置 display 对象的显示 buffer， 默认使用 1 个 buffer，刷新方式为局部刷新 */
+    static lv_color_t buf_1_1[MY_DISP_BUF_SIZE];
+    lv_display_set_buffers(disp, buf_1_1, NULL, sizeof(buf_1_1), LV_DISPLAY_RENDER_MODE_PARTIAL);
+}
+
+static void disp_init(void)
+{
+    /*You code here*/
+    ili9488_driver_init();
+}
+```
+
+
+### 输入驱动
+
+lvgl v9 版本的输入驱动相比 v8.4 版本没有太大的变化，只不过原来在 lv_conf.h 中
+设置输入事件的读取周期，改为了定时器。
+
+```c
+void lv_port_indev_init(void)
+{
+    /*Initialize your touchpad if you have*/
+    touchpad_init();
+
+    /* 分配、注册一个 pointer 类型的输入设备 */
+    indev_touchpad = lv_indev_create();
+    lv_indev_set_type(indev_touchpad, LV_INDEV_TYPE_POINTER);
+    lv_indev_set_read_cb(indev_touchpad, touchpad_read);
+
+    /* 创建一个 lvgl 定时器，用于周期性的调用 touchpad_read */
+    lv_timer_t *indev_timer = lv_indev_get_read_timer(indev_touchpad);
+    lv_timer_set_period(indev_timer, 16);
+}
+
+static void touchpad_init(void)
+{
+    /*Your code comes here*/
+    ft6236_driver_init();
+}
+
+static void touchpad_read(lv_indev_t * indev_drv, lv_indev_data_t * data)
+{
+    static int32_t last_x = 0;
+    static int32_t last_y = 0;
+
+    /*Save the pressed coordinates and the state*/
+    if(touchpad_is_pressed()) {
+        touchpad_get_xy(&last_x, &last_y);
+        data->state = LV_INDEV_STATE_PR;
+    }
+    else {
+        data->state = LV_INDEV_STATE_REL;
+    }
+
+    /*Set the last pressed coordinates*/
+    data->point.x = last_x;
+    data->point.y = last_y;
+}
+
+/*Return true is the touchpad is pressed*/
+static bool touchpad_is_pressed(void)
+{
+    /*Your code comes here*/
+    return ft6236_is_pressed();
+}
+
+/*Get the x and y coordinates if the touchpad is pressed*/
+static void touchpad_get_xy(int32_t * x, int32_t * y)
+{
+    /*Your code comes here*/
+    (*x) = ft6236_read_x();
+    (*y) = ft6236_read_y();
+}
+```
+
+### Tick 驱动
+
+在 lvgl 的 v9 版本中，你需要调用一个接口来注册 tick 的回调函数
+
+```c
+static uint32_t __time_critical_func(my_tick_get_cb)(void)
+{
+    return time_us_32() / 1000;
+}
+
+lv_tick_set_cb(my_tick_get_cb);
+```
 
 ## 性能优化
 
