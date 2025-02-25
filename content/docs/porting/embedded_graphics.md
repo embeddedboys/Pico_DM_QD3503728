@@ -111,3 +111,14 @@ let rotation = Orientation::new().rotate(Rotation::Deg270).flip_horizontal();
         .init(&mut delay)
         .unwrap();
 ```
+
+测试字体绘制接口
+```rust
+let style = MonoTextStyle::new(&FONT_10X20, color);
+
+            Text::new("Hello, Rust!", Point::new(180, 140), style)
+                .draw(&mut display)
+                .unwrap();
+```
+
+> 基于 PIO 的实现在 slint 章节中介绍
