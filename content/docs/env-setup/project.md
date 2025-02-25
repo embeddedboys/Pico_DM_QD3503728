@@ -39,7 +39,7 @@ ESP32，Linux平台因为篇幅过长，所以放到了单独的章节中。
 - [x] [Slint (Rust)](#slint-rust)
 - [x] [zephyr](#zephyr)
 - [ ] [Nuttx](#nuttx)
-- [ ] [hagl](#hagl)
+- [x] [hagl](#hagl)
 - [ ] [AWTK](#awtk)
 
 ### 裸机
@@ -694,7 +694,33 @@ HAGL 是一个轻量级的硬件无关图形库。它支持基本几何图元、
 相关链接：
 [https://github.com/tuupola/hagl_pico_mipi](https://github.com/tuupola/hagl_pico_mipi)
 
-已提上日程，调研中。。。
+工程开发完成，资料整理中，请先参考各仓库中的 `README.md` 文件
+
+#### effects 场景渲染测试
+
+国内用户：
+```bash
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_hagl_effects
+```
+
+国外用户：
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_hagl_effects
+```
+
+#### GFX 性能测试示例
+
+{{< figure src="images/hagl_gfx.jpg" alt="" >}}
+
+国内用户：
+```bash
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_hagl_gfx
+```
+
+国外用户：
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_hagl_gfx
+```
 
 ### AWTK
 
