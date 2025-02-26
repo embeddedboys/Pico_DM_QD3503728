@@ -40,7 +40,7 @@ ESP32，Linux平台因为篇幅过长，所以放到了单独的章节中。
 - [x] [zephyr](#zephyr)
 - [ ] [Nuttx](#nuttx)
 - [x] [hagl](#hagl)
-- [ ] [AWTK](#awtk)
+- [x] [AWTK](#awtk)
 
 ### 裸机
 
@@ -698,6 +698,9 @@ HAGL 是一个轻量级的硬件无关图形库。它支持基本几何图元、
 
 #### effects 场景渲染测试
 
+{{< figure src="images/hagl_effects_0.png" alt="" >}}
+{{< figure src="images/hagl_effects_1.png" alt="" >}}
+
 国内用户：
 ```bash
 git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_hagl_effects
@@ -728,6 +731,8 @@ AWTK 是 Toolkit AnyWhere 的缩写，是 ZLG 开发的一个开源 GUI 引擎�
 它是一个用于嵌入式系统、 WEB、迷你程序、移动电话和 PC 的跨平台 GUI 引擎。
 它是一个功能强大、高效、可靠和易于使用的 GUI 引擎，为用户设计美观的 GUI 应用程序。
 
+{{< figure src="images/awtk.png" alt="" >}}
+
 [awtk: https://github.com/zlgopen/awtk](https://github.com/zlgopen/awtk)
 
 [关于 AWTK](https://awtk.zlg.cn/docs/awtk_docs/FAQ/1.AWTK.html)
@@ -737,4 +742,14 @@ AWTK 是 Toolkit AnyWhere 的缩写，是 ZLG 开发的一个开源 GUI 引擎�
 [https://github.com/zlgopen/awtk-previewer](https://github.com/zlgopen/awtk-previewer)
 [AWTK移植及裁剪指南.pdf](https://awtk.zlg.cn/docs/awtk_docs/_public_/AWTK%E7%A7%BB%E6%A4%8D%E5%8F%8A%E8%A3%81%E5%89%AA%E6%8C%87%E5%8D%97.pdf)
 
-已提上日程，调研中。。。
+工程开发完成，资料整理中，请先参考仓库中的 `README.md` 文件
+
+国内用户：
+```bash
+git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_awtk
+```
+
+国外用户：
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_awtk
+```
