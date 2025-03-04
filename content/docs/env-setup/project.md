@@ -161,6 +161,13 @@ void ili9488_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t 
 这是一个全屏 buffer， 所以不需要设置绘制区域，全程不涉及 RS 引脚切换， 完全
 由 DMA + PIO 处理，这节省了一部分 CPU 资源。
 
+拉取代码仓库：
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_rp2350_lvgl_full_refresh.git
+```
+
+gitee 镜像待添加
+
 ### EEZ Studio LVGL 示例工程
 
 Desktop / Embedded GUI development & Automation
