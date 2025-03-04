@@ -28,6 +28,7 @@ ESP32，Linux平台因为篇幅过长，所以放到了单独的章节中。
 
 - [x] [裸机](#裸机)
 - [x] [USB 显示屏（开发中）](#usb-display)
+- [ ] [RP2350 LVGL全屏刷新示例](#rp2350-lvgl全屏刷新示例)
 - [x] [EEZ Studio示例工程](#eez-studio-lvgl-示例工程)
 - [x] [8080屏模板工程](#8080屏模板工程)
 - [x] [FreeRTOS](#freertos)
@@ -89,6 +90,76 @@ git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_udd
 ```bash
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_udd
 ```
+
+### RP2350 LVGL全屏刷新示例
+
+如果使用局部刷新的话，那么在发送像素数据前，需要给屏幕驱动发送额外的命令来设置绘制的窗口，
+从而降低了一定的刷新效率，而且我们的 8080 PIO 程序只支持设置 `DB0 - DB15` 和 `WR` 引脚，如果
+涉及到 `命令/数据` 的切换写入，则需要在数据写入 PIO 前调用 `gpio_put` 来切换 `RS` 引脚以
+告知屏幕驱动IC当前写入的是命令还是数据。
+
+拓展板的分辨率为 480x320，使用 RGB565 格式，一整屏幕的像素占用 (480 x 320 x 2) = 307200 字节。
+RP2350 具有 512KB 大小的 SRAM，所以我们可以在 RP2350 上启用 LVGL 的全屏刷新功能，每当 LVGL Screen
+对象上有内容更新时，LVGL都会请求一次全屏刷新。
+
+```c
+static lv_disp_drv_t disp_drv;
+    ...
+disp_drv.full_refresh = 1;
+    ...
+lv_disp_drv_register(&disp_drv);
+```
+
+所以，当上述全屏刷新的逻辑建立后，我们可以调整屏幕初始化的流程如下：
+
+初始化PIO -> 发送初始化序列 -> 调整显示方向 -> 设置刷新区域为全屏 -> 设置 RS 引脚为 1（数据）
+
+这是上述流程的代码：
+```c
+static int ili9488_hw_init(struct ili9488_priv *priv)
+{
+    printf("initializing hardware...\n");
+
+#if DISP_OVER_PIO
+    i80_pio_init(priv->gpio.db[0], ARRAY_SIZE(priv->gpio.db), priv->gpio.wr);
+#endif
+    ili9488_gpio_init(priv);
+
+    /* 发送初始化序列 */
+    priv->tftops->init_display(priv);
+
+    /* 调整显示方向 */
+    priv->tftops->set_dir(priv, priv->display->rotate);
+
+    /* clear screen to black */
+    // priv->tftops->clear(priv, 0x0);
+
+    /* 设置刷新区域为全屏 */
+    priv->tftops->set_addr_win(priv, 0, 0, ILI9488_X_RES - 1, ILI9488_Y_RES - 1);
+
+    /* 设置 RS 引脚为 1（数据） */
+    gpio_put(priv->gpio.rs, 1);
+
+    return 0;
+}
+```
+
+然后我们的 LVGL 刷新回调函数就可以改为如下代码：
+
+```c
+#define write_buf(p, b, l) i80_write_buf(b, l)
+
+void ili9488_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
+{
+    write_buf(&g_priv, (void *)color_p, lv_area_get_size(area) * 2);
+
+    lv_disp_flush_ready(disp_drv);
+}
+```
+
+每当该回调函数被调用时，都会处理一个长度为 `153600` 的 `RGB565` 像素buffer,
+这是一个全屏 buffer， 所以不需要设置绘制区域，全程不涉及 RS 引脚切换， 完全
+由 DMA + PIO 处理，这节省了一部分 CPU 资源。
 
 ### EEZ Studio LVGL 示例工程
 
