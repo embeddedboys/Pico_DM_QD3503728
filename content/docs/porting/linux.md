@@ -20,23 +20,15 @@ seo:
 
 相关资料仓库：[https://github.com/embeddedboys/pico_dm_qd3503728_linux](https://github.com/embeddedboys/pico_dm_qd3503728_linux)
 
-## Luckfox Pico & Max{#luckfox_pico}
-
-luckfox pico有多个硬件版本型号，目前我们只对最基础的版本做了适配，也就是`Luckfox Pico IPC`，我们也购买了Luckfox Pico Max，适配工作正在进行中。
+## Luckfox Pico {#luckfox_pico}
 
 luckfox pico有两个版本的SDK，分别是Buildroot和Ubuntu，我们针对这两个版本都做了适配。
 
 ### 硬件改动 飞线
 
-在使用Luckfox Pico的时候，需要先飞两根线，**Max 版本无需飞线**。
+在使用Luckfox Pico的时候，需要先飞两根线
 
-1. 短接`GP18`和`GP22`，因为luckfox pico的GP22是NC（无连接）的，之前我短接到`GP21`，这会导致屏幕触摸时的中断信号触发屏幕复位（GP21是 FT6236的 IRQ引脚），下面的图片已经过时，不要参考。
-{{<figure
-  src="images/reset-wiring.png"
-  process="fill 480x270"
-  width="160"
-  sizes="75vw"
->}}
+1. 短接`GP18`和`GP22`，因为luckfox pico的GP22是NC（无连接）的
 
 2. 短接电阻`R3`和`R4`的左侧，使背光常开，因为luckfox pico的GP28是NC
 {{<figure
@@ -46,10 +38,11 @@ luckfox pico有两个版本的SDK，分别是Buildroot和Ubuntu，我们针对�
   sizes="75vw"
 >}}
 
-
 ### Buildroot
 
 **1. 修改设备树**
+
+你可以直接下载下面的设备树文件，替换到luckfox pico sdk中，路径是：`sysdrv/source/kernel/arch/arm/boot/dts/rv1103g-luckfox-pico.dts`
 
 [rv1103g-luckfox-pico.dts](https://github.com/embeddedboys/pico_dm_qd3503728_linux/blob/main/luckfox-pico/rv1103g-luckfox-pico.dts)
 
@@ -57,7 +50,7 @@ luckfox pico有两个版本的SDK，分别是Buildroot和Ubuntu，我们针对�
 Luckfox Pico、Pro、Max的引脚分布是不同的，所以不能套用同一份设备树。
 {{< /callout >}}
 
-在根节点中添加如下节点
+1.1 在根节点中添加如下节点
 ```shell
 	ili9488 {
 		status = "okay";
@@ -90,7 +83,7 @@ Luckfox Pico、Pro、Max的引脚分布是不同的，所以不能套用同一�
 	};
 ```
 
-修改pinctrl,设定gpio方向、驱动强度等
+1.2. 修改pinctrl,设定gpio方向、驱动强度等
 ```shell
 &pinctrl {
 	i80 {
@@ -119,6 +112,10 @@ Luckfox Pico、Pro、Max的引脚分布是不同的，所以不能套用同一�
 	};
 };
 ```
+
+1.3. 删除根节点中冲突的gpio节点，如果不这么做，会导致ili9488_fb驱动无法申请到冲突的GPIO。
+你可以使用diff工具查看你修改后的设备树与我们提供的设备树之间的差异
+
 **2. 重新编译，烧录boot.img，重启**
 ```shell
 ./build.sh kernel
@@ -126,20 +123,23 @@ Luckfox Pico、Pro、Max的引脚分布是不同的，所以不能套用同一�
 adb push output/image/boot.img /root
 adb shell
 
-# 此时已位于设备端，mmcblk1p4是boot分区
+# 此时已位于设备端，mmcblk1p4是使用SD卡启动时的boot分区
 dd if=/root/boot.img of=/dev/mmcblk1p4 bs=1M && reboot
 ```
+
+<!-- 在这里添加带SPI NAND 版本的pico 烧录时 boot 分区的路径 -->
+
 **4. 编译、加载fb驱动**
 ```bash
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_linux
 cd pico_dm_qd3503728_linux
 
-# 修改 Makefile 中这个三个变量到您设备的路径
+# 修改 Makefile 中这个三个变量到您设备中对应的路径
 # ARCH := arm
 # CROSS_COMPILE := /home/developer/sources/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-
 # KERN_DIR := /home/developer/sources/luckfox-pico/sysdrv/source/kernel
 
-make
+make -f Makefile.luckfox-pico
 
 adb push ili9488_fb.ko /root/
 adb shell
@@ -148,22 +148,25 @@ adb shell
 insmod ili9488_fb.ko
 ```
 
+**5. （可选）配置系统启动时自动加载驱动**
+```shell
+
+```
+
 #### 如果您觉得太麻烦了，可以使用我们编译好的文件，但这会覆盖您设备当前的内核及设备树，操作步骤如下
 
 1. 下载固件
 
-[boot.img](http://embeddedboys.com/uploads/luckfox-pico/boot.img)
-[ili9488_fb.ko](http://embeddedboys.com/uploads/luckfox-pico/ili9488_fb.ko)
+[boot.img](https://github.com/embeddedboys/pico_dm_qd3503728_linux/blob/main/luckfox-pico/boot.img)
+[ili9488_fb.ko](https://github.com/embeddedboys/pico_dm_qd3503728_linux/blob/main/luckfox-pico/ili9488_fb.ko)
 
-或者到如下仓库路径下载
-
-[https://github.com/embeddedboys/pico_dm_qd3503728_linux/tree/main/luckfox-pico](https://github.com/embeddedboys/pico_dm_qd3503728_linux/tree/main/luckfox-pico)
 
 2. 将固件推送至设备中
 ```shell
 adb push boot.img /root/
 adb push ili9488_fb.ko /root/
 ```
+
 3. 使用adb访问设备终端，烧录boot.img
 ```shell
 adb shell
@@ -171,9 +174,10 @@ adb shell
 # 此时已位于设备端
 dd if=/root/boot.img of=/dev/mmcblk1p4 bs=1M && reboot
 ```
+
 4. 待设备重启完成后，再次使用adb访问设备终端，加载设备驱动
 ```shell
-adb shell
+adb wait-for-device && adb shell
 
 # 此时已位于设备端
 insmod /root/ili9488_fb.ko
@@ -187,25 +191,46 @@ insmod /root/ili9488_fb.ko
 
 ### Ubuntu
 
+设备树根 Buildroot 章节中保持一致即可，如果你不使用摄像头，可以将 `RK_BOOTARGS_CMA_SIZE` 大小修改为1M，参考[这里](https://wiki.luckfox.com/zh/Luckfox-Pico/Luckfox-Pico-RV1103/Luckfox-Pico-Plus-Mini/Luckfox-Pico-SDK#13-sdk%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E)
+
+官方SDK编译出的Ubuntu镜像默认是无桌面环境的，你可以参考下面的文章来了解如何在Ubuntu Server上手动安装桌面环境。
 [Luckfox Pico Ubuntu server 安装桌面环境](https://www.cnblogs.com/hfwz/p/18136386)
 
 {{<figure
   src="images/luckfox-pico-max-ubuntu.jpg"
 >}}
 
-触摸暂时还没有调通，因为我无法在该平台上使用i2c-gpio，具体原因忘记了，挺棘手的，不过还可以使用usb host连接鼠标键盘操作。
+触摸暂时还没有调通，因为我无法在luckfox pico的`GPIO4_C1`,`GPIO4_C0`这两个引脚上正常使用i2c-gpio。 这两个引脚的电压范围为0 ~ 1.8V，并且被用于ADC功能。
+
+你可以参考如下链接中的内容将luckfox pico的usb设置为主机模式，这样你就可以连接鼠标键盘等USB设备了。
 
 [Luckfox Pico配置为USB HOST模式](https://spotpear.cn/index/forum/detail/id/45.html#:~:text=%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%B0%86%E8%AE%BE%E5%A4%87%E6%A0%91%E9%85%8D%E7%BD%AE%E4%B8%BA%20USB%20HOST%20%E6%A8%A1%E5%BC%8F%EF%BC%8C%E4%BB%A5%E4%BE%BF%E9%80%9A%E8%BF%87%20USB%20HUB%20%E6%89%A9%E5%B1%95%E5%A4%9A%E4%B8%AA%E6%8E%A5%E5%8F%A3%E3%80%82%20%E6%B8%A9%E9%A6%A8%E6%8F%90%E7%A4%BA%EF%BC%9A,%E5%8F%A3%EF%BC%8C%E4%BE%9B%E7%94%B5%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%BE%AE%E9%9B%AAPico%20To%20HAT%20%E4%B8%8A%E7%9A%84Micro%20usb%20%E4%BE%9B%E7%94%B5%E6%88%96%E8%80%85%E6%98%AF%E9%80%9A%E8%BF%87%20GPIO%20%E4%BE%9B%E7%94%B5%EF%BC%8C%E4%BE%9B%E7%94%B5%E9%9C%80%E8%B0%A8%E6%85%8E%E4%BB%A5%E5%85%8D%E6%8D%9F%E5%9D%8F%E5%BC%80%E5%8F%91%E6%9D%BF)
 
-但是这样就没法通过adb调试了，所以你需要事先写一个systemd服务，在开机初始化好一切需要的事务。 Max 或者 Pro版本因为有网口，所以还可以通过网络登陆设备。
+但是这样就没法通过adb调试了，所以你需要事先写一个systemd服务，在开机初始化好一切需要的事务。 Luckfox Max 或者 Pro版本因为有网口，所以还可以通过网络登陆设备。
 
-## Luckfox Lyra Plus
+## （待更新）Luckfox Pico Max
+
+这里只展示与 pico 差异的地方
+
+### Buildroot
+
+**1. 修改设备树**
+
+1.1 在根节点中添加如下节点
+```c
+```
+
+1.2. 修改pinctrl,设定gpio方向、驱动强度等
+```c
+```
+
+## （待更新）Luckfox Lyra Plus
 
 Luckfox Lyra 主控采用Rockchip RK3506 处理器，该处理器采用 22nm 制程工艺，搭载了4 核 32 位 CPU（包括 3×Cortex-A7 和 1×Cortex-M0），丰富的接口扩展，适用于多种应用领域，包括物联网设备、智能音频、智能显示、工业控制和教育设备等。Luckfox Lyra 支持 Buildroot 和 Ubuntu22.04 系统。
 
 See [https://wiki.luckfox.com/zh/Luckfox-Lyra/Quick-Start](https://wiki.luckfox.com/zh/Luckfox-Lyra/Quick-Start)
 
-## Milk-V Duo{#milk-v-duo}
+## （过时的）Milk-V Duo{#milk-v-duo}
 
 [https://github.com/embeddedboys/pico_dm_qd3503728_linux](https://github.com/embeddedboys/pico_dm_qd3503728_linux)
 
