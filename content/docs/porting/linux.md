@@ -14,11 +14,33 @@ seo:
   noindex: false # false (default) or true
 ---
 
-## 说明
+本文用于介绍如何将此拓展板移植到Linux平台，我们提供了两种方式来驱动此拓展板：
 
-本文用于介绍如何将此拓展板部署到Linux平台，因为此拓展板基于GPIO设计，在Linux中只目前只能使用gpiolib接口驱动，因为各平台实现方式不同，所以速度会有较大差异，效率普遍低下，但是能用😊。
+- 使用 GPIO 直接驱动
 
-相关资料仓库：[https://github.com/embeddedboys/pico_dm_qd3503728_linux](https://github.com/embeddedboys/pico_dm_qd3503728_linux)
+- 通过 USB 接口驱动
+
+本文篇幅较长，推荐读者使用目录快速跳转到感兴趣的部分
+
+# 使用 GPIO 直接驱动
+
+因为此拓展板基于Raspberry Pico + I8080 16bit接口设计，所以市面上与 Raspberry Pico 引脚兼容的开发板，理论上都可以驱动。
+
+为了保持兼容性，在Linux中只使用GPIO进行驱动。 因为各平台的gpio驱动实现方式不同，所以IO翻转速度可能会有较大差异，效率普遍低下，但是能用😊。
+
+我们提供了两种 linux 驱动，分别为 Framebuffer 和 DRM 驱动，这里有一个表格可以让你快速了解这两种驱动之间的差异。
+
+| 特性 | Framebuffer (fbdev) | DRM (Direct Rendering Manager) |
+| --- | --- | --- |
+| 开发初衷 | 提供简单的图形输出接口 | 管理现代 GPU 并支持硬件加速 |
+| 图形加速支持 | 通常不支持，仅支持软件渲染 | 完整支持硬件加速（通过 GPU）|
+| 渲染架构 | 没有明确的 GPU 渲染流程，应用直接写 framebuffer | 支持 render nodes，结合 Mesa、Wayland、X11 等使用 |
+| 使用场景 | 嵌入式、资源受限环境 | 桌面系统、图形丰富的应用场景 |
+| 未来趋势 | 被逐步淘汰 | 发展方向，推荐使用 |
+
+本项目推荐使用 DRM 驱动，至于具体原因，感兴趣的同学可以参考本文档闲聊中的[（待更新）FrameBuffer驱动对于低分辨率屏幕的局限性]()
+
+相关源码仓库：[https://github.com/embeddedboys/pico_dm_qd3503728_linux](https://github.com/embeddedboys/pico_dm_qd3503728_linux)
 
 ## Luckfox Pico {#luckfox_pico}
 
@@ -52,6 +74,10 @@ Luckfox Pico、Pro、Max的引脚分布是不同的，所以不能套用同一�
 
 1.1 在根节点中添加如下节点
 ```shell
+	chosen {
+		bootargs = "earlycon=uart8250,mmio32,0xff4c0000 console=ttyFIQ0 console=tty0 root=/dev/mmcblk1p7 rootwait snd_soc_core.prealloc_buffer_size_kbytes=16 coherent_pool=0";
+    };
+
 	ili9488 {
 		status = "okay";
 		compatible = "ilitek,ili9488";
@@ -83,6 +109,8 @@ Luckfox Pico、Pro、Max的引脚分布是不同的，所以不能套用同一�
 	};
 ```
 
+bootargs 添加 `console=tty0` 参数，使内核日志和控制台打印到屏幕上。
+
 1.2. 修改pinctrl,设定gpio方向、驱动强度等
 ```shell
 &pinctrl {
@@ -113,7 +141,7 @@ Luckfox Pico、Pro、Max的引脚分布是不同的，所以不能套用同一�
 };
 ```
 
-1.3. 删除根节点中冲突的gpio节点，如果不这么做，会导致ili9488_fb驱动无法申请到冲突的GPIO。
+1.3. 删除根节点中冲突的gpio节点，如果不这么做，会导致驱动无法申请到冲突的GPIO。
 你可以使用diff工具查看你修改后的设备树与我们提供的设备树之间的差异
 
 **2. 重新编译，烧录boot.img，重启**
@@ -412,3 +440,11 @@ ili9488设备树节点
 ## Milk-V Duo 256M{#milk-v-duo-256M}
 
 待添加。虽然我们目前没有此开发板，但它们都使用相同的SDK，所以应该差别不大。用户可以先自行尝试移植。
+
+# 通过 USB 接口驱动 （USB Display）
+
+# 驱动分析
+
+## FrameBuffer
+
+## DRM
