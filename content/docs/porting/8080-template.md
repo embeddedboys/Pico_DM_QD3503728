@@ -33,7 +33,23 @@ seo:
 
 #if LCD_DRV_USE_ILI9488
 
-...
+static int tft_ili9488_init_display(struct tft_priv *priv)
+{
+    pr_debug("%s, writing initial sequence...\n", __func__);
+    priv->tftops->reset(priv);
+    dm_gpio_set_value(priv->gpio.rd, 1);
+    mdelay(120);
+
+#if TFT_MODEL_QD3503728
+    ...
+#elif TFT_MODEL_ZT350IT008
+    ...
+#else
+    #error "Unknown LCD model"
+#endif
+
+    return 0;
+}
 
 static struct tft_display ili9488 = {
     .xres   = TFT_X_RES,
@@ -76,7 +92,19 @@ set(LCD_HOR_RES 480)
 set(LCD_VER_RES 320)
 set(DISP_OVER_PIO 1) # 1: PIO, 0: GPIO
 set(PIO_USE_DMA   1)   # 1: use DMA, 0: not use DMA
-set(I80_BUS_WR_CLK_KHZ 50000)
+
+# TFT 8080 总线 WR 时钟速度设置
+if(${LCD_PIN_DB_COUNT} EQUAL 8)
+    set(I80_BUS_WR_CLK_KHZ 75000)
+elseif(${LCD_PIN_DB_COUNT} EQUAL 16)
+    set(I80_BUS_WR_CLK_KHZ 50000)
+endif()
+
+# Panel Model selection 可在此处定义 TFT 面板型号
+set(TFT_MODEL_QD3503728 1)
+set(TFT_MODEL_ZT350IT008 0)
+add_definitions(-DTFT_MODEL_QD3503728=${TFT_MODEL_QD3503728})
+add_definitions(-DTFT_MODEL_ZT350IT008=${TFT_MODEL_ZT350IT008})
 ```
 
 **4. 在src/CMakeLists.txth中添加新的显示屏驱动**

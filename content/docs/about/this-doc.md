@@ -26,7 +26,14 @@ seo:
 
 安装[nvm](https://github.com/nvm-sh/nvm)
 ```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+```
+
+重新加载环境变量
+```bash
+source ~/.bashrc
+# 或者
+source ~/.zshrc
 ```
 
 通过nvm安装node

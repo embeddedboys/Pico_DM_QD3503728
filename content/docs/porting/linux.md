@@ -252,11 +252,44 @@ insmod /root/ili9488_fb.ko
 ```c
 ```
 
-## （待更新）Luckfox Lyra Plus
+## （待更新）Luckfox Lyra & Plus
 
 Luckfox Lyra 主控采用Rockchip RK3506 处理器，该处理器采用 22nm 制程工艺，搭载了4 核 32 位 CPU（包括 3×Cortex-A7 和 1×Cortex-M0），丰富的接口扩展，适用于多种应用领域，包括物联网设备、智能音频、智能显示、工业控制和教育设备等。Luckfox Lyra 支持 Buildroot 和 Ubuntu22.04 系统。
 
-See [https://wiki.luckfox.com/zh/Luckfox-Lyra/Quick-Start](https://wiki.luckfox.com/zh/Luckfox-Lyra/Quick-Start)
+### 开发环境搭建
+
+请先参考如下链接中的内容搭建好开发环境:
+[https://wiki.luckfox.com/zh/Luckfox-Lyra/SDK](https://wiki.luckfox.com/zh/Luckfox-Lyra/SDK)
+
+官方提供的 SDK 下载链接：[https://pan.baidu.com/s/1KyPieuwh63ynd-O96ChlDA?pwd=mzqk](https://pan.baidu.com/s/1KyPieuwh63ynd-O96ChlDA?pwd=mzqk)
+
+我们开发者使用的系统是 Ubuntu 24.04.2 LTS
+
+解压 Luckfox Lyra SDK 到指定目录
+```bash
+mkdir -p ~/luckfox/lyra
+tar xvf ~/Downloads/Luckfox_Lyra_SDK_250429.tar.gz -C lyra
+```
+
+拉取工程
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_linux.git ~/pico_dm_qd3503728_linux
+```
+
+修改 SDK 中的内核工程
+
+```bash
+cd ~/luckfox/lyra
+
+cp ~/pico_dm_qd3503728_linux/luckfox-lyrark3506g-luckfox-lyra-sd.dts ~/luckfox/lyra/kernel/arch/arm/boot/dts/rk3506g-luckfox-lyra-sd.dts
+```
+
+
+编译驱动 ko 文件
+```bash
+cd ~/pico_dm_qd3503728_linux/luckfox-lyra
+make
+```
 
 ## （过时的）Milk-V Duo{#milk-v-duo}
 

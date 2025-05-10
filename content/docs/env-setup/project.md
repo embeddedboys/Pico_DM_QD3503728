@@ -28,7 +28,7 @@ ESP32，Linux平台因为篇幅过长，所以放到了单独的章节中。
 
 - [x] [裸机](#裸机)
 - [x] [USB 显示屏（开发中）](#usb-display)
-- [ ] [RP2350 LVGL全屏刷新示例](#rp2350-lvgl全屏刷新示例)
+- [x] [RP2350 LVGL全屏刷新示例](#rp2350-lvgl全屏刷新示例)
 - [x] [EEZ Studio示例工程](#eez-studio-lvgl-示例工程)
 - [x] [8080屏模板工程](#8080屏模板工程)
 - [x] [FreeRTOS](#freertos)
@@ -223,6 +223,8 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 #### 驱动支持情况
 
+如果你需要添加新的屏幕或触摸，请参考这片文章 [点我跳转](../../porting/8080模板工程/)
+
 ##### 显示驱动
 - [x] ST6201
 - [x] ST7789V
@@ -256,7 +258,7 @@ git clone https://github.com/embeddedboys/pico_dm_8080_template
 
 ### FreeRTOS
 
-与裸机版本不同的是，我们又在其上面添加了FreeRTOS的支持，同时该工程支持SMP，可同时使用RP2040的两个核心处理任务，如果您惯用FreeRTOS开发，可以选择本工程。
+与裸机版本不同的是，我们又在其基础上添加了对 FreeRTOS 的支持，同时该工程支持 SMP，可同时使用RP2040的两个核心处理任务。 如果您惯用 FreeRTOS 开发，可以选择本工程。
 
 仓库链接：[https://gitee.com/embeddedboys/pico_dm_qd3503728_freertos.git](https://gitee.com/embeddedboys/pico_dm_qd3503728_freertos.git)
 
@@ -285,7 +287,8 @@ Linux 显示与触摸驱动，目前计划支持引脚与树莓派Pico兼容的�
 
 - [x] `Luckfox Pico`
 - [x] `Luckfox Pico Max`
-- [ ] `Luckfox Lyra Plus`
+- [x] `Luckfox Lyra`
+- [x] `Luckfox Lyra Plus`
 - [x] `Milk-V Duo`
 - [ ] `Milk-V Duo 256M`
 
@@ -387,7 +390,7 @@ default_timer_id = 0
 if usys.platform == 'pyboard':
     # stm32 only supports SW timer -1
     default_timer_id = -1
-    
+
 if usys.platform == 'rp2':
     # rp2 only supports SW timer -1
     default_timer_id = -1
@@ -491,7 +494,7 @@ class event_loop():
             await uasyncio.sleep_ms(self.delay)
             lv.tick_inc(self.delay)
             self.refresh_event.set()
-            
+
 
     def default_exception_sink(self, e):
         usys.print_exception(e)
