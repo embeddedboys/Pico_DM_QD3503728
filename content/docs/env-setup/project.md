@@ -42,6 +42,7 @@ ESP32，Linux平台因为篇幅过长，所以放到了单独的章节中。
 - [ ] [Nuttx](#nuttx)
 - [x] [hagl](#hagl)
 - [x] [AWTK](#awtk)
+- [x] [uMac](#umac)
 
 ### 裸机
 
@@ -834,3 +835,15 @@ git clone https://gitee.com/embeddedboys/pico_dm_qd3503728_awtk
 ```bash
 git clone https://github.com/embeddedboys/pico_dm_qd3503728_awtk
 ```
+
+### uMac
+
+Micro Mac, minimalist Macintosh 128K emulator
+
+{{< figure src="images/pico_dm_qd3503728_umac.JPG" alt="" >}}
+
+```bash
+git clone https://github.com/embeddedboys/pico_dm_qd3503728_umac.git
+```
+
+工程中，请先参考仓库中的 [`README.md`](https://github.com/embeddedboys/pico_dm_qd3503728_umac/blob/main/README.md) 文件
