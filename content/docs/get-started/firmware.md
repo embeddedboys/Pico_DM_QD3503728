@@ -63,6 +63,7 @@ sudo udevadm trigger
 实际上，他们也制作了适用于Pico的固件，我们只需要一个空闲的Pico核心板，然后烧录如下固件：
 
 首选链接：[debugprobe_on_pico.uf2](https://github.com/raspberrypi/debugprobe/releases/download/debugprobe-v2.2.3/debugprobe_on_pico.uf2)
+[debugprobe_on_pico2.uf2](https://github.com/raspberrypi/debugprobe/releases/download/debugprobe-v2.2.3/debugprobe_on_pico2.uf2)
 
 备用链接：[debugprobe_on_pico.uf2](http://embeddedboys.com/uploads/debugprobe_on_pico.uf2)
 
