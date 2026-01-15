@@ -34,16 +34,15 @@ seo:
 
 先安装openocd，windows用户不需要通过此方式手动安装
 
-
 ```bash
 sudo apt install automake autoconf build-essential texinfo libtool libftdi-dev libusb-1.0-0-dev libhidapi-dev -y
 
-git clone https://github.com/raspberrypi/openocd.git --recursive --branch sdk-2.0.0 --depth=1
+git clone https://github.com/raspberrypi/openocd.git --recursive --depth=1
 
 cd openocd
 ./bootstrap
 ./configure --enable-cmsis-dap
-make -j12
+make -j$(nproc)
 sudo make install
 ```
 
@@ -56,7 +55,6 @@ sudo udevadm control --reload
 sudo udevadm trigger
 ```
 
-
 树梅派官方推出过基于RP2040的调试器，在github上开源：[https://github.com/raspberrypi/debugprobe](https://github.com/raspberrypi/debugprobe), 大概长这个样子：
 {{< figure src="images/debugprobe.webp" alt="" >}}
 
@@ -64,26 +62,28 @@ sudo udevadm trigger
 
 实际上，他们也制作了适用于Pico的固件，我们只需要一个空闲的Pico核心板，然后烧录如下固件：
 
-首选链接：[debugprobe_on_pico.uf2](http://embeddedboys.com/uploads/debugprobe_on_pico.uf2)
+首选链接：[debugprobe_on_pico.uf2](https://github.com/raspberrypi/debugprobe/releases/download/debugprobe-v2.0/debugprobe_on_pico.uf2)
 
-备用链接：[debugprobe_on_pico.uf2](https://github.com/raspberrypi/debugprobe/releases/download/debugprobe-v2.0/debugprobe_on_pico.uf2)
+备用链接：[debugprobe_on_pico.uf2](http://embeddedboys.com/uploads/debugprobe_on_pico.uf2)
 
 待烧录完成后，将Pico连接至电脑，在Ubuntu中可以使用`lsusb`命令可以看到如下设备
+
 ```shell
 Bus 001 Device 018: ID 2e8a:000c Raspberry Pi Debugprobe on Pico (CMSIS-DAP)
 ```
+
 在Windows设备上，也可以看到一个名为CMSIS-DAP的设备
 
 然后将烧录好debugprobe的Pico， 按照如下表格中的方式，连接至需要调试的Pico核心板
 
-| debugprobe | Pico |
-| --- | --- |
-| GND | GND |
-| GP2 | SWCLK |
-| GP3 | SWDIO |
+| debugprobe   | Pico         |
+| ------------ | ------------ |
+| GND          | GND          |
+| GP2          | SWCLK        |
+| GP3          | SWDIO        |
 | GP4/UART1_TX | GP1/UART0_RX |
 | GP5/UART1_RX | GP0/UART0_TX |
-| VSYS | VSYS |
+| VSYS         | VSYS         |
 
 {{< callout context="note" title="说明" icon="alert-octagon" >}}
 只将debugprobe连接至电脑即可，如果debugprobe无法给Pico提供电源，则
@@ -91,6 +91,7 @@ Pico也需要连接电源。
 {{< /callout >}}
 
 连接完成之后 ，使用如下命令烧录固件至Pico，以blink.elf为例
+
 ```shell
 openocd -f interface/cmsis-dap.cfg -c "adapter speed 5000" -f target/rp2040.cfg -s tcl -c "program blink.elf verify reset exit"
 ```
