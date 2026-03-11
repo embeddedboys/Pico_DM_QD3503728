@@ -44,7 +44,7 @@ ESP32，Linux平台因为篇幅过长，所以放到了单独的章节中。
 - [x] [AWTK](#awtk)
 - [x] [uMac](#umac)
 - [x] [SGL](#sgl)
-- [ ] [uGUI](#ugui)
+- [x] [uGUI](#ugui)
 
 ### 裸机
 
